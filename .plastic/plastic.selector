@@ -1,4 +1,0 @@
-repository "On Par Golf Project/On Par Golf Project@2475794505088@cloud"
-  path "/"
-    br "/main"
-    co "/main"
