@@ -1,6 +1,4 @@
 using UnityEngine.UIElements;
-//namespace Unity.Template.Multiplayer.NGO.Runtime
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
