@@ -1,4 +1,6 @@
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
     internal class MainMenuView : View<MetagameApplication>
@@ -48,7 +50,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnClickStartSinglePlayer(ClickEvent evt)
         {
-            Broadcast(new StartSinglePlayerModeEvent());
+            SceneManager.LoadScene("Level01");
+            //Broadcast(new StartSinglePlayerModeEvent());
         }
 
         void OnClickQuit(ClickEvent evt)
