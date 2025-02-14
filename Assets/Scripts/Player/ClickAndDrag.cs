@@ -2,40 +2,47 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ClickAndDrag : MonoBehaviour {
-    private Mouse mouse;
+    public Mouse mouse;
     private GameObject playerBall;
-    private Vector2 startPos;
-    private Vector2 currentPos;
-    private Vector2 offset;
+    private Vector3 startPos;
+    private Vector3 endPos;
+
+    private void Start() {
+        mouse = Mouse.current;
+
+        if(this.gameObject != null)
+        {
+            playerBall = this.gameObject;
+            startPos = playerBall.transform.position;
+            endPos = playerBall.transform.position;
+        }
+    }
 
     private void Update()
     {
         mouse = Mouse.current;
 
         if(mouse.leftButton.IsPressed() && playerBall != null) {
-            currentPos = mouse.position.ReadValue();
-            offset = currentPos - startPos;
+            Vector2 mousePosition = mouse.position.ReadValue();
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
+
+            endPos = worldPosition;
         }
 
         if(mouse.leftButton.wasPressedThisFrame) {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mouse.position.ReadValue()), Vector2.zero);
-
-            if(hit.collider != null)
+            if(playerBall != null)
             {
-                SelectBall(hit.transform.gameObject);
+                startPos = playerBall.transform.position;
+                endPos = playerBall.transform.position;
             }
         }
     }
 
-    private void SelectBall(GameObject ball)
-    {
-        playerBall = ball;
-        startPos = mouse.position.ReadValue();
+    public Vector3 getStartPos() {
+        return startPos;
     }
 
-    public Vector2 getOffset()
-    {
-        return offset;
+    public Vector3 getEndPos() {
+        return endPos;
     }
-    
 }
