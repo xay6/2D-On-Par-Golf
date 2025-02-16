@@ -3,13 +3,14 @@ using UnityEngine.InputSystem;
 
 public class LineRendererController : MonoBehaviour
 {
-    public LineRenderer lineRenderer;
-    private Vector3 endPos;
+    private LineRenderer lineRenderer;
     private ClickAndDrag clickAndDrag;
     private LaunchWithDrag launchWithDrag;
+    private Vector3 endPos;
 
     void Start()
     {
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
         clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
         launchWithDrag = gameObject.GetComponent<LaunchWithDrag>();
         lineRenderer.enabled = false;
@@ -18,11 +19,11 @@ public class LineRendererController : MonoBehaviour
         lineRenderer.SetPosition(1, endPos);
     }
 
-    private void Update()
+    void Update()
     {
         if (lineRenderer != null)
         {
-            if(launchWithDrag.rb.linearVelocityX == 0 && launchWithDrag.rb.linearVelocityY == 0) {
+            if(!launchWithDrag.isMoving()) {
                 // Changes the state of the line in real time
                 if(Mouse.current.leftButton.IsPressed()) {
                     endPos = clickAndDrag.getEndPos();
