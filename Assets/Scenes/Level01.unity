@@ -2448,11 +2448,11 @@ GameObject:
   - component: {fileID: 1048800918}
   - component: {fileID: 1048800917}
   - component: {fileID: 1048800916}
-  - component: {fileID: 1048800921}
   - component: {fileID: 1048800915}
   - component: {fileID: 1048800914}
   - component: {fileID: 1048800919}
   - component: {fileID: 1048800920}
+  - component: {fileID: 1048800921}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Player
@@ -2468,7 +2468,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048800913}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2504,7 +2504,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -2624,8 +2624,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0.5
+  m_Mass: 3
+  m_LinearDamping: 4
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 1e2fe27a760cc4a0e8c473bcbc0c3ee1, type: 2}
@@ -2733,7 +2733,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06fbdb6c3ca484b7299a4468bf7e5edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 1048800914}
 --- !u!114 &1048800921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2747,7 +2746,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceAmount: 10
-  rb: {fileID: 0}
 --- !u!1 &1331659316
 GameObject:
   m_ObjectHideFlags: 0

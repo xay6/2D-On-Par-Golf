@@ -2,39 +2,38 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ClickAndDrag : MonoBehaviour {
-    public Mouse mouse;
     private GameObject playerBall;
+    private LaunchWithDrag launchWithDrag;
     private Vector3 startPos;
     private Vector3 endPos;
+    [SerializeField]
+    private bool hovered;
 
-    private void Start() {
-        mouse = Mouse.current;
-
-        if(this.gameObject != null)
-        {
-            playerBall = this.gameObject;
-            startPos = playerBall.transform.position;
-            endPos = playerBall.transform.position;
-        }
+    void Start() {
+        playerBall = gameObject;
+        launchWithDrag = gameObject.GetComponent<LaunchWithDrag>();
+        startPos = playerBall.transform.position;
+        endPos = playerBall.transform.position;
     }
 
-    private void Update()
+    void Update()
     {
-        mouse = Mouse.current;
+        if(playerBall != null & launchWithDrag != null) {
+            if(!launchWithDrag.isMoving()) {
+                if(Mouse.current.leftButton.wasPressedThisFrame) 
+                {
+                    startPos = playerBall.transform.position;
+                    endPos = playerBall.transform.position;
+                }
 
-        if(mouse.leftButton.IsPressed() && playerBall != null) {
-            Vector2 mousePosition = mouse.position.ReadValue();
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
+                if(Mouse.current.leftButton.IsPressed()) {
+                    Vector2 mousePosition = Mouse.current.position.ReadValue();
+                    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
 
-            endPos = worldPosition;
-        }
-
-        if(mouse.leftButton.wasPressedThisFrame) {
-            if(playerBall != null)
-            {
-                startPos = playerBall.transform.position;
-                endPos = playerBall.transform.position;
+                    endPos = worldPosition;
+                }
             }
+            
         }
     }
 
