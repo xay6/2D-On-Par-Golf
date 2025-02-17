@@ -1,47 +1,49 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ClickAndDrag : MonoBehaviour {
-    private GameObject playerBall;
-    private LaunchWithDrag launchWithDrag;
-    private Vector3 startPos;
-    private Vector3 endPos;
-    [SerializeField]
-    private bool hovered;
+public class ClickAndDrag : MonoBehaviour
+{
+    public Vector3 startPos { get; set; }
+    public Vector3 endPos { get; set; }
+    public bool isDragging { get; set; }
 
-    void Start() {
-        playerBall = gameObject;
-        launchWithDrag = gameObject.GetComponent<LaunchWithDrag>();
-        startPos = playerBall.transform.position;
-        endPos = playerBall.transform.position;
+    void Start()
+    {
+        startPos = gameObject.transform.position;
+        endPos = gameObject.transform.position;
+        isDragging = false;
     }
 
     void Update()
     {
-        if(playerBall != null & launchWithDrag != null) {
-            if(!launchWithDrag.isMoving()) {
-                if(Mouse.current.leftButton.wasPressedThisFrame) 
-                {
-                    startPos = playerBall.transform.position;
-                    endPos = playerBall.transform.position;
-                }
+        if (isHovering())
+        {
+            startPos = gameObject.transform.position;
+            endPos = gameObject.transform.position;
+        }
 
-                if(Mouse.current.leftButton.IsPressed()) {
-                    Vector2 mousePosition = Mouse.current.position.ReadValue();
-                    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
+        if (Mouse.current.leftButton.wasPressedThisFrame && isHovering())
+        {
+            isDragging = true;
+        }
 
-                    endPos = worldPosition;
-                }
-            }
-            
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
+        {
+            isDragging = false;
+        }
+
+        if (Mouse.current.leftButton.IsPressed() && !isHovering() && isDragging)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
+
+            endPos = worldPosition;
         }
     }
 
-    public Vector3 getStartPos() {
-        return startPos;
-    }
-
-    public Vector3 getEndPos() {
-        return endPos;
+    public bool isHovering()
+    {
+        Vector2 point = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        return gameObject.GetComponent<CircleCollider2D>().OverlapPoint(point);
     }
 }
