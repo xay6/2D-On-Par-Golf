@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 using System.Collections.Generic;
 
@@ -19,15 +20,43 @@ public class GolfClubController : MonoBehaviour
 
     public GolfClub CurrentClub => clubs[currentClubIndex];
 
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) currentClubIndex = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2)) currentClubIndex = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha3)) currentClubIndex = 2;
+        UpdateClubText();
+    }
 
+    private void UpdateClubText()
+    {
         if (clubText != null)
         {
-            clubText.text = "current club: " + CurrentClub.clubName;
+            clubText.text = "Current Club: " + CurrentClub.clubName;
+        }
+        else
+        {
+            Debug.LogError("ClubText is not assigned in the Inspector!");
+        }
+    }
+
+    private void Update()
+    {
+        var keyboard = Keyboard.current;
+
+        if (keyboard.digit1Key.wasPressedThisFrame)
+        {
+            currentClubIndex = 0;
+            UpdateClubText();
+        }
+
+        if (keyboard.digit2Key.wasPressedThisFrame)
+        {
+            currentClubIndex = 1;
+            UpdateClubText();
+        }
+
+        if (keyboard.digit3Key.wasPressedThisFrame)
+        {
+            currentClubIndex = 2;
+            UpdateClubText();
         }
     }
 }
