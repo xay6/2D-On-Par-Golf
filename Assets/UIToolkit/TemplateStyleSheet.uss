@@ -89,3 +89,34 @@
     transition-timing-function: ease;
     color: rgb(159, 159, 159);
 }
+
+.canvas {
+    background-image: url("project://database/Assets/UIToolkit/Images/background.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.button {
+    background-image: url("project://database/Assets/UIToolkit/Images/button.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px; 
+    height: 80px;
+    border-radius: 10px;
+    border-width: 0px;
+}
+
+.button > .unity-button__text {
+    background-color: rgba(0, 0, 0, 0); /* Transparent background */
+    color: white; /* Adjust text color */
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#quitButton {
+    background-image: url("project://database/Assets/UIToolkit/Images/quit_button.png");
+    height: 35px;
+    position: absolute;
+    bottom: 10px;
+}
