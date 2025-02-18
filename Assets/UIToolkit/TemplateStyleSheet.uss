@@ -2,6 +2,19 @@
     -unity-font-style: bold;
 }
 
+@font-face {
+    font-family: "Public Pixel";
+    src: url("project://database/Assets/UIToolkit/Fonts/PublicPixel.ttf");
+}
+
+.button {
+    font-family: "Public Pixel";
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
 .canvas {
     align-items: center;
     justify-content: center;
