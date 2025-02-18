@@ -3,18 +3,16 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI holeInfoText;
+    public static ScoreManager Instance;
 
-    private int strokes = 0;
-    private int currentHole = 1;
-    private int par = 3;
+    public int strokes = 0;
+    public int overallScore = 0;
 
-    void Start()
+    public TextMeshProUGUI scoreText; 
+
+    private void Start()
     {
-        
         UpdateScoreText();
-       
     }
 
     public void AddStroke()
@@ -23,19 +21,23 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
     }
 
-    public void SetHole(int holeNumber, int holePar)
+    public void AddToOverallScore(int score)
     {
-        currentHole = holeNumber;
-        par = holePar;
-        strokes = 0; // Reset strokes for a new hole
+        overallScore += score;
         UpdateScoreText();
-       
+    }
+
+    public void ResetStrokes()
+    {
+        strokes = 0;
+        UpdateScoreText();
     }
 
     private void UpdateScoreText()
     {
-        scoreText.text = $"Score: {strokes}";
+        if (scoreText != null)
+        {
+            scoreText.text = $"strokes: {strokes}\noverall score: {overallScore}";
+        }
     }
-
-   
 }
