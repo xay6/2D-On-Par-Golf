@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
->
-    
-</engine:UXML>
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement name="login" class="canvas">
+        <ui:Label text="Enter Username" name="usernameLabel" class="label" />
+        <ui:TextField name="usernameField" />
+        <ui:Button text="Login" name="loginButton" class="button" />
+        <ui:Button text="Back" name="backButton" class="button" />
+    </ui:VisualElement>
+</ui:UXML>
