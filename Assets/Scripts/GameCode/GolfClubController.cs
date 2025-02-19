@@ -15,19 +15,22 @@ public class GolfClub
 
 public class GolfClubController : MonoBehaviour
 {
-    public List<GolfClub> clubs;
     public TextMeshProUGUI clubText;
 
+    public ClubStats[] clubs;
+    private ClubStats CurrentClub;
     private int currentClubIndex = 0;
 
-    public GolfClub CurrentClub => clubs[currentClubIndex];
     private LaunchWithDrag launchWithDrag;
 
     private void Start()
     {
-        launchWithDrag = GameObject.Find("Ball").GetComponent<LaunchWithDrag>();
-        UpdateClubText();
-        UpdateClubStats();
+        if(clubs.Length > 0) {
+            launchWithDrag = GameObject.Find("Ball").GetComponent<LaunchWithDrag>();
+            CurrentClub = clubs[currentClubIndex];
+            UpdateClubText();
+            UpdateClubStats();
+        }
     }
 
     private void UpdateClubText()
@@ -56,6 +59,7 @@ public class GolfClubController : MonoBehaviour
             if (keyboard.digit1Key.wasPressedThisFrame)
             {
                 currentClubIndex = 0;
+                CurrentClub = clubs[currentClubIndex];
                 UpdateClubText();
                 UpdateClubStats();
             }
@@ -63,6 +67,7 @@ public class GolfClubController : MonoBehaviour
             if (keyboard.digit2Key.wasPressedThisFrame)
             {
                 currentClubIndex = 1;
+                CurrentClub = clubs[currentClubIndex];
                 UpdateClubText();
                 UpdateClubStats();
             }
@@ -70,6 +75,7 @@ public class GolfClubController : MonoBehaviour
             if (keyboard.digit3Key.wasPressedThisFrame)
             {
                 currentClubIndex = 2;
+                CurrentClub = clubs[currentClubIndex];
                 UpdateClubText();
                 UpdateClubStats();
             }
