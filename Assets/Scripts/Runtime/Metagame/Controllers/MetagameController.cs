@@ -64,7 +64,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             }
             App.View.Matchmaker.Hide();
             App.View.LoadingScreen.Hide();
-            App.View.MainMenu.DisableControlsUnsupportedInAutoconnectMode();
+            //App.View.MainMenu.DisableControlsUnsupportedInAutoconnectMode();
         }
     }
 }

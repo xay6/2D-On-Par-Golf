@@ -25,6 +25,6 @@ public class LoginController : MonoBehaviour
 
     private void HandleBack()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        SceneManager.LoadScene("MetagameScene");
     }
 }

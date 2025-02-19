@@ -1,6 +1,5 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -18,7 +17,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             var uiDocument = GetComponent<UIDocument>();
             Root = uiDocument.rootVisualElement;
 
-            // Assign buttons
+            // Get buttons
             NewGameButton = Root.Q<Button>("newGameButton");
             NewGameButton.RegisterCallback<ClickEvent>(OnClickNewGame);
 
@@ -30,6 +29,20 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
             QuitButton = Root.Q<Button>("quitButton");
             QuitButton.RegisterCallback<ClickEvent>(OnClickQuit);
+
+            // Update title label
+            TitleLabel = Root.Q<Label>("titleLabel");
+            if (TitleLabel != null)
+            {
+                TitleLabel.text = "Golf Game";
+            }
+
+            CustomNetworkManager.OnConfigurationLoaded += OnGameConfigurationLoaded;
+        }
+
+        void OnGameConfigurationLoaded()
+        {
+            DisableControlsUnsupportedInAutoconnectMode();
         }
 
         void OnDisable()
@@ -38,6 +51,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
             LeaderboardButton.UnregisterCallback<ClickEvent>(OnClickLeaderboard);
             QuitButton.UnregisterCallback<ClickEvent>(OnClickQuit);
+
+            CustomNetworkManager.OnConfigurationLoaded -= OnGameConfigurationLoaded;
         }
 
         void OnClickNewGame(ClickEvent evt)
@@ -62,6 +77,17 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 #else
             UnityEngine.Application.Quit();
 #endif
+        }
+
+        internal void DisableControlsUnsupportedInAutoconnectMode()
+        {
+            if (!CustomNetworkManager.Singleton.AutoConnectOnStartup)
+            {
+                return;
+            }
+            NewGameButton.SetEnabled(false);
+            LoginButton.SetEnabled(false);
+            LeaderboardButton.SetEnabled(false);
         }
     }
 }

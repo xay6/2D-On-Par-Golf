@@ -19,6 +19,6 @@ public class SignUpController : MonoBehaviour
 
     private void HandleBack()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        SceneManager.LoadScene("MetagameScene");
     }
 }
