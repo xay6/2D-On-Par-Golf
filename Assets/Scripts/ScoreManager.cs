@@ -9,13 +9,26 @@ public class ScoreManager : MonoBehaviour
     public int overallScore = 0;
 
     public TextMeshProUGUI scoreText; // Reference to your TextMeshPro text
-
+    
+        private void Awake()
+    {
+        // Singleton pattern setup (Optional, but good if you want easy global access)
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         UpdateScoreText();
     }
 
+    // This is your main stroke counter
     public void AddStroke()
     {
         strokes++;
@@ -38,7 +51,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = $"strokes: {strokes}\noverall score: {overallScore}";
+            scoreText.text = $"Strokes: {strokes}";
         }
     }
 }

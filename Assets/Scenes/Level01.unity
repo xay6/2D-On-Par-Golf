@@ -2520,8 +2520,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 295, y: 170}
-  m_SizeDelta: {x: -610, y: -360}
+  m_AnchoredPosition: {x: 295, y: 185}
+  m_SizeDelta: {x: -610, y: -390}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040741226
 MonoBehaviour:
@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.114631556, g: 0.13207549, b: 0.12983051, a: 0.8509804}
+  m_Color: {r: 0.15319064, g: 0.4009434, b: 0.3513929, a: 0.9647059}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3191,7 +3191,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'strokes:
 
-    overall score:'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
