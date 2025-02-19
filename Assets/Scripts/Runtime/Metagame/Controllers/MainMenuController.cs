@@ -47,12 +47,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnExitMatchmakerQueue(ExitMatchmakerQueueEvent evt)
         {
             View.Show();
-            View.FindMatchButton.SetEnabled(false); //needs to be called here as the defualt status of the button in the UI is enabled, so disabling it before showing the view does nothing
+            View.NewGameButton.SetEnabled(false); //needs to be called here as the defualt status of the button in the UI is enabled, so disabling it before showing the view does nothing
         }
 
         void OnExitedMatchmakerQueue(ExitedMatchmakerQueueEvent evt)
         {
-            View.FindMatchButton.SetEnabled(true);
+            View.NewGameButton.SetEnabled(true);
         }
 
         void OnStartSinglePlayerMode(StartSinglePlayerModeEvent evt)

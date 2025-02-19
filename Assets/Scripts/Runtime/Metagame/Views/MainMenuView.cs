@@ -5,28 +5,37 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 {
     internal class MainMenuView : View<MetagameApplication>
     {
-        internal Button FindMatchButton { get; private set; }
-        Button m_QuitButton;
-        Button m_SinglePlayerButton;
-        Label m_TitleLabel;
-        VisualElement m_Root;
+        internal Button NewGameButton { get; private set; } // Renamed to match UXML
+        Button LoginButton;
+        Button LeaderboardButton;
+        Button QuitButton; // Added QuitButton
+        Label TitleLabel;
+        VisualElement Root;
 
         void OnEnable()
         {
             var uiDocument = GetComponent<UIDocument>();
-            m_Root = uiDocument.rootVisualElement;
+            Root = uiDocument.rootVisualElement;
 
-            FindMatchButton = m_Root.Q<Button>("findMatchButton");
-            FindMatchButton.RegisterCallback<ClickEvent>(OnClickFindMatch);
+            // Match buttons with UXML names
+            NewGameButton = Root.Q<Button>("newGameButton");
+            NewGameButton.RegisterCallback<ClickEvent>(OnClickFindMatch);
 
-            m_SinglePlayerButton = m_Root.Q<Button>("singlePlayerButton");
-            m_SinglePlayerButton.RegisterCallback<ClickEvent>(OnClickStartSinglePlayer);
+            LoginButton = Root.Q<Button>("loginButton");
+            LoginButton.RegisterCallback<ClickEvent>(OnClickStartSinglePlayer);
 
-            m_QuitButton = m_Root.Q<Button>("quitButton");
-            m_QuitButton.RegisterCallback<ClickEvent>(OnClickQuit);
+            LeaderboardButton = Root.Q<Button>("leadrboardButton");
+            LeaderboardButton.RegisterCallback<ClickEvent>(OnClickLeaderboard);
 
-            m_TitleLabel = m_Root.Query<Label>("titleLabel");
-            m_TitleLabel.text = "Game title";
+            QuitButton = Root.Q<Button>("quitButton"); // Fixed Quit Button Reference
+            QuitButton.RegisterCallback<ClickEvent>(OnClickQuit);
+
+            // Update title label text
+            TitleLabel = Root.Q<Label>("titleLabel");
+            if (TitleLabel != null)
+            {
+                TitleLabel.text = "Game Title";
+            }
 
             CustomNetworkManager.OnConfigurationLoaded += OnGameConfigurationLoaded;
         }
@@ -38,8 +47,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnDisable()
         {
-            FindMatchButton.UnregisterCallback<ClickEvent>(OnClickFindMatch);
-            m_QuitButton.UnregisterCallback<ClickEvent>(OnClickQuit);
+            NewGameButton.UnregisterCallback<ClickEvent>(OnClickFindMatch);
+            LoginButton.UnregisterCallback<ClickEvent>(OnClickStartSinglePlayer);
+            LeaderboardButton.UnregisterCallback<ClickEvent>(OnClickLeaderboard);
+            QuitButton.UnregisterCallback<ClickEvent>(OnClickQuit);
+
             CustomNetworkManager.OnConfigurationLoaded -= OnGameConfigurationLoaded;
         }
 
@@ -51,7 +63,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnClickStartSinglePlayer(ClickEvent evt)
         {
             SceneManager.LoadScene("Level01");
-            //Broadcast(new StartSinglePlayerModeEvent());
+        }
+
+        void OnClickLeaderboard(ClickEvent evt)
+        {
+           // Debug.Log("Leaderboard Button Clicked!");
+            // Add leaderboard logic here
         }
 
         void OnClickQuit(ClickEvent evt)
@@ -69,8 +86,9 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 return;
             }
-            FindMatchButton.SetEnabled(false);
-            m_SinglePlayerButton.SetEnabled(false);
+            NewGameButton.SetEnabled(false);
+            LoginButton.SetEnabled(false);
+            LeaderboardButton.SetEnabled(false);
         }
     }
 }
