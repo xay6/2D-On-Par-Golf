@@ -1,5 +1,5 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements">
-    <ui:VisualElement name="login" class="canvas">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="login" class="canvas" style="justify-content: center; align-self: center; align-content: center; width: 1000px; height: 200px; padding-top: 200px; padding-right: 200px; padding-bottom: 200px; padding-left: 200px; align-items: stretch;">
         <ui:Label text="Enter Username" name="usernameLabel" class="label" />
         <ui:TextField name="usernameField" />
         <ui:Button text="Login" name="loginButton" class="button" />

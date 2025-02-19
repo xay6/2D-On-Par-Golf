@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -33,7 +34,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             if (!CustomNetworkManager.Singleton.AutoConnectOnStartup)
             {
-                return; //then we're starting a match from the matchmaker
+                return;
             }
             View.Hide();
             App.View.LoadingScreen.Show();
@@ -47,7 +48,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnExitMatchmakerQueue(ExitMatchmakerQueueEvent evt)
         {
             View.Show();
-            View.NewGameButton.SetEnabled(false); //needs to be called here as the defualt status of the button in the UI is enabled, so disabling it before showing the view does nothing
+            View.NewGameButton.SetEnabled(false);
         }
 
         void OnExitedMatchmakerQueue(ExitedMatchmakerQueueEvent evt)
@@ -59,6 +60,22 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             View.Hide();
             CustomNetworkManager.Singleton.InitializeNetworkLogic(true, false);
+        }
+
+        // New functions to navigate to different scenes
+        public void StartNewGame()
+        {
+            SceneManager.LoadScene("SignUpScene");
+        }
+
+        public void Login()
+        {
+            SceneManager.LoadScene("LoginScene");
+        }
+
+        public void ShowLeaderboard()
+        {
+            SceneManager.LoadScene("LeaderboardScene");
         }
     }
 }

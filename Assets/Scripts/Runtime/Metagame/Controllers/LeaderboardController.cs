@@ -14,7 +14,7 @@ public class LeaderboardController : MonoBehaviour
 
     private void HandleBack()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        SceneManager.LoadScene("MetagameScene");
     }
 
     private void PopulateLeaderboard()
