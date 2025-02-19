@@ -2883,6 +2883,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceAmount: 10
+  mass: 0
+  linearDamping: 0
+  angularDamping: 0
 --- !u!1 &1331659316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,14 +2996,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clubs:
   - clubName: Driver
-    maxForce: 15
-    heightFactor: 0
+    forceMultiplier: 8.5
+    ballMass: 3
+    linearDamping: 2
+    angularDamping: 0.75
   - clubName: Iron
-    maxForce: 10
-    heightFactor: 0
-  - clubName: putter
-    maxForce: 5
-    heightFactor: 0
+    forceMultiplier: 6.5
+    ballMass: 3
+    linearDamping: 2.5
+    angularDamping: 0.55
+  - clubName: Putter
+    forceMultiplier: 2
+    ballMass: 3
+    linearDamping: 2
+    angularDamping: 0.85
   clubText: {fileID: 345871096}
 --- !u!4 &1567271282
 Transform:

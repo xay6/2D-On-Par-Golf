@@ -50,27 +50,29 @@ public class GolfClubController : MonoBehaviour
 
     private void Update()
     {
-        var keyboard = Keyboard.current;
-        
-        if (keyboard.digit1Key.wasPressedThisFrame)
-        {
-            currentClubIndex = 0;
-            UpdateClubText();
-            UpdateClubStats();
-        }
+        if(!launchWithDrag.isMoving()) {
+            var keyboard = Keyboard.current;
+            
+            if (keyboard.digit1Key.wasPressedThisFrame)
+            {
+                currentClubIndex = 0;
+                UpdateClubText();
+                UpdateClubStats();
+            }
 
-        if (keyboard.digit2Key.wasPressedThisFrame)
-        {
-            currentClubIndex = 1;
-            UpdateClubText();
-            UpdateClubStats();
-        }
+            if (keyboard.digit2Key.wasPressedThisFrame)
+            {
+                currentClubIndex = 1;
+                UpdateClubText();
+                UpdateClubStats();
+            }
 
-        if (keyboard.digit3Key.wasPressedThisFrame)
-        {
-            currentClubIndex = 2;
-            UpdateClubText();
-            UpdateClubStats();
+            if (keyboard.digit3Key.wasPressedThisFrame)
+            {
+                currentClubIndex = 2;
+                UpdateClubText();
+                UpdateClubStats();
+            }
         }
     }
 }
