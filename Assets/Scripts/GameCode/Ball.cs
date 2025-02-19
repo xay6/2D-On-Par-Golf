@@ -57,13 +57,23 @@ public class Ball : MonoBehaviour
     }
 
     void FixedUpdate()
+{
+    if (isMoving && rb.linearVelocity.magnitude > 0.1f) // Apply wind only when ball is moving
     {
-        if (isMoving && rb.linearVelocity.magnitude < 0.1f)
+        Wind wind = FindFirstObjectByType<Wind>();
+        if (wind != null)
         {
-            rb.linearVelocity = Vector2.zero;
-            isMoving = false;
+            Vector2 windForce = wind.windDirection * wind.windStrength;
+            rb.AddForce(windForce);
         }
     }
+
+    if (rb.linearVelocity.magnitude < 0.1f) // Stop ball completely when it's almost still
+    {
+        rb.linearVelocity = Vector2.zero;
+        isMoving = false;
+    }
+}
 }
 
 
