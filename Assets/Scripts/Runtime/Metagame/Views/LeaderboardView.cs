@@ -11,12 +11,21 @@ public class LeaderboardView : MonoBehaviour
 
     private void OnEnable()
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
+        var root = GetComponent<UIDocument>()?.rootVisualElement;
+        if (root == null)
+        {
+            Debug.LogError("UIDocument rootVisualElement is null!");
+            return;
+        }
         leaderboardList = root.Q<ScrollView>("leaderboardList");
         backButton = root.Q<Button>("backButton");
 
+        if (leaderboardList == null) Debug.LogError("leaderboardList is null!");
+        if (backButton == null) Debug.LogError("backButton is null!");
+        
         backButton.clicked += () => OnBack?.Invoke();
     }
+
 
     public void PopulateLeaderboard(List<(string username, int score)> leaderboardData)
     {

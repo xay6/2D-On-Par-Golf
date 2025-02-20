@@ -6,7 +6,7 @@ public class LeaderboardController : MonoBehaviour
 {
     [SerializeField] private LeaderboardView leaderboardView;
 
-    private void Awake()
+    private void Start()
     {
         leaderboardView.OnBack += HandleBack;
         PopulateLeaderboard();
