@@ -10,13 +10,20 @@ public class LineRendererController : MonoBehaviour
         lineRenderer = gameObject.GetComponent<LineRenderer>();
         clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
         lineRenderer.enabled = false;
+
+        // Ensure the LineRenderer has at least 2 positions before setting them
+        if (lineRenderer.positionCount < 2)
+        {
+            lineRenderer.positionCount = 2;
+        }
+
         lineRenderer.SetPosition(0, gameObject.transform.position);
-        lineRenderer.SetPosition(1, clickAndDrag.endPos);
+        lineRenderer.SetPosition(1, gameObject.transform.position);
     }
 
     void Update()
     {
-        if (lineRenderer != null)
+        if (lineRenderer != null && clickAndDrag != null)
         {
             if (clickAndDrag.startPos != clickAndDrag.endPos)
             {
@@ -27,6 +34,12 @@ public class LineRendererController : MonoBehaviour
                 else
                 {
                     lineRenderer.enabled = false;
+                }
+
+                // Ensure there are at least 2 positions before setting them
+                if (lineRenderer.positionCount < 2)
+                {
+                    lineRenderer.positionCount = 2;
                 }
 
                 lineRenderer.SetPosition(0, gameObject.transform.position);
