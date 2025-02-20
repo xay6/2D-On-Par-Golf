@@ -1,0 +1,4 @@
+var label = new Label($"{entry.username}: {entry.score} points");
+label.style.fontSize = 20; // Adjust size
+label.style.unityTextAlign = TextAnchor.MiddleCenter;
+leaderboardList.Add(label);
