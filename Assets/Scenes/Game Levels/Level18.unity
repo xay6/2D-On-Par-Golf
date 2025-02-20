@@ -3050,6 +3050,8 @@ GameObject:
   - component: {fileID: 1749412297}
   - component: {fileID: 1749412296}
   - component: {fileID: 1749412295}
+  - component: {fileID: 1749412299}
+  - component: {fileID: 1749412298}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Goal
@@ -3163,6 +3165,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1749412298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749412294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ca5797a82cb6b4cb05833b9e7a0340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: Ball
+  onSuperimposed: 0
+  onCollision: 0
+--- !u!114 &1749412299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749412294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffe2883d62150341944d164910dea14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1790294550
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,13 +3300,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870578542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb48a74a52814ff9ad5c637f8978296, type: 3}
+  m_Script: {fileID: 11500000, guid: e3f0402479dc6064595424e7fc1dcb90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 10
-  mass: 0
-  linearDamping: 0
-  angularDamping: 0
 --- !u!114 &1870578544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3287,9 +3312,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870578542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fbdb6c3ca484b7299a4468bf7e5edb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4513c91afe7c78e41affa48f8347b236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceAmount: 0
+  mass: 0
+  linearDamping: 0
+  angularDamping: 0
 --- !u!114 &1870578545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3299,7 +3328,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870578542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4f93db14a264eb99192e41fcbe2553, type: 3}
+  m_Script: {fileID: 11500000, guid: bcaceda0a5639534683e32e4751c75c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!120 &1870578546
@@ -3710,7 +3739,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 584671270}
   - {fileID: 200447448}
+  - {fileID: 1870578550}
   - {fileID: 1749412297}
   - {fileID: 456945230}
   - {fileID: 1331659319}
-  - {fileID: 1870578550}
