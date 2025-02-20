@@ -1,22 +1,57 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hole : MonoBehaviour
 {
-    CollisionDetection collisionDetection;
-    private GameObject ball;
+    private CollisionDetection collisionDetection;
+    private GameObject player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public bool isGoal = false; 
+
     void Start()
     {
         collisionDetection = gameObject.GetComponent<CollisionDetection>();
-        ball = GameObject.Find(collisionDetection.objectName);
+
+        if (collisionDetection == null)
+        {
+            Debug.LogError("CollisionDetection component missing on Hole object!");
+        }
+
+        player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Ball not found! Make sure it has the correct tag.");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(collisionDetection.onSuperimposed) {
-            ball.GetComponent<SpriteRenderer>().enabled = false;
+        if (collisionDetection != null && player != null && collisionDetection.onSuperimposed)
+        {
+            player.GetComponent<SpriteRenderer>().enabled = false;
+
+            if (isGoal)
+            {
+                Debug.Log("Goal reached! Loading next level...");
+                LoadNextLevel();
+            }
+        }
+    }
+
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log($"Loading Level {nextSceneIndex}: {SceneManager.GetSceneByBuildIndex(nextSceneIndex).name}");
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.Log("No more levels! Restarting from Level 1.");
+            SceneManager.LoadScene(2); 
         }
     }
 }
