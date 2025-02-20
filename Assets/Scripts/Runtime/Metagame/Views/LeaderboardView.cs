@@ -1,39 +1,49 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
 
-public class LeaderboardView : MonoBehaviour
+namespace Unity.Template.Multiplayer.NGO.Runtime
 {
-    public event System.Action OnBack;
-
-    private ScrollView leaderboardList;
-    private Button backButton;
-
-    private void OnEnable()
+    internal class LeaderboardView : View<MetagameApplication>
     {
-        var root = GetComponent<UIDocument>()?.rootVisualElement;
-        if (root == null)
+        Button m_BackButton;
+        ScrollView m_LeaderboardList;
+        UIDocument m_UIDocument;
+
+        void Awake()
         {
-            Debug.LogError("UIDocument rootVisualElement is null!");
-            return;
+            m_UIDocument = GetComponent<UIDocument>();
         }
-        leaderboardList = root.Q<ScrollView>("leaderboardList");
-        backButton = root.Q<Button>("backButton");
 
-        if (leaderboardList == null) Debug.LogError("leaderboardList is null!");
-        if (backButton == null) Debug.LogError("backButton is null!");
-        
-        backButton.clicked += () => OnBack?.Invoke();
-    }
-
-
-    public void PopulateLeaderboard(List<(string username, int score)> leaderboardData)
-    {
-        leaderboardList.Clear();
-        foreach (var entry in leaderboardData)
+        void OnEnable()
         {
-            var label = new Label($"{entry.username}: {entry.score} points");
-            leaderboardList.Add(label);
+            var root = m_UIDocument.rootVisualElement;
+            m_LeaderboardList = root.Q<ScrollView>("leaderboardList");
+            m_BackButton = root.Q<Button>("backButton");
+
+            m_BackButton.RegisterCallback<ClickEvent>(OnClickBack);
+        }
+
+        void OnDisable()
+        {
+            m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
+        }
+
+        void OnClickBack(ClickEvent evt)
+        {
+            Broadcast(new ExitLeaderboardEvent());
+        }
+
+        internal void PopulateLeaderboard(List<(string username, int score)> leaderboardData)
+        {
+            m_LeaderboardList.Clear();
+
+            foreach (var entry in leaderboardData)
+            {
+                var label = new Label($"{entry.username}: {entry.score} points");
+                m_LeaderboardList.Add(label);
+            }
         }
     }
 }
