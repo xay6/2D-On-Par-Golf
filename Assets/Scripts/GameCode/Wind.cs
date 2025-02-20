@@ -5,60 +5,47 @@ public class Wind : MonoBehaviour
 {
     public Vector2 windDirection { get; private set; }
     public float windStrength { get; private set; }
-    public Text windDisplayText; 
-
-    private Vector2 upcomingWindDirection;
-    private float upcomingWindStrength;
+    public Text windDisplayText;
 
     void Start()
     {
-        GenerateNewWind(true); 
-        ApplyNextWind();
+        GenerateNewWind(true);
     }
 
     public void GenerateNewWind(bool firstTime = false)
     {
         if (firstTime)
         {
-            windDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            // ✅ Generate a fully random wind direction on game start
+            windDirection = GetRandomWindDirection();
             windStrength = Random.Range(1f, 5f);
         }
         else
         {
-            float angleChange = Random.Range(-15f, 15f);
-            float newAngle = Mathf.Atan2(windDirection.y, windDirection.x) * Mathf.Rad2Deg + angleChange;
-            upcomingWindDirection = new Vector2(Mathf.Cos(newAngle * Mathf.Deg2Rad), Mathf.Sin(newAngle * Mathf.Deg2Rad)).normalized;
-
-            upcomingWindStrength = Mathf.Clamp(windStrength + Random.Range(-1f, 1f), 1f, 5f);
+            // ✅ Ensure wind changes more randomly each time
+            windDirection = GetRandomWindDirection();
+            windStrength = Mathf.Clamp(windStrength + Random.Range(-1f, 1f), 1f, 5f);
         }
 
-        UpdateWindUI(true); 
+        UpdateWindUI();
     }
 
-    public void ApplyNextWind()
-    {
-        windDirection = upcomingWindDirection;
-        windStrength = upcomingWindStrength;
-        UpdateWindUI(false); 
-    }
-
-    void UpdateWindUI(bool showUpcoming = false)
+    void UpdateWindUI()
     {
         if (windDisplayText != null)
         {
-            if (showUpcoming)
-            {
-                string directionText = GetWindDirectionString(upcomingWindDirection);
-                windDisplayText.text = $"Next Wind: {upcomingWindStrength:F1} mph {directionText}";
-            }
-            else
-            {
-                string directionText = GetWindDirectionString(windDirection);
-                windDisplayText.text = $"Wind: {windStrength:F1} mph {directionText}";
-            }
-
-            Debug.Log($"Updated Wind UI: {windDisplayText.text}");
+            string directionText = GetWindDirectionString(windDirection);
+            windDisplayText.text = $"Wind: {windStrength:F1} mph {directionText}";
         }
+
+        Debug.Log($"Updated Wind UI: {windDisplayText.text}");
+    }
+
+    Vector2 GetRandomWindDirection()
+    {
+        // ✅ Generate a completely random wind direction between 0 and 360 degrees
+        float randomAngle = Random.Range(0f, 360f);
+        return new Vector2(Mathf.Cos(randomAngle * Mathf.Deg2Rad), Mathf.Sin(randomAngle * Mathf.Deg2Rad)).normalized;
     }
 
     public string GetWindDirectionString(Vector2 direction)
@@ -76,6 +63,7 @@ public class Wind : MonoBehaviour
         return "↘ SE";
     }
 }
+
 
 
 
