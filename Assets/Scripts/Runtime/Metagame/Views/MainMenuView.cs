@@ -67,7 +67,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnClickLeaderboard(ClickEvent evt)
         {
-            SceneManager.LoadScene("LeaderboardScene");
+            Broadcast(new EnterLeaderboardEvent()); // Show leaderboard instead of switching scenes
         }
 
         void OnClickQuit(ClickEvent evt)

@@ -74,14 +74,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnterLeaderboard(EnterLeaderboardEvent evt)
         {
-            DisableViewsAndListeners();
             App.View.Leaderboard.Show();
+            App.View.MainMenu.Hide();  // Hide main menu when leaderboard appears
         }
 
         void OnExitLeaderboard(ExitLeaderboardEvent evt)
         {
-            EnableViewsAndListener();
             App.View.Leaderboard.Hide();
+            App.View.MainMenu.Show();  // Show main menu again when leaderboard closes
         }
     }
 }

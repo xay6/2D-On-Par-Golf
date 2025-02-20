@@ -16,32 +16,72 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_UIDocument = GetComponent<UIDocument>();
         }
 
+        void Start()
+        {
+            Hide(); // Ensure leaderboard starts hidden
+        }
+
         void OnEnable()
         {
+            if (m_UIDocument == null)
+            {
+                Debug.LogError("LeaderboardView: UIDocument is missing!");
+                return;
+            }
+
             var root = m_UIDocument.rootVisualElement;
+            if (root == null)
+            {
+                Debug.LogError("LeaderboardView: rootVisualElement is null!");
+                return;
+            }
+
             m_LeaderboardList = root.Q<ScrollView>("leaderboardList");
             m_BackButton = root.Q<Button>("backButton");
+
+            if (m_BackButton == null || m_LeaderboardList == null)
+            {
+                Debug.LogError("LeaderboardView: UI elements not found!");
+                return;
+            }
 
             m_BackButton.RegisterCallback<ClickEvent>(OnClickBack);
         }
 
         void OnDisable()
         {
-            m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
+            if (m_BackButton != null)
+            {
+                m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
+            }
         }
 
         void OnClickBack(ClickEvent evt)
         {
+            Hide();
             Broadcast(new ExitLeaderboardEvent());
         }
 
         internal void PopulateLeaderboard(List<(string username, int score)> leaderboardData)
         {
+            if (m_LeaderboardList == null)
+            {
+                Debug.LogError("LeaderboardView: leaderboardList is null!");
+                return;
+            }
+
             m_LeaderboardList.Clear();
 
-            foreach (var entry in leaderboardData)
+            if (leaderboardData == null || leaderboardData.Count == 0)
             {
-                var label = new Label($"{entry.username}: {entry.score} points");
+                var emptyLabel = new Label("No leaderboard data available");
+                m_LeaderboardList.Add(emptyLabel);
+                return;
+            }
+
+            foreach (var (username, score) in leaderboardData)
+            {
+                var label = new Label($"{username}: {score} points");
                 m_LeaderboardList.Add(label);
             }
         }

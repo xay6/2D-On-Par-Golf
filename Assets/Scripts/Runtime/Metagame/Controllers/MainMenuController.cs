@@ -14,6 +14,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             AddListener<MatchLoadingEvent>(OnMatchLoading);
             AddListener<ExitedMatchmakerQueueEvent>(OnExitedMatchmakerQueue);
             AddListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
+            AddListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
+            AddListener<ExitLeaderboardEvent>(OnExitLeaderboard);
         }
 
         void OnDestroy()
@@ -28,6 +30,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             RemoveListener<ExitMatchmakerQueueEvent>(OnExitMatchmakerQueue);
             RemoveListener<ExitedMatchmakerQueueEvent>(OnExitedMatchmakerQueue);
             RemoveListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
+            RemoveListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
+            RemoveListener<ExitLeaderboardEvent>(OnExitLeaderboard);
         }
 
         void OnMatchLoading(MatchLoadingEvent evt)
@@ -62,20 +66,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             CustomNetworkManager.Singleton.InitializeNetworkLogic(true, false);
         }
 
-        // New functions to navigate to different scenes
-        public void StartNewGame()
+        void OnEnterLeaderboard(EnterLeaderboardEvent evt)
         {
-            SceneManager.LoadScene("SignUpScene");
+            App.View.Leaderboard.Show();
         }
 
-        public void Login()
+        void OnExitLeaderboard(ExitLeaderboardEvent evt)
         {
-            SceneManager.LoadScene("LoginScene");
-        }
-
-        public void ShowLeaderboard()
-        {
-            SceneManager.LoadScene("LeaderboardScene");
+            App.View.Leaderboard.Hide();
         }
     }
 }
