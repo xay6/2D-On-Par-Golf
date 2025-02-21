@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = $"Strokes: {strokes}";
+            scoreText.text = $"Strokes: {strokes}\n Overall Score: {overallScore}";
         }
     }
 }
