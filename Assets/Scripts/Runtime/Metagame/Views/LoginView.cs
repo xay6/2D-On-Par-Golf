@@ -1,23 +1,61 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
-public class LoginView : MonoBehaviour
+namespace Unity.Template.Multiplayer.NGO.Runtime
 {
-    public event System.Action<string> OnLogin;
-    public event System.Action OnBack;
-
-    private TextField usernameField;
-    private Button loginButton;
-    private Button backButton;
-
-    private void OnEnable()
+    internal class LoginView : View<MetagameApplication>
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
-        usernameField = root.Q<TextField>("usernameField");
-        loginButton = root.Q<Button>("loginButton");
-        backButton = root.Q<Button>("backButton");
+        Button m_LoginButton;
+        TextField m_UsernameField;
+        TextField m_PasswordField;
+        Label m_ErrorLabel;
+        VisualElement m_Root;
+        UIDocument m_UIDocument;
 
-        loginButton.clicked += () => OnLogin?.Invoke(usernameField.value);
-        backButton.clicked += () => OnBack?.Invoke();
+        void Awake()
+        {
+            m_UIDocument = GetComponent<UIDocument>();
+            if (m_UIDocument != null)
+            {
+                m_Root = m_UIDocument.rootVisualElement;
+            }
+        }
+
+        void OnEnable()
+        {
+            m_UsernameField = m_Root.Q<TextField>("usernameField");
+            m_PasswordField = m_Root.Q<TextField>("passwordField");
+            m_LoginButton = m_Root.Q<Button>("loginButton");
+            m_ErrorLabel = m_Root.Q<Label>("errorLabel");
+            
+            m_LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
+        }
+
+        void OnDisable()
+        {
+            m_LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
+        }
+
+        void OnClickLogin(ClickEvent evt)
+        {
+            string username = m_UsernameField.value.Trim();
+            string password = m_PasswordField.value.Trim();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                ShowError("Username and password cannot be empty.");
+                return;
+            }
+
+            Broadcast(new LoginAttemptEvent(username, password));
+        }
+
+        internal void ShowError(string message)
+        {
+            if (m_ErrorLabel != null)
+            {
+                m_ErrorLabel.text = message;
+                m_ErrorLabel.style.display = DisplayStyle.Flex;
+            }
+        }
     }
 }

@@ -27,6 +27,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         [SerializeField]
         LeaderboardView m_LeaderboardView;
 
+        internal LoginView Login => m_LoginView;
+
+        [SerializeField]
+        LoginView m_LoginView;
+
         void Start()
         {
             if (App.IsDedicatedServer)

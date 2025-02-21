@@ -17,6 +17,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             AddListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
             AddListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
             AddListener<ExitLeaderboardEvent>(OnExitLeaderboard);
+            AddListener<EnterLoginEvent>(OnEnterLogin);
+            AddListener<ExitLoginEvent>(OnExitLogin);
         }
 
         void OnDestroy()
@@ -33,6 +35,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             RemoveListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
             RemoveListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
             RemoveListener<ExitLeaderboardEvent>(OnExitLeaderboard);
+            RemoveListener<EnterLoginEvent>(OnEnterLogin);
+            RemoveListener<ExitLoginEvent>(OnExitLogin);
         }
 
         void OnMatchLoading(MatchLoadingEvent evt)
@@ -76,6 +80,17 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnExitLeaderboard(ExitLeaderboardEvent evt)
         {
             App.View.Leaderboard.Hide();
+            View.Show();
+        }
+
+        void OnEnterLogin(EnterLoginEvent evt)
+        {
+            View.Hide();
+            App.View.Login.Show();
+        }
+        void OnExitLogin(ExitLoginEvent evt)
+        {
+            App.View.Login.Hide();
             View.Show();
         }
     }

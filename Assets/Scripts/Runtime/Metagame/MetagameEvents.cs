@@ -46,4 +46,18 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
     /// Event triggered when exiting the leaderboard screen.
     /// </summary>
     internal class ExitLeaderboardEvent : AppEvent { }
+
+    internal class EnterLoginEvent : AppEvent { }
+    internal class ExitLoginEvent : AppEvent { }
+    internal class LoginAttemptEvent : AppEvent
+    {
+        public string Username { get; }
+        public string Password { get; }
+
+        public LoginAttemptEvent(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
+    }
 }

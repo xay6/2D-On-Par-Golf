@@ -1,8 +1,25 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="login" class="canvas" style="justify-content: center; align-self: center; align-content: center; width: 1000px; height: 200px; padding-top: 200px; padding-right: 200px; padding-bottom: 200px; padding-left: 200px; align-items: stretch;">
-        <ui:Label text="Enter Username" name="usernameLabel" class="label" />
-        <ui:TextField name="usernameField" />
-        <ui:Button text="Login" name="loginButton" class="button" />
-        <ui:Button text="Back" name="backButton" class="button" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="login" class="canvas" 
+        style="justify-content: center; align-self: center; align-content: center; 
+               width: 400px; height: auto; padding: 40px; align-items: stretch;
+               border-radius: 10px; background-color: #f5f5f5;">
+
+        <ui:Label text="Login" class="title-label" style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 20px;" />
+
+        <ui:VisualElement class="input-container" style="flex-direction: column; gap: 10px;">
+            <ui:Label text="Username" name="usernameLabel" class="label" />
+            <ui:TextField name="usernameField" />
+
+            <ui:Label text="Password" name="passwordLabel" class="label" />
+            <ui:TextField name="passwordField" password="true" />
+
+            <ui:Label name="errorLabel" class="error-label" style="color: red; display: none;" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="button-container" style="flex-direction: row; justify-content: space-between; margin-top: 20px;">
+            <ui:Button text="Login" name="loginButton" class="button" />
+            <ui:Button text="Back" name="backButton" class="button" />
+        </ui:VisualElement>
+
     </ui:VisualElement>
 </ui:UXML>

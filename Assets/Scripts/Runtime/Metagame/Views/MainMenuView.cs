@@ -21,8 +21,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             //NewGameButton = Root.Q<Button>("newGameButton");
             //NewGameButton.RegisterCallback<ClickEvent>(OnClickNewGame);
 
-            //LoginButton = Root.Q<Button>("loginButton");
-            //LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
+            LoginButton = Root.Q<Button>("loginButton");
+            LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
 
             LeaderboardButton = Root.Q<Button>("leaderboardButton");
             LeaderboardButton.RegisterCallback<ClickEvent>(OnClickLeaderboard);
@@ -49,6 +49,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             //FindMatchButton.UnregisterCallback<ClickEvent>(OnClickFindMatch);
             //m_SinglePlayerButton.UnregisterCallback<ClickEvent>(OnClickStartSinglePlayer);
+            LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
             LeaderboardButton.UnregisterCallback<ClickEvent>(OnClickLeaderboard); // Unregister Leaderboard
             QuitButton.UnregisterCallback<ClickEvent>(OnClickQuit);
             CustomNetworkManager.OnConfigurationLoaded -= OnGameConfigurationLoaded;
@@ -67,6 +68,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnClickLeaderboard(ClickEvent evt)
         {
             Broadcast(new EnterLeaderboardEvent()); // Broadcast leaderboard event
+        }
+
+        void OnClickLogin(ClickEvent evt)
+        {
+            Broadcast(new EnterLoginEvent()); // Broadcast leaderboard event
         }
 
         void OnClickQuit(ClickEvent evt)
