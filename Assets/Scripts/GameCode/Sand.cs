@@ -2,26 +2,29 @@ using UnityEngine;
 
 public class Sand : MonoBehaviour
 {
+    private Rigidbody2D ballRB;
+    private ClubStats currentClub;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ball")) 
+        if (other.CompareTag("Player")) 
         {
-            Rigidbody2D ballRB = other.GetComponent<Rigidbody2D>();
-            if (ballRB != null)
+            ballRB = other.GetComponent<Rigidbody2D>();
+            currentClub = other.GetComponent<GolfClubController>().CurrentClub;
+            if (ballRB != null && currentClub != null)
             {
-                ballRB.linearDamping = 3f; 
+                ballRB.linearDamping = 20f; 
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Player"))
         {
-            Rigidbody2D ballRB = other.GetComponent<Rigidbody2D>();
-            if (ballRB != null)
+            if (ballRB != null && currentClub != null)
             {
-                ballRB.linearDamping = 0.5f; 
+                ballRB.linearDamping = currentClub.linearDamping; 
             }
         }
     }
