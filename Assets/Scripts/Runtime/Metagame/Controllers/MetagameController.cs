@@ -11,8 +11,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             AddListener<PlayerSignedIn>(OnPlayerSignedIn);
             AddListener<MatchEnteredEvent>(OnMatchEntered);
-            AddListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
-            AddListener<ExitLeaderboardEvent>(OnExitLeaderboard);
         }
 
         void OnDestroy()
@@ -24,8 +22,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             RemoveListener<PlayerSignedIn>(OnPlayerSignedIn);
             RemoveListener<MatchEnteredEvent>(OnMatchEntered);
-            RemoveListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
-            RemoveListener<ExitLeaderboardEvent>(OnExitLeaderboard);
         }
 
         void OnPlayerSignedIn(PlayerSignedIn evt)
@@ -70,18 +66,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             App.View.Matchmaker.Hide();
             App.View.LoadingScreen.Hide();
             App.View.Leaderboard.Hide();  // Ensure leaderboard is hidden when returning to metagame
-        }
-
-        void OnEnterLeaderboard(EnterLeaderboardEvent evt)
-        {
-            App.View.Leaderboard.Show();
-            App.View.MainMenu.Hide();  // Hide main menu when leaderboard appears
-        }
-
-        void OnExitLeaderboard(ExitLeaderboardEvent evt)
-        {
-            App.View.Leaderboard.Hide();
-            App.View.MainMenu.Show();  // Show main menu again when leaderboard closes
         }
     }
 }

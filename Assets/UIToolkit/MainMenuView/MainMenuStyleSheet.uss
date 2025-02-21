@@ -1,11 +1,12 @@
 .canvas {
-    background-image: url("project://database/Assets/UIToolkit/Images/BlankBackground.png"); 
+    background-image: url("project://database/Assets/UIToolkit/Images/MainMenuBackground.png"); 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .button {
+    background-image: url("project://database/Assets/UIToolkit/Images/button.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 200px; 
@@ -21,7 +22,7 @@
     font-weight: bold;
 }
 
-#backButton {
+#quitButton {
     background-image: url("project://database/Assets/UIToolkit/Images/RedButton.png");
     height: 35px;
     position: absolute;

@@ -18,11 +18,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             Root = uiDocument.rootVisualElement;
 
             // Get buttons
-            NewGameButton = Root.Q<Button>("newGameButton");
-            NewGameButton.RegisterCallback<ClickEvent>(OnClickNewGame);
+            //NewGameButton = Root.Q<Button>("newGameButton");
+            //NewGameButton.RegisterCallback<ClickEvent>(OnClickNewGame);
 
-            LoginButton = Root.Q<Button>("loginButton");
-            LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
+            //LoginButton = Root.Q<Button>("loginButton");
+            //LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
 
             LeaderboardButton = Root.Q<Button>("leaderboardButton");
             LeaderboardButton.RegisterCallback<ClickEvent>(OnClickLeaderboard);
@@ -47,27 +47,26 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnDisable()
         {
-            NewGameButton.UnregisterCallback<ClickEvent>(OnClickNewGame);
-            LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
-            LeaderboardButton.UnregisterCallback<ClickEvent>(OnClickLeaderboard);
+            //FindMatchButton.UnregisterCallback<ClickEvent>(OnClickFindMatch);
+            //m_SinglePlayerButton.UnregisterCallback<ClickEvent>(OnClickStartSinglePlayer);
+            LeaderboardButton.UnregisterCallback<ClickEvent>(OnClickLeaderboard); // Unregister Leaderboard
             QuitButton.UnregisterCallback<ClickEvent>(OnClickQuit);
-
             CustomNetworkManager.OnConfigurationLoaded -= OnGameConfigurationLoaded;
         }
 
-        void OnClickNewGame(ClickEvent evt)
+        void OnClickFindMatch(ClickEvent evt)
         {
-            SceneManager.LoadScene("SignUpScene");
+            Broadcast(new EnterMatchmakerQueueEvent("Standard"));
         }
 
-        void OnClickLogin(ClickEvent evt)
+        void OnClickStartSinglePlayer(ClickEvent evt)
         {
-            SceneManager.LoadScene("LoginScene");
+            Broadcast(new StartSinglePlayerModeEvent());
         }
 
         void OnClickLeaderboard(ClickEvent evt)
         {
-            Broadcast(new EnterLeaderboardEvent()); // Show leaderboard instead of switching scenes
+            Broadcast(new EnterLeaderboardEvent()); // Broadcast leaderboard event
         }
 
         void OnClickQuit(ClickEvent evt)
@@ -85,9 +84,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 return;
             }
-            NewGameButton.SetEnabled(false);
-            LoginButton.SetEnabled(false);
-            LeaderboardButton.SetEnabled(false);
+            //FindMatchButton.SetEnabled(false);
+            //m_SinglePlayerButton.SetEnabled(false);
         }
     }
 }

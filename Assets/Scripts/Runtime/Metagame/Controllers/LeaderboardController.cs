@@ -28,14 +28,13 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnterLeaderboard(EnterLeaderboardEvent evt)
         {
-            View.Show();
             PopulateLeaderboard();
+            View.Hide();
         }
 
         void OnExitLeaderboard(ExitLeaderboardEvent evt)
         {
-            View.Hide();
-            SceneManager.LoadScene("MetagameScene");
+            View.Show();
         }
 
         void PopulateLeaderboard()

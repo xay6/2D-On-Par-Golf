@@ -1,3 +1,4 @@
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -68,12 +69,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnterLeaderboard(EnterLeaderboardEvent evt)
         {
+            View.Hide();
             App.View.Leaderboard.Show();
         }
 
         void OnExitLeaderboard(ExitLeaderboardEvent evt)
         {
             App.View.Leaderboard.Hide();
+            View.Show();
         }
     }
 }
