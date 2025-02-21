@@ -119,6 +119,59 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &90457718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90457719}
+  - component: {fileID: 90457720}
+  m_Layer: 5
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &90457719
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90457718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 456945230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &90457720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90457718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70dc5a61aded467429d8c1e96ed93a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  challengePanel: {fileID: 146625650}
+  successPanel: {fileID: 732070508}
+  failedPanel: {fileID: 684849365}
+  fadeDuration: 1.5
+  displayTime: 3
 --- !u!1 &140440257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,13 +1174,14 @@ GameObject:
   - component: {fileID: 146625646}
   - component: {fileID: 146625649}
   - component: {fileID: 146625648}
+  - component: {fileID: 146625650}
   m_Layer: 5
   m_Name: ChallengeUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &146625646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1186,6 +1240,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146625645}
   m_CullTransparentMesh: 1
+--- !u!225 &146625650
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146625645}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &200447446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,9 +2265,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 90457719}
   - {fileID: 146625646}
-  - {fileID: 684849362}
   - {fileID: 732070505}
+  - {fileID: 684849362}
   - {fileID: 345871098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2374,13 +2441,14 @@ GameObject:
   - component: {fileID: 684849362}
   - component: {fileID: 684849364}
   - component: {fileID: 684849363}
+  - component: {fileID: 684849365}
   m_Layer: 5
   m_Name: FailedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &684849362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2398,7 +2466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: -109}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 435, y: 87.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &684849363
@@ -2439,6 +2507,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684849361}
   m_CullTransparentMesh: 1
+--- !u!225 &684849365
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684849361}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &732070504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,13 +2530,14 @@ GameObject:
   - component: {fileID: 732070505}
   - component: {fileID: 732070507}
   - component: {fileID: 732070506}
+  - component: {fileID: 732070508}
   m_Layer: 5
   m_Name: SuccessUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &732070505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2474,7 +2555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.8, y: 185.9}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 435, y: 87.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &732070506
@@ -2515,6 +2596,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732070504}
   m_CullTransparentMesh: 1
+--- !u!225 &732070508
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732070504}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &759412865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +3068,7 @@ GameObject:
   - component: {fileID: 1048800920}
   - component: {fileID: 1048800921}
   - component: {fileID: 1048800922}
+  - component: {fileID: 1048800923}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Player
@@ -3259,6 +3353,7 @@ MonoBehaviour:
   mass: 0
   linearDamping: 0
   angularDamping: 0
+  strokeCount: 0
 --- !u!114 &1048800921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3288,6 +3383,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d812ad8d1b82f4054ae679599ab6028b, type: 2}
   - {fileID: 11400000, guid: 4b59e6b2f28a841b381b58b01c3d894b, type: 2}
   - {fileID: 11400000, guid: d279f28fd8bd0401e9510d1986f1f436, type: 2}
+--- !u!114 &1048800923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048800913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c7a5c94551b07478e254ea3babbbc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: Ball
+  strokes: 0
 --- !u!1 &1145411374
 GameObject:
   m_ObjectHideFlags: 0
