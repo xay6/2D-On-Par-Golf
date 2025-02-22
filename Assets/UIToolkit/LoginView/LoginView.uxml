@@ -1,25 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="login" class="canvas" 
-        style="justify-content: center; align-self: center; align-content: center; 
-               width: 400px; height: auto; padding: 40px; align-items: stretch;
-               border-radius: 10px; background-color: #f5f5f5;">
-
+    <Style src="project://database/Assets/UIToolkit/TemplateStyleSheet.uss?fileID=7433441132597879392&amp;guid=f5894c9d97a5b334fb951afee4f0740a&amp;type=3#TemplateStyleSheet" />
+    <ui:VisualElement name="login" class="canvas" style="justify-content: center; align-self: center; align-content: center; width: 1500px; height: auto; padding: 40px; align-items: stretch; border-radius: 10px; background-color: rgb(245, 245, 245);">
         <ui:Label text="Login" class="title-label" style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 20px;" />
-
         <ui:VisualElement class="input-container" style="flex-direction: column; gap: 10px;">
             <ui:Label text="Username" name="usernameLabel" class="label" />
             <ui:TextField name="usernameField" />
-
             <ui:Label text="Password" name="passwordLabel" class="label" />
             <ui:TextField name="passwordField" password="true" />
-
             <ui:Label name="errorLabel" class="error-label" style="color: red; display: none;" />
         </ui:VisualElement>
-
         <ui:VisualElement class="button-container" style="flex-direction: row; justify-content: space-between; margin-top: 20px;">
             <ui:Button text="Login" name="loginButton" class="button" />
             <ui:Button text="Back" name="backButton" class="button" />
         </ui:VisualElement>
-
     </ui:VisualElement>
 </ui:UXML>

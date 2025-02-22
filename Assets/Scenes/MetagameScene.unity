@@ -494,6 +494,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7608159501841437823, guid: a792aead6be06b44eaa0f1e2ff26af60, type: 3}
+      propertyPath: m_LoginView
+      value: 
+      objectReference: {fileID: 845549765}
+    - target: {fileID: 7608159501841437823, guid: a792aead6be06b44eaa0f1e2ff26af60, type: 3}
       propertyPath: m_LeaderboardView
       value: 
       objectReference: {fileID: 1175935009}

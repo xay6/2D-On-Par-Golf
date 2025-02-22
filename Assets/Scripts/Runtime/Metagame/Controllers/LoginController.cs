@@ -1,30 +1,54 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoginController : MonoBehaviour
+namespace Unity.Template.Multiplayer.NGO.Runtime
 {
-    [SerializeField] private LoginView loginView;
-
-    private void Awake()
+    internal class LoginController : Controller<MetagameApplication>
     {
-        loginView.OnLogin += HandleLogin;
-        loginView.OnBack += HandleBack;
-    }
+        LoginView View => App.View.Login;
 
-    private void HandleLogin(string username)
-    {
-        if (PlayerPrefs.GetString("Username") == username)
+        void Awake()
         {
-            SceneManager.LoadScene("GameScene"); // Replace with your actual game scene
+            AddListener<LoginAttemptEvent>(OnLoginAttempt);
+            AddListener<ExitLoginEvent>(OnExitLogin);
         }
-        else
-        {
-            Debug.Log("Username not found!");
-        }
-    }
 
-    private void HandleBack()
-    {
-        SceneManager.LoadScene("MetagameScene");
+        void OnDestroy()
+        {
+            RemoveListeners();
+        }
+
+        internal override void RemoveListeners()
+        {
+            RemoveListener<LoginAttemptEvent>(OnLoginAttempt);
+            RemoveListener<ExitLoginEvent>(OnExitLogin);
+        }
+
+        void OnLoginAttempt(LoginAttemptEvent evt)
+        {
+            bool success = Authenticate(evt.Username, evt.Password);
+            
+            if (success)
+            {
+                Debug.Log("Login successful!");
+                SceneManager.LoadScene("MainMenu"); // Change to the appropriate scene
+            }
+            else
+            {
+                View.ShowError("Invalid username or password.");
+            }
+        }
+
+        void OnExitLogin(ExitLoginEvent evt)
+        {
+            View.Hide();
+        }
+
+        bool Authenticate(string username, string password)
+        {
+            // Mock authentication - replace with actual logic
+            return username == "admin" && password == "password123";
+        }
     }
 }

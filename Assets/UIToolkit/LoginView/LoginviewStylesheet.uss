@@ -1,56 +1,47 @@
-/* General Styling */
-:root {
-    --primary-color: #90AE6B;  /* Greenish */
-    --text-color: #FFFFFF;
-    --button-hover-color: #7B9960;
-    --border-radius: 8px;
-    --padding: 10px;
+.canvas {
+    background-image: url("project://database/Assets/UIToolkit/Images/BlankBackground.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-/* Background */
-.login-container {
-    width: 100%;
-    height: 100%;
-    background-color: var(--primary-color);
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Labels */
-.label {
-    font-size: 20px;
-    color: var(--text-color);
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* Text Input Field */
-.text-field {
-    width: 250px;
-    height: 40px;
-    font-size: 16px;
-    padding: var(--padding);
-    border-radius: var(--border-radius);
-    border: 2px solid var(--text-color);
-    background-color: rgba(255, 255, 255, 0.8);
-    color: black;
-}
-
-/* Buttons */
 .button {
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 200px;
-    height: 45px;
-    font-size: 18px;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border-radius: var(--border-radius);
-    border: none;
-    margin-top: 10px;
-    cursor: pointer;
+    height: 80px;
+    border-radius: 10px;
+    border-top-width: 0px;
 }
 
-.button:hover {
-    background-color: var(--button-hover-color);
+.button > .unity-button__text {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#loginButton {
+    background-image: url("project://database/Assets/UIToolkit/Images/GreenButton.png");
+}
+
+#backButton {
+    background-image: url("project://database/Assets/UIToolkit/Images/RedButton.png");
+    height: 35px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.label {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#usernameField, #passwordField {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 5px;
 }
