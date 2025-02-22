@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 943278996}
   - component: {fileID: 943278998}
-  - component: {fileID: 943278997}
+  - component: {fileID: 943278999}
   m_Layer: 0
   m_Name: GuestView
   m_TagString: Untagged
@@ -221,18 +221,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 65346115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &943278997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943278995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6fcb0f7ff2784b5c820430f56bef38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &943278998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +240,18 @@ MonoBehaviour:
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
+--- !u!114 &943278999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943278995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580ddec70b0fb4f3691972b940016039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1175935009 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7042163179565300156, guid: a792aead6be06b44eaa0f1e2ff26af60, type: 3}
@@ -557,6 +557,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7608159501841437823, guid: a792aead6be06b44eaa0f1e2ff26af60, type: 3}
+      propertyPath: m_GuestView
+      value: 
+      objectReference: {fileID: 943278999}
     - target: {fileID: 7608159501841437823, guid: a792aead6be06b44eaa0f1e2ff26af60, type: 3}
       propertyPath: m_LoginView
       value: 
