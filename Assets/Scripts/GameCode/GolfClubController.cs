@@ -18,7 +18,7 @@ public class GolfClubController : MonoBehaviour
     public TextMeshProUGUI clubText;
 
     public ClubStats[] clubs;
-    private ClubStats CurrentClub;
+    public ClubStats CurrentClub;
     private int currentClubIndex = 0;
 
     private LaunchWithDrag launchWithDrag;
