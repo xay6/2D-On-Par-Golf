@@ -17,7 +17,6 @@
 .button > .unity-button__text {
     color: white;
     font-size: 14px;
-    font-weight: bold;
 }
 
 #loginButton {
@@ -34,7 +33,6 @@
 .label {
     color: white;
     font-size: 16px;
-    font-weight: bold;
     margin-bottom: 10px;
 }
 

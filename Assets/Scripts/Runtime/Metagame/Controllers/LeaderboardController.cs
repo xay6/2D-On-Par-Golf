@@ -29,12 +29,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnEnterLeaderboard(EnterLeaderboardEvent evt)
         {
             PopulateLeaderboard();
-            View.Hide();
+            View.Show();
         }
 
         void OnExitLeaderboard(ExitLeaderboardEvent evt)
         {
-            View.Show();
+            View.Hide();
         }
 
         void PopulateLeaderboard()

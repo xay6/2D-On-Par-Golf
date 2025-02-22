@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void Awake()
         {
-            AddListener<LoginAttemptEvent>(OnLoginAttempt);
+            AddListener<EnterLoginEvent>(OnEnterLogin);
             AddListener<ExitLoginEvent>(OnExitLogin);
         }
 
@@ -21,23 +22,13 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         internal override void RemoveListeners()
         {
-            RemoveListener<LoginAttemptEvent>(OnLoginAttempt);
+            RemoveListener<EnterLoginEvent>(OnEnterLogin);
             RemoveListener<ExitLoginEvent>(OnExitLogin);
         }
 
-        void OnLoginAttempt(LoginAttemptEvent evt)
+        void OnEnterLogin(EnterLoginEvent evt)
         {
-            bool success = Authenticate(evt.Username, evt.Password);
-            
-            if (success)
-            {
-                Debug.Log("Login successful!");
-                SceneManager.LoadScene("MainMenu"); // Change to the appropriate scene
-            }
-            else
-            {
-                View.ShowError("Invalid username or password.");
-            }
+            View.Show();
         }
 
         void OnExitLogin(ExitLoginEvent evt)
@@ -48,7 +39,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         bool Authenticate(string username, string password)
         {
             // Mock authentication - replace with actual logic
-            return username == "admin" && password == "password123";
+            return username == "admin";
         }
     }
 }
