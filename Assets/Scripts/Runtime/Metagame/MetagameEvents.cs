@@ -60,4 +60,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             Password = password;
         }
     }
+
+    internal class EnterGuestEvent : AppEvent { }
+    internal class ExitGuestEvent : AppEvent { }
 }

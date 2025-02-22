@@ -32,6 +32,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         [SerializeField]
         LoginView m_LoginView;
 
+        internal GuestView Guest => m_GuestView;
+
+        [SerializeField]
+        GuestView m_GuestView;
+
         void Start()
         {
             if (App.IsDedicatedServer)

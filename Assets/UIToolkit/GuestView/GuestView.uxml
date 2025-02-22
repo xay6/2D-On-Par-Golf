@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="guest" class="canvas">
+        <ui:Label text="Leaderboard" name="titleLabel" class="label" style="align-items: center; justify-content: flex-start; align-self: center; width: auto; height: auto; -unity-font-definition: url(&quot;project://database/Assets/UIToolkit/Fonts/PublicPixel-rv0pA.ttf?fileID=12800000&amp;guid=e7e38a501b8474bc584dd0369db027dc&amp;type=3#PublicPixel-rv0pA&quot;); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; font-size: 60px; position: absolute; flex-direction: column; top: auto; left: auto;" />
+        <ui:Button text="Continue" name="continueButton" class="button" />
+        <ui:Button text="Back" name="backButton" class="button" />
+    </ui:VisualElement>
+</ui:UXML>

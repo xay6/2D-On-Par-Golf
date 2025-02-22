@@ -15,6 +15,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             AddListener<MatchLoadingEvent>(OnMatchLoading);
             AddListener<ExitedMatchmakerQueueEvent>(OnExitedMatchmakerQueue);
             AddListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
+            AddListener<EnterGuestEvent>(OnEnterGuest);
+            AddListener<ExitGuestEvent>(OnExitGuest);
             AddListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
             AddListener<ExitLeaderboardEvent>(OnExitLeaderboard);
             AddListener<EnterLoginEvent>(OnEnterLogin);
@@ -33,6 +35,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             RemoveListener<ExitMatchmakerQueueEvent>(OnExitMatchmakerQueue);
             RemoveListener<ExitedMatchmakerQueueEvent>(OnExitedMatchmakerQueue);
             RemoveListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
+            RemoveListener<EnterGuestEvent>(OnEnterGuest);
+            RemoveListener<ExitGuestEvent>(OnExitGuest);
             RemoveListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
             RemoveListener<ExitLeaderboardEvent>(OnExitLeaderboard);
             RemoveListener<EnterLoginEvent>(OnEnterLogin);
@@ -69,6 +73,18 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             View.Hide();
             CustomNetworkManager.Singleton.InitializeNetworkLogic(true, false);
+        }
+
+        void OnEnterGuest(EnterGuestEvent evt)
+        {
+            View.Hide();
+            App.View.Guest.Show();
+        }
+
+        void OnExitGuest(ExitGuestEvent evt)
+        {
+            App.View.Guest.Hide();
+            View.Show();
         }
 
         void OnEnterLeaderboard(EnterLeaderboardEvent evt)
