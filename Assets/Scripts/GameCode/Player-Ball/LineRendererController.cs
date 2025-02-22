@@ -4,7 +4,6 @@ public class LineRendererController : MonoBehaviour
 {
     private LineRenderer lineRenderer;
     private ClickAndDrag clickAndDrag;
-
     void Start()
     {
         lineRenderer = gameObject.GetComponent<LineRenderer>();
@@ -26,6 +25,19 @@ public class LineRendererController : MonoBehaviour
                 }
                 else
                 {
+                     if (clickAndDrag.startPos != clickAndDrag.endPos) // Ensure a valid shot
+                {
+                    HoleInOne holeInOneScript = FindAnyObjectByType<HoleInOne>();
+                    if (holeInOneScript != null)
+                    {
+                        holeInOneScript.IncreaseStrokeCount();
+                        Debug.Log("Shot taken! Stroke count increased.");
+                    }
+                    else
+                    {
+                        Debug.LogError("No HoleInOne script found in the scene!");
+                    }
+                }
                     lineRenderer.enabled = false;
                 }
 
