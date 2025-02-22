@@ -91,23 +91,23 @@ public class LaunchWithDrag : MonoBehaviour
     }
 
     private void CheckForMovement()
-{
-    if (!hasCountedStroke)
     {
-        if (ScoreManager.Instance != null)
+        if (!hasCountedStroke)
         {
-            ScoreManager.Instance.AddStroke();
-            
-            
-        }
-        else
-        {
-            Debug.LogError("ScoreManager.Instance is NULL!");
+            if (ScoreManager.Instance != null)
+            {
+                ScoreManager.Instance.AddStroke();
+                
+                
+            }
+            else
+            {
+                Debug.LogError("ScoreManager.Instance is NULL!");
+            }
+
+            hasCountedStroke = true;
         }
 
-        hasCountedStroke = true;
+        lastPosition = transform.position;
     }
-
-    lastPosition = transform.position;
-}
 }

@@ -36,18 +36,18 @@ public class ScoreManager : MonoBehaviour
     }
 
     void FindScoreText()
-{
-    GameObject textObj = GameObject.FindWithTag("ScoreText");
+    {
+        GameObject textObj = GameObject.FindWithTag("ScoreText");
 
-    if (textObj != null)
-    {
-        scoreText = textObj.GetComponent<TextMeshProUGUI>();
+        if (textObj != null)
+        {
+            scoreText = textObj.GetComponent<TextMeshProUGUI>();
+        }
+        else
+        {
+            Debug.LogWarning("ScoreText not found! Make sure it's tagged properly in the scene.");
+        }
     }
-    else
-    {
-        Debug.LogWarning("ScoreText not found! Make sure it's tagged properly in the scene.");
-    }
-}
     public void AddStroke()
     {
         strokes++;
