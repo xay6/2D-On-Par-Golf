@@ -8,14 +8,14 @@ public class ScoreManager : MonoBehaviour
     public int strokes = 0;
     public int overallScore = 0;
 
-    public TextMeshProUGUI scoreText; // Reference to your TextMeshPro text
-    
-        private void Awake()
+    public TextMeshProUGUI scoreText;
+
+    private void Awake()
     {
-        // Singleton pattern setup (Optional, but good if you want easy global access)
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -25,10 +25,29 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        FindScoreText();
         UpdateScoreText();
     }
 
-    // This is your main stroke counter
+    private void OnLevelWasLoaded(int level)
+    {
+        FindScoreText();
+        UpdateScoreText();
+    }
+
+    void FindScoreText()
+{
+    GameObject textObj = GameObject.FindWithTag("ScoreText");
+
+    if (textObj != null)
+    {
+        scoreText = textObj.GetComponent<TextMeshProUGUI>();
+    }
+    else
+    {
+        Debug.LogWarning("ScoreText not found! Make sure it's tagged properly in the scene.");
+    }
+}
     public void AddStroke()
     {
         strokes++;
@@ -37,7 +56,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddToOverallScore(int score)
     {
-        overallScore += score;
+        overallScore += strokes;
         UpdateScoreText();
     }
 
@@ -51,7 +70,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = $"Strokes: {strokes}\n Overall Score: {overallScore}";
+            scoreText.text = $"Strokes: {strokes} \n Total Score: {overallScore}";
         }
     }
 }
