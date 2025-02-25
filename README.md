@@ -12,6 +12,7 @@
   - [General Information](#general-information)
   - [Technologies Used](#technologies-used)
   - [Sprint 1 Contributions](#sprint-1-contributions)
+  - [Burnup Chart](#burnup chart for sprint 1)
   - [Features](#features)
 
 
@@ -182,7 +183,8 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
     - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-33)
 
 
-
+## Burnup Chart for Sprint 1
+![burnup_chart_1](Downloads/burnup_charts_1.jpg)
 
 ## Features
 - Mouse controls - Will launch the ball into the air.
