@@ -132,9 +132,9 @@ Developed core gameplay levels, camera mechanics, and the Hole-in-One challenge 
     - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-68-making-the-camera-following)
     - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-68)
 
- - SCRUM-38 Create 18 playable levels/courses for the game.
+ - SCRUM-34 Create 18 playable levels/courses for the game.
     - Description:  Designed and implemented 18 unique golf courses with different terrains and obstacles.
-    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-34-25-Merged)
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branches/?search=SCRUM-34)
     - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-34)
 
 - SCRUM-70 Adding the hole script to all the levels
@@ -189,7 +189,10 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
   - Brandon Mason
   - Ariana Zapata
   - Natalie Morales
-  - Xavier Ortiz
+  - Xavier Ortiz: 
+      - Continue working on my hole-in-challege and UI look
+      - Create a reward track for completing the challeges
+      - Create a couple of custom golf balls to choose from
   - Jaylen Stewart
 
 ## Burnup Chart for Sprint 1
@@ -199,7 +202,7 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
 - Mouse controls - Will launch the ball into the air.
 - 18 Custom golf courses
 - Stroke Counter â€“ Tracks the number of strokes per level.
-- Total Score Tracking â€“ Maintains the playerâ€™s score across different levels.
+- Total Score Tracking and Maintains the player's score across different levels.
 - Golf Club Selection â€“ Switch between Driver, Iron, and Putter, each affecting the shot differently.
 - Wind Mechanics â€“ Wind dynamically influences ball trajectory based on direction and strength.
 - Obstacles and Hazards â€“ Trees, water hazards, sand traps, and other environmental challenges.
