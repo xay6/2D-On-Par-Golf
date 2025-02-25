@@ -16,12 +16,15 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
     /// Called to stop the matchmaker
     /// </summary>
     internal class ExitMatchmakerQueueEvent : AppEvent { }
+    
     /// <summary>
     /// Called after the matchmaking stops
     /// </summary>
     internal class ExitedMatchmakerQueueEvent : AppEvent { }
+    
     internal class MatchLoadingEvent : AppEvent { }
     internal class ExitMatchLoadingEvent : AppEvent { }
+
     internal class PlayerSignedIn : AppEvent
     {
         public bool Success { get; private set; }
@@ -33,4 +36,31 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             PlayerId = playerId;
         }
     }
+
+    /// <summary>
+    /// Event triggered when entering the leaderboard screen.
+    /// </summary>
+    internal class EnterLeaderboardEvent : AppEvent { }
+
+    /// <summary>
+    /// Event triggered when exiting the leaderboard screen.
+    /// </summary>
+    internal class ExitLeaderboardEvent : AppEvent { }
+
+    internal class EnterLoginEvent : AppEvent { }
+    internal class ExitLoginEvent : AppEvent { }
+    internal class LoginAttemptEvent : AppEvent
+    {
+        public string Username { get; }
+        public string Password { get; }
+
+        public LoginAttemptEvent(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
+    }
+
+    internal class EnterGuestEvent : AppEvent { }
+    internal class ExitGuestEvent : AppEvent { }
 }
