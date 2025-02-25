@@ -33,10 +33,7 @@ public class LineRendererController : MonoBehaviour
                         holeInOneScript.IncreaseStrokeCount();
                         Debug.Log("Shot taken! Stroke count increased.");
                     }
-                    else
-                    {
-                        Debug.LogError("No HoleInOne script found in the scene!");
-                    }
+                    
                 }
                     lineRenderer.enabled = false;
                 }

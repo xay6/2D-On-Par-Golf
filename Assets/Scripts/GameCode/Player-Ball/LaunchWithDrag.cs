@@ -13,7 +13,7 @@ public class LaunchWithDrag : MonoBehaviour
     private float linearDamping;
     [SerializeField]
     private float angularDamping;
-    public int strokeCount = 0;
+
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class LaunchWithDrag : MonoBehaviour
                 {
                     // Calculate the difference between where the ball starts and ends and uses it to create a vector.
                     rb.linearVelocity = new Vector2((clickAndDrag.startPos.x - clickAndDrag.endPos.x) * forceAmount, (clickAndDrag.startPos.y - clickAndDrag.endPos.y) * forceAmount);
-                    strokeCount++;
+            
                 }
             }
             else
