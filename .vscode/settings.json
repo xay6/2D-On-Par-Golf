@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "onPar.sln"
+    "dotnet.defaultSolution": "on-par.sln"
 }
