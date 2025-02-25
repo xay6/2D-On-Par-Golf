@@ -12,8 +12,10 @@
   - [General Information](#general-information)
   - [Technologies Used](#technologies-used)
   - [Sprint 1 Contributions](#sprint-1-contributions)
+  - [Next Steps](#next-steps)
   - [Burnup Chart](#burnup chart for sprint 1)
   - [Features](#features)
+  
 
 
 ## General Information
@@ -183,10 +185,26 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
     - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-33)
 
 
+## Next Steps for Sprint 2
+  - Brandon Mason
+  - Ariana Zapata
+  - Natalie Morales
+  - Xavier Ortiz
+  - Jaylen Stewart
+
 ## Burnup Chart for Sprint 1
-![burnup_chart_1](Downloads/burnup_charts_1.jpg)
+![Burnup Chart](./img/burnupChart.png)
 
 ## Features
 - Mouse controls - Will launch the ball into the air.
-- Gravity - Will pull the ball back to the ground after being launched.
-- Custom golf courses
+- 18 Custom golf courses
+- Stroke Counter â€“ Tracks the number of strokes per level.
+- Total Score Tracking â€“ Maintains the playerâ€™s score across different levels.
+- Golf Club Selection â€“ Switch between Driver, Iron, and Putter, each affecting the shot differently.
+- Wind Mechanics â€“ Wind dynamically influences ball trajectory based on direction and strength.
+- Obstacles and Hazards â€“ Trees, water hazards, sand traps, and other environmental challenges.
+- Main Menu & Navigation â€“ Easy access to game modes and settings.
+- Leaderboard UI â€“ Tracks top scores for competitive play.
+- Realistic Shot Force System â€“ Uses Unityâ€™s Rigidbody2D for accurate physics-based golf shots.
+- Collision Detection â€“ Ensures the ball interacts correctly with terrain, walls, and obstacles.
+- Camera Follow System â€“ Automatically tracks the ball after each shot.
