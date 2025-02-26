@@ -203,7 +203,10 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
       - Continue working on my hole-in-challege and UI look
       - Create a reward track for completing the challeges
       - Create a couple of custom golf balls to choose from
-  - Jaylen Stewart
+  - Jalen Stewart:
+      - Continue working on sand to make it more realistic
+      - Add unique hazards and features that interact with the ball during the game
+      - Create visual indicator for the shooting mechanic, a power meter
 
 ## Burnup Chart for Sprint 1
 ![Burnup Chart](./img/burnupChart.png)
