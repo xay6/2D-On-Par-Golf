@@ -187,7 +187,11 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
 
 ## Next Steps for Sprint 2
   - Brandon Mason
-  - Ariana Zapata
+  - Ariana Zapata:
+      - Finish developing login system
+      - Continue leaderboard development; keeping track of players' scores
+      - Create seamless path from main menu to game
+      - Make sure UI is consistent throughout the application
   - Natalie Morales
   - Xavier Ortiz: 
       - Continue working on my hole-in-challege and UI look
