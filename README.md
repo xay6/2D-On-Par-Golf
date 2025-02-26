@@ -186,7 +186,10 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
 
 
 ## Next Steps for Sprint 2
-  - Brandon Mason
+  - Brandon Mason:
+      - Start working on the server for account creation and score storage.
+      - Create a secure sign up system.
+      - Integrate the server into the login and leaderboard pages in the game.
   - Ariana Zapata:
       - Finish developing login system
       - Continue leaderboard development; keeping track of players' scores
