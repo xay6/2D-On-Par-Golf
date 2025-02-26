@@ -189,6 +189,10 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
   - Brandon Mason
   - Ariana Zapata
   - Natalie Morales
+      - A feature that implements Lava pits that instantly reset the ball.
+      - implement a neater and more in depth UI for features such as clubs, wind text, scores. 
+      - Sync in-game lighting with the player's real-world time for a dynamic day-night cycle.
+      
   - Xavier Ortiz: 
       - Continue working on my hole-in-challege and UI look
       - Create a reward track for completing the challeges
