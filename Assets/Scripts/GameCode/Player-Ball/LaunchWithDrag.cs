@@ -29,7 +29,7 @@ public class LaunchWithDrag : MonoBehaviour
 
     void Update()
     {
-        if (rb != null)
+        if (rb != null && clickAndDrag != null)
         {
             
             if (!isMoving())
@@ -44,6 +44,7 @@ public class LaunchWithDrag : MonoBehaviour
             else
             {
                 clickAndDrag.endPos = clickAndDrag.startPos;
+                clickAndDrag.isDragging = false;
                 CheckForMovement();
             }
 
