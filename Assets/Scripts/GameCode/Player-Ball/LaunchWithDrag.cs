@@ -13,6 +13,8 @@ public class LaunchWithDrag : MonoBehaviour
     private float linearDamping;
     [SerializeField]
     private float angularDamping;
+    private Vector3 lastPosition;
+    private bool hasCountedStroke = false;
 
     void Start()
     {
@@ -21,14 +23,17 @@ public class LaunchWithDrag : MonoBehaviour
         mass = rb.mass;
         linearDamping = rb.linearDamping;
         angularDamping = rb.angularDamping;
+        lastPosition = transform.position;
     }
 
     void Update()
     {
         if (rb != null && clickAndDrag != null)
         {
+            
             if (!isMoving())
             {
+                hasCountedStroke = false;
                 if (!clickAndDrag.isDragging)
                 {
                     // Calculate the difference between where the ball starts and ends and uses it to create a vector.
@@ -39,7 +44,9 @@ public class LaunchWithDrag : MonoBehaviour
             {
                 clickAndDrag.endPos = clickAndDrag.startPos;
                 clickAndDrag.isDragging = false;
+                CheckForMovement();
             }
+            
         }
     }
 
@@ -82,5 +89,26 @@ public class LaunchWithDrag : MonoBehaviour
     {
         get { return rb.angularDamping; }
         set { rb.angularDamping = value; }
+    }
+
+    private void CheckForMovement()
+    {
+        if (!hasCountedStroke)
+        {
+            if (ScoreManager.Instance != null)
+            {
+                ScoreManager.Instance.AddStroke();
+                
+                
+            }
+            else
+            {
+                Debug.LogError("ScoreManager.Instance is NULL!");
+            }
+
+            hasCountedStroke = true;
+        }
+
+        lastPosition = transform.position;
     }
 }
