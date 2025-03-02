@@ -27,22 +27,29 @@ public class LineRendererController : MonoBehaviour
     {
         if (lineRenderer != null && clickAndDrag != null && rb != null)
         {
-            if (rb.linearVelocity.magnitude == 0 && !clickAndDrag.isDragging)
+            if (clickAndDrag.startPos != clickAndDrag.endPos)
             {
-                if (clickAndDrag.isHovering())
+                if (clickAndDrag.isDragging)
                 {
                     lineRenderer.enabled = true;
-                    lineRenderer.SetPosition(0, clickAndDrag.startPos);
-                    lineRenderer.SetPosition(1, clickAndDrag.endPos);
                 }
                 else
                 {
                     lineRenderer.enabled = false;
                 }
+
+                // Ensure there are at least 2 positions before setting them
+                if (lineRenderer.positionCount < 2)
+                {
+                    lineRenderer.positionCount = 2;
+                }
+
+                lineRenderer.SetPosition(0, gameObject.transform.position);
+                lineRenderer.SetPosition(1, clickAndDrag.endPos);
             }
             else
             {
-                lineRenderer.SetPosition(1, clickAndDrag.endPos);
+                lineRenderer.enabled = false;
             }
         }
     }
