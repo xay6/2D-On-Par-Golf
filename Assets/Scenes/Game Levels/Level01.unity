@@ -3351,7 +3351,6 @@ MonoBehaviour:
   mass: 0
   linearDamping: 0
   angularDamping: 0
-  strokeCount: 0
 --- !u!114 &1048800921
 MonoBehaviour:
   m_ObjectHideFlags: 0
