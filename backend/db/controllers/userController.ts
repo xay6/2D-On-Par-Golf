@@ -1,18 +1,37 @@
 import { Request, Response } from "express";
 import User, { IUser } from "../models/User";
+const bcrypt = require("bcrypt");
+
+const hashPw = async (password: String) => {
+    return await bcrypt.hash(password, 12);
+}
 
 export const register = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { username, password } = req.body;
+        if (!req.body.username) {
+            res.status(400);
+            throw new Error("Enter a Username.")
+        } else if (!req.body.password) {
+            res.status(400);
+            throw new Error("Enter a Password.")
+        }
+
+        const username = req.body.username;
         const userExists = await User.findOne({ username })
             .catch(() => {
                 res.status(500);
                 throw new Error("Internal server error.");
             });
 
+        if (userExists) {
+            res.send("Username is already taken.");
+            return;
+        }
+        
+        const hashedPw = await hashPw(req.body.password);
         const newUser: IUser = new User({
             username,
-            password,
+            password: hashedPw,
         })
         await newUser.save();
 
