@@ -1,16 +1,20 @@
 import express, { Request, Response } from 'express';
 
 import connectDB from "./db/connection";
+import userRoutes from './db/routes/userRoutes';
 import * as dotenv from "dotenv";
 dotenv.config({ path: __dirname + '/.env' });
     
 const port = process.env.PORT;
 
 const app = express();
+app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Server running.');
 });
+
+app.use("/api", userRoutes);
 
 connectDB();
 
