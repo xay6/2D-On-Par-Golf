@@ -8,12 +8,15 @@ const hashPw = async (password: String) => {
 
 export const register = async (req: Request, res: Response): Promise<void> => {
     try {
-        if (!req.body.username) {
-            res.status(400);
-            throw new Error("Enter a Username.")
+        if (!req.body.username && !req.body.password) {
+            res.status(422);
+            throw new Error("Username and password empty.")
+        } else if (!req.body.username) {
+            res.status(422);
+            throw new Error("Username empty.")
         } else if (!req.body.password) {
-            res.status(400);
-            throw new Error("Enter a Password.")
+            res.status(422);
+            throw new Error("Password empty.")
         }
 
         const username = req.body.username;
@@ -24,8 +27,14 @@ export const register = async (req: Request, res: Response): Promise<void> => {
             });
 
         if (userExists) {
-            res.send("Username is already taken.");
-            return;
+            res.status(422);
+            throw new Error("Username is already taken.");
+        } else if (!username.match(/^[a-zA-Z1-9]\w{6,12}$/gm)) {
+            res.status(422);
+            throw new Error("Username must be 6 - 12 characters long, start with a letter or number, and can only contain letters, numbers, and _.");
+        } else if(!req.body.password.match(/^\w{6,}$/gm)) {
+            res.status(422);
+            throw new Error("Password must be at least 6 characters long.");
         }
         
         const hashedPw = await hashPw(req.body.password);
@@ -35,7 +44,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         })
         await newUser.save();
 
-        res.status(201).json({ message: 'User created successfully' });
+        res.status(201).json({ message: "User account created." });
     } catch (err: any) {
         res.json({ message: err.message });
         console.error(err.message);
