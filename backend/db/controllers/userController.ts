@@ -53,22 +53,25 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
 export const login = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { username, password } = req.body;
+        const username = req.body.username;
 
         const userLogin = await User.findOne({ username })
-            .then((result) => {
-                if (password === result?.password) {
-                    res.status(200);
-                    res.json({ message: 'Login Successfull' });
-                } else {
-                    res.json({ message: "Invalid login credentials." })
-                }
-            })
-            .catch(() => { throw new Error("Internal server error.") });
+            .catch(() => {
+                res.status(500);
+                throw new Error("User not found.");
+            });
 
-    res.status(201).json({ message: 'User successfully logged in.' });
+        if (userLogin) {
+            const correctPw = bcrypt.compare(req.body.password, userLogin.password);
+            if (correctPw) {
+                res.status(201).json({ message: "Loging in.", });
+            } else {
+                res.status(422);
+                throw new Error("Incorrect password. Try again.");
+            }
+        }
     } catch (err: any) {
-        res.status(500).json({ message: "Server Error. Try again later." });
+        res.json({ message: err.message });
         console.error(err.message);
     }
 }
