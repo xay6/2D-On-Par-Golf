@@ -3,12 +3,14 @@ using UnityEngine;
 public class LineRendererController : MonoBehaviour
 {
     private LineRenderer lineRenderer;
-    public LaunchWithDrag launchWithDrag;
+    private ClickAndDrag clickAndDrag;
+    private Rigidbody2D rb;
 
     void Start()
     {
         lineRenderer = gameObject.GetComponent<LineRenderer>();
-        launchWithDrag = gameObject.GetComponent<LaunchWithDrag>();
+        clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         lineRenderer.enabled = false;
 
         // Ensure the LineRenderer has at least 2 positions before setting them
@@ -23,27 +25,31 @@ public class LineRendererController : MonoBehaviour
 
     void Update()
     {
-        if (lineRenderer != null && launchWithDrag != null && launchWithDrag.clickAndDrag != null)
+        if (lineRenderer != null && clickAndDrag != null && rb != null)
         {
-            if (launchWithDrag.clickAndDrag.isHovering() && launchWithDrag.clickAndDrag.isDragging)
+            if (clickAndDrag.startPos != clickAndDrag.endPos)
             {
-                lineRenderer.enabled = true;
-                lineRenderer.SetPosition(0, launchWithDrag.clickAndDrag.startPos);
-
-            }
-            
-            if (!launchWithDrag.isMoving())
-            {
-                if (launchWithDrag.clickAndDrag.isDragging)
+                if (clickAndDrag.isDragging)
                 {
-                    lineRenderer.SetPosition(1, launchWithDrag.clickAndDrag.endPos);
+                    lineRenderer.enabled = true;
                 }
+                else
+                {
+                    lineRenderer.enabled = false;
+                }
+
+                // Ensure there are at least 2 positions before setting them
+                if (lineRenderer.positionCount < 2)
+                {
+                    lineRenderer.positionCount = 2;
+                }
+
+                lineRenderer.SetPosition(0, gameObject.transform.position);
+                lineRenderer.SetPosition(1, clickAndDrag.endPos);
             }
             else
             {
                 lineRenderer.enabled = false;
-                lineRenderer.SetPosition(0, launchWithDrag.clickAndDrag.startPos);
-                lineRenderer.SetPosition(1, launchWithDrag.clickAndDrag.endPos);
             }
         }
     }
