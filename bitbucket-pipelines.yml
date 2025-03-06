@@ -8,6 +8,7 @@ pipelines:
           - node
         script:
           - cd backend
+            npm install -g typescript
           - npm install
         services:
           - mongo
@@ -16,7 +17,7 @@ pipelines:
         trigger: manual
         script:
           - cd backend
-          - npx tsc
+          - npm run build
     - step:
         name: Deploy
         trigger: manual
