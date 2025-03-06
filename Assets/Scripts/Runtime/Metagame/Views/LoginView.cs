@@ -1,0 +1,70 @@
+using UnityEngine.UIElements;
+
+namespace Unity.Template.Multiplayer.NGO.Runtime
+{
+    internal class LoginView : View<MetagameApplication>
+    {
+        Button m_LoginButton;
+        Button m_BackButton;
+        TextField m_UsernameField;
+        TextField m_PasswordField;
+        Label m_ErrorLabel;
+        VisualElement m_Root;
+        UIDocument m_UIDocument;
+
+        void Awake()
+        {
+            m_UIDocument = GetComponent<UIDocument>();
+            if (m_UIDocument != null)
+            {
+                m_Root = m_UIDocument.rootVisualElement;
+            }
+        }
+
+        void OnEnable()
+        {
+            m_UsernameField = m_Root.Q<TextField>("usernameField");
+            m_PasswordField = m_Root.Q<TextField>("passwordField");
+            m_LoginButton = m_Root.Q<Button>("loginButton");
+            m_BackButton =  m_Root.Q<Button>("backButton");
+            m_ErrorLabel = m_Root.Q<Label>("errorLabel");
+            
+            m_LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
+            m_BackButton.RegisterCallback<ClickEvent>(OnClickBack);
+        }
+
+        void OnDisable()
+        {
+            m_LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
+            m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
+        }
+
+        void OnClickLogin(ClickEvent evt)
+        {
+            string username = m_UsernameField.value.Trim();
+            string password = m_PasswordField.value.Trim();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                ShowError("Username and password cannot be empty.");
+                return;
+            }
+
+            Broadcast(new LoginAttemptEvent(username, password));
+        }
+
+        void OnClickBack(ClickEvent evt)
+        {
+            Broadcast(new ExitLoginEvent());
+        }
+
+        internal void ShowError(string message)
+        {
+            if (m_ErrorLabel != null)
+            {
+                m_ErrorLabel.text = message;
+                m_ErrorLabel.style.display = DisplayStyle.Flex;
+            }
+        }
+    }
+}
