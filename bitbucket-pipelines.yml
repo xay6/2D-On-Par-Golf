@@ -8,7 +8,7 @@ pipelines:
           - node
         script:
           - cd backend
-            npm install -g typescript
+          - npm install -g typescript
           - npm install
         services:
           - mongo
