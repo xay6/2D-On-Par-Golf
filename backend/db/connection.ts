@@ -1,7 +1,7 @@
 import mongoose, { ConnectOptions } from "mongoose";
 
 const connectDB = async (delay = 1000) => {
-    const mongo_uri = `mongo://${process.env.MONGO_INITDB_ROOT_USERNAME as string}:${process.env.MONGO_INITDB_ROOT_PASSWORD as string}@${process.env.MONGO_URI as string}/${process.env.MONGO_INITDB_DATABASE}`;
+    const mongo_uri = process.env.MONGO_CONNECTION_STRING as string;
 
     while(true) {
         try {
