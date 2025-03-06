@@ -1,4 +1,4 @@
-image: node:20.x.x
+image: node:20.3.0
 
 pipelines:
   default:
@@ -7,6 +7,7 @@ pipelines:
         caches:
           - node
         script:
+          - cd backend
           - npm install
         services:
           - mongo
@@ -14,20 +15,22 @@ pipelines:
         name: Build
         trigger: manual
         script:
+          - cd backend
+          - npm install
           - npm run build
     - step:
         name: Deploy
         trigger: manual
+        deployment: test
         script:
           - echo "Deploying application..."
-			
 definitions: 
   services: 
     mongo: 
       image: mongo
       environment:
-        MONGO_INITDB_DATABASE=$MONGO_NAME
-        MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
-        MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASS
+        MONGO_INITDB_DATABASE: $MONGO_NAME
+        MONGO_INITDB_ROOT_USERNAME: $MONGO_USER
+        MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASS
     # redis:
     #   image: redis
