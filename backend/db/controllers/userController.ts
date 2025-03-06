@@ -10,31 +10,38 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     try {
         if (!req.body.username && !req.body.password) {
             res.status(422);
-            throw new Error("Username and password empty.")
+            res.json({message: "Username and password empty."})
+            return;
         } else if (!req.body.username) {
             res.status(422);
-            throw new Error("Username empty.")
+            res.json({message: "Username empty."})
+            return;
         } else if (!req.body.password) {
             res.status(422);
-            throw new Error("Password empty.")
+            res.json({message: "Password empty."})
+            return;
         }
 
         const username = req.body.username;
         const userExists = await User.findOne({ username })
-            .catch(() => {
+            .catch((err: any) => {
                 res.status(500);
-                throw new Error("Internal server error.");
+                res.json({message: "Internal server error."});
+                console.error(err.message);
             });
 
         if (userExists) {
             res.status(422);
-            throw new Error("Username is already taken.");
+            res.json({message: "Username is already taken."});
+            return;
         } else if (!username.match(/^[a-zA-Z1-9]\w{6,12}$/gm)) {
             res.status(422);
-            throw new Error("Username must be 6 - 12 characters long, start with a letter or number, and can only contain letters, numbers, and _.");
+            res.json({message: "Username must be 6 - 12 characters long, start with a letter or number, and can only contain letters, numbers, and _."});
+            return;
         } else if(!req.body.password.match(/^\w{6,}$/gm)) {
             res.status(422);
-            throw new Error("Password must be at least 6 characters long.");
+            res.json({ message: "Password must be at least 6 characters long." });
+            return;
         }
         
         const hashedPw = await hashPw(req.body.password);
@@ -46,7 +53,6 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
         res.status(201).json({ message: "User account created." });
     } catch (err: any) {
-        res.json({ message: err.message });
         console.error(err.message);
     }
 }
@@ -56,22 +62,30 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         const username = req.body.username;
 
         const userLogin = await User.findOne({ username })
-            .catch(() => {
+            .catch((err: any) => {
                 res.status(500);
-                throw new Error("User not found.");
+                console.error(err.message);
             });
 
         if (userLogin) {
-            const correctPw = bcrypt.compare(req.body.password, userLogin.password);
-            if (correctPw) {
-                res.status(201).json({ message: "Loging in.", });
-            } else {
-                res.status(422);
-                throw new Error("Incorrect password. Try again.");
-            }
+            bcrypt.compare(req.body.password, userLogin.password, 
+                (err: any, result: boolean) => {
+                    if(err) {
+                        console.error(err.message);
+                        return;
+                    }
+
+                    if (result) {
+                        res.status(201).json({ message: "Logging in.", });
+                    } else {
+                        res.status(422);
+                        res.json({message: "Incorrect password. Try again."});
+                        return;
+                    }
+                }
+            );
         }
     } catch (err: any) {
-        res.json({ message: err.message });
         console.error(err.message);
     }
 }
