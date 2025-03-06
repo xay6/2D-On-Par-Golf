@@ -77,3 +77,9 @@ crashlytics-build.properties
 .DS_Store
 
 .vscode/
+
+node_modules/
+
+.env
+
+backend/build/

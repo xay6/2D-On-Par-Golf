@@ -1,18 +1,21 @@
 import mongoose, { ConnectOptions } from "mongoose";
-import * as dotenv from "dotenv";
 
-dotenv.config({ path: __dirname + '/.env' });
+const connectDB = async (delay = 1000) => {
+    const mongo_uri = `mongo://${process.env.MONGO_INITDB_ROOT_USERNAME as string}:${process.env.MONGO_INITDB_ROOT_PASSWORD as string}@${process.env.MONGO_URI as string}/${process.env.MONGO_INITDB_DATABASE}`;
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING as string, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        } as ConnectOptions);
-        console.log("Connected to MongoDB!")
-    } catch (err) {
-        console.error(`Failed to connect to MongoDB.\n${err}`); // Todo: Tentative error handling.
-        process.exit();
+    while(true) {
+        try {
+            await mongoose.connect(mongo_uri, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            } as ConnectOptions);
+            console.log("Connected to MongoDB!")
+            return;
+        } catch (err) {
+            console.error(`Failed to connect to MongoDB. Retrying...\n${err}`);
+            await new Promise((resolve) => setTimeout(resolve, delay));
+            delay = Math.min(2 * delay, 5000);
+        }
     }
 }
 
