@@ -21,6 +21,7 @@ pipelines:
     - step:
         name: Deploy
         trigger: manual
+        deployment: test
         script:
           - echo "Deploying application..."
 definitions: 
