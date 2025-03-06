@@ -29,11 +29,6 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
     }
 
-    private void OnLevelWasLoaded(int level)
-    {
-        FindScoreText();
-        UpdateScoreText();
-    }
 
     void FindScoreText()
     {
@@ -42,6 +37,7 @@ public class ScoreManager : MonoBehaviour
         if (textObj != null)
         {
             scoreText = textObj.GetComponent<TextMeshProUGUI>();
+            UpdateScoreText();
         }
         else
         {
@@ -70,7 +66,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = $"Strokes: {strokes} \n Total Score: {overallScore}";
+            scoreText.text = $"Strokes: {strokes} \n\nTotal Score: {overallScore}";
         }
     }
 }
