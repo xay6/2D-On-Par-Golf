@@ -15,6 +15,7 @@ public class LaunchWithDrag : MonoBehaviour
     private float angularDamping;
     private Vector3 lastPosition;
     private bool hasCountedStroke = false;
+    [SerializeField] private AudioClip golfHit; // Assign this in the Inspector
 
     void Start()
     {
@@ -38,12 +39,18 @@ public class LaunchWithDrag : MonoBehaviour
                 {
                     // Calculate the difference between where the ball starts and ends and uses it to create a vector.
                     rb.linearVelocity = new Vector2((clickAndDrag.startPos.x - clickAndDrag.endPos.x) * forceAmount, (clickAndDrag.startPos.y - clickAndDrag.endPos.y) * forceAmount);
+                };
+                // Play the hit sound **only when applying force**
+                if (SoundFXManager.instance != null && golfHit != null)
+                {
+                    SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
                 }
             }
             else
             {
                 clickAndDrag.endPos = clickAndDrag.startPos;
                 CheckForMovement();
+            
             }
             
         }
