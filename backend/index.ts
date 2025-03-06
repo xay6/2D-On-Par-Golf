@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 import connectDB from "./db/connection";
 import userRoutes from './db/routes/userRoutes';
 import * as dotenv from "dotenv";
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config();
     
 const port = process.env.PORT;
 
