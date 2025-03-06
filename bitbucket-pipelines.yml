@@ -9,8 +9,6 @@ pipelines:
         script:
           - cd backend
           - npm install
-        artifacts: 
-          - node_modules
         services:
           - mongo
     - step:
@@ -18,6 +16,7 @@ pipelines:
         trigger: manual
         script:
           - cd backend
+          - npm install
           - npm run build
     - step:
         name: Deploy
