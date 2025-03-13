@@ -3,23 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 
+
+[DefaultExecutionOrder(-10)]
 public class SoundFXManager : MonoBehaviour
 {
     public static SoundFXManager instance;
     [SerializeField] private AudioSource SoundFXObject;
     
 
-    private void Awake()
-    {
-        if (instance==null)
-        {
-            instance = this;
-        }
-    }
-
-
-    public void PlaySoundEffect(AudioClip audioClip, Transform spawnTransform, float volume)
+private void Awake()
 {
+    if (instance == null)
+    {
+        Debug.Log("SoundFXManager instance assigned!");
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    else
+    {
+        Debug.LogWarning("Duplicate SoundFXManager found! Destroying this instance.");
+        Destroy(gameObject);
+    }
+}
+
+
+public void PlaySoundEffect(AudioClip audioClip, Transform spawnTransform, float volume)
+{
+   Debug.Log("Playing sound: " + audioClip.name);
     if (SoundFXObject == null)
     {
         Debug.LogError("Sound prefab is missing! Assign it in the Inspector.");
@@ -27,7 +37,8 @@ public class SoundFXManager : MonoBehaviour
     }
     if (audioClip == null)
     {
-        Debug.LogError("audio is missing");
+        Debug.LogError("Audio clip is missing!");
+        return;
     }
 
     // Instantiate the AudioSource at the given transform's position
