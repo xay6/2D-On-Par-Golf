@@ -1,14 +1,14 @@
 {
     "Users": {
-        "username": "String",
-        "password": "String",
+        "username": "string",
+        "password": "string",
         "createdAt": "Date"
     },
 
     "CourseScores": {
-        "courseId": "String",
+        "courseId": "string",
         "scores": {
-            "user": "String",
+            "user": "string",
             "score": "Number"
         }
     }
