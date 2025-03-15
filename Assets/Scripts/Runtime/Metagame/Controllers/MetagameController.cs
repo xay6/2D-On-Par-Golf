@@ -23,6 +23,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             RemoveListener<PlayerSignedIn>(OnPlayerSignedIn);
             RemoveListener<MatchEnteredEvent>(OnMatchEntered);
         }
+
         void OnPlayerSignedIn(PlayerSignedIn evt)
         {
             if (evt.Success)
@@ -64,7 +65,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             }
             App.View.Matchmaker.Hide();
             App.View.LoadingScreen.Hide();
-            App.View.MainMenu.DisableControlsUnsupportedInAutoconnectMode();
+            App.View.Leaderboard.Hide();  // Ensure leaderboard is hidden when returning to metagame
         }
     }
 }

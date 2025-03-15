@@ -1,0 +1,30 @@
+.canvas {
+    background-image: url("project://database/Assets/UIToolkit/Images/BlankBackground.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#continueButton {
+    background-image: url("project://database/Assets/UIToolkit/Images/button.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px; 
+    height: 80px;
+    border-radius: 10px;
+    border-width: 0px;
+}
+
+.button > .unity-button__text {
+    background-color: rgba(0, 0, 0, 0); /* Transparent background */
+    color: white; /* Adjust text color */
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#backButton {
+    background-image: url("project://database/Assets/UIToolkit/Images/RedButton.png");
+    height: 35px;
+    position: absolute;
+    bottom: 10px;
+}
