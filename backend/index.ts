@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 
 import connectDB from "./db/connection";
 import userRoutes from './db/routes/userRoutes';
+import scoresRoutes from './db/routes/scoresRoutes';
 import * as dotenv from "dotenv";
 dotenv.config();
     
@@ -14,7 +15,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Server running.');
 });
 
-app.use("/api", userRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/scores", scoresRoutes);
 
 connectDB();
 

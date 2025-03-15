@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import User, { IUser } from "../models/User";
 const bcrypt = require("bcrypt");
 
-const hashPw = async (password: String) => {
+const hashPw = async (password: string) => {
     return await bcrypt.hash(password, 12);
 }
 /*
@@ -18,15 +18,15 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     try {
         if (!req.body.username && !req.body.password) {
             res.status(422);
-            res.json({ message: "Username and password are empty.", success: false })
+            res.json({ message: "Username and password are empty.", success: false });
             return;
         } else if (!req.body.username) {
             res.status(422);
-            res.json({ message: "Username is empty.", success: false })
+            res.json({ message: "Username is empty.", success: false });
             return;
         } else if (!req.body.password) {
             res.status(422);
-            res.json({ message: "Password is empty.", success: false })
+            res.json({ message: "Password is empty.", success: false });
             return;
         }
 
@@ -61,7 +61,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
         res.status(201).json({ message: "User account created.", success: true });
     } catch (err: any) {
-        console.error(err.message);
+        console.error("Error in register", err);
     }
 }
 
@@ -97,10 +97,27 @@ export const login = async (req: Request, res: Response): Promise<void> => {
                 }
             );
         } else {
-            res.status(422);
+            res.status(404);
             res.json({ message: "User not found.", success: false });
         }
     } catch (err: any) {
-        console.error(err.message);
+        console.error("login", err);
+    }
+}
+
+export const getUser = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { username } = req.body;
+        const user = await User.findOne({ username });
+
+        if (user) {
+            res.status(200).json({ message: "User found.", user });
+            console.log("User found: ", user);
+        } else {
+            res.status(404).json({ message: "User not found" });
+        }
+    } catch (err: any) {
+        res.status(400).json({ message: "An error occurred when fetching the user.", error: err.message });
+        console.log("getUser", err);
     }
 }
