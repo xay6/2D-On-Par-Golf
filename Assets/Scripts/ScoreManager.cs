@@ -70,7 +70,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = $"Strokes: {strokes} \n Total Score: {overallScore}";
+            scoreText.text = $"Strokes: {strokes} \nTotal Score: {overallScore}";
         }
     }
 }
