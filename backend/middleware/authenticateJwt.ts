@@ -1,0 +1,5 @@
+const expressJwt = require('express-jwt')
+
+export const authenticateJwt = expressJwt({ 
+    secret: process.env.JWT_SECRET, 
+    algorithms: ['HS256'] })
