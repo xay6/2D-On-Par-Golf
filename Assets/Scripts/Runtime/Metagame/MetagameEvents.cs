@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Codice.Client.BaseCommands;
 using OnPar.Routers;
 using PlasticGui.Configuration.CloudEdition.Welcome;
+using UnityEngine;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -66,9 +67,18 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             LoginHelper(username, password);
         }
 
-        public static async void LoginHelper(string username, string password)
+        public static async Task<bool> LoginHelper(string username, string password)
         {
-            Login = await OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
+            try
+            {
+                var response = await OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
+                return response != null; // Return true if login is successful
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Login failed: {ex.Message}");
+                return false; // Return false if login fails
+            }
         }
     }
 
