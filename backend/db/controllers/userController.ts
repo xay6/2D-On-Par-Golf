@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import User, { IUser } from "../models/User";
 import { AuthenticatedRequest } from "../types";
 import { authenticateJwt } from "../../middleware/authenticateJwt";
+import CourseScores from "../models/CourseScores";
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require('jsonwebtoken');
 
@@ -141,8 +142,7 @@ async (req: AuthenticatedRequest, res: Response): Promise<void> => {
         const { username } = req.body;
 
         if (!username) {
-            res.status(422);
-            res.json({ message: "Username is empty.", success: false });
+            res.status(422).json({ message: "Username is empty.", success: false });
             return;
         }
 
@@ -158,7 +158,13 @@ async (req: AuthenticatedRequest, res: Response): Promise<void> => {
             return;
         }
 
-        await user.deleteOne();
+        // Delete all of the user's scores from the database.
+        await CourseScores.updateMany(
+            { 'userData.user': user._id },
+            { $pull: { userData: { user: user._id } } }
+        );
+        
+        await user.deleteOne().exec();
 
         res.status(200).json({ message: "User deleted.", user, success: true });
         console.log("User found: ", user);
