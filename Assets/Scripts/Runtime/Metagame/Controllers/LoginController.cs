@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using OnPar.Routers;
+using Codice.Client.Common;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -13,6 +15,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             AddListener<EnterLoginEvent>(OnEnterLogin);
             AddListener<ExitLoginEvent>(OnExitLogin);
+            AddListener<LoginAttemptEvent>(OnLoginAttempt);
         }
 
         void OnDestroy()
@@ -24,6 +27,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             RemoveListener<EnterLoginEvent>(OnEnterLogin);
             RemoveListener<ExitLoginEvent>(OnExitLogin);
+            RemoveListener<LoginAttemptEvent>(OnLoginAttempt);
         }
 
         void OnEnterLogin(EnterLoginEvent evt)
@@ -36,10 +40,9 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             View.Hide();
         }
 
-        bool Authenticate(string username, string password)
+        void OnLoginAttempt(LoginAttemptEvent evt)
         {
-            // Mock authentication - replace with actual logic
-            return username == "admin";
+            LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
         }
     }
 }
