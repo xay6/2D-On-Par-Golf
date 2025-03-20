@@ -16,6 +16,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             AddListener<EnterLoginEvent>(OnEnterLogin);
             AddListener<ExitLoginEvent>(OnExitLogin);
             AddListener<LoginAttemptEvent>(OnLoginAttempt);
+            AddListener<SignupAttemptEvent>(OnSignupAttempt);
         }
 
         void OnDestroy()
@@ -28,6 +29,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             RemoveListener<EnterLoginEvent>(OnEnterLogin);
             RemoveListener<ExitLoginEvent>(OnExitLogin);
             RemoveListener<LoginAttemptEvent>(OnLoginAttempt);
+            RemoveListener<SignupAttemptEvent>(OnSignupAttempt);
         }
 
         void OnEnterLogin(EnterLoginEvent evt)
@@ -43,6 +45,13 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnLoginAttempt(LoginAttemptEvent evt)
         {
             LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+        }
+
+        void OnSignupAttempt(SignupAttemptEvent evt)
+        {
+            SignupAttemptEvent.RegisterHelper(evt.Username, evt.Password);
+            LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+
         }
     }
 }
