@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import CourseScores, { IUserScores } from "../models/CourseScores"
 import User from "../models/User";
 import mongoose from "mongoose";
+import { AuthenticatedRequest } from "../types";
+import { authenticateJwt } from "../../middleware/authenticateJwt";
 
 export const getScore = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -34,7 +36,7 @@ export const getScore = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const addUpdateScores = async (req: Request, res: Response): Promise<void> => {
+export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
         const { courseId, username, score } = req.body;
         if (!courseId || !username || typeof score !== 'number') {
@@ -44,32 +46,38 @@ export const addUpdateScores = async (req: Request, res: Response): Promise<void
         }
 
         const user = await User.findOne({ username });
+
         if (!user) {
-            res.status(404).json({ message: "User not found." });
+            res.status(404).json({ message: "User not found.", success: false });
             console.log("User not found.");
             return;
-        } else {
-            const course = await CourseScores.findOne({ courseId });
-            if (!course) {
-                const newCourse = new CourseScores({
-                    courseId,
-                    userData: [{ user, score }]
-                });
-                await newCourse.save();
-                res.status(200).json({ message: `New course created with ${username}'s score.`, success: true });
-                console.log(`New course created with ${username}'s score.`);
-                return;
-            }
-
-            await CourseScores.updateOne(
-                { courseId },
-                { $addToSet: { userData: { user: user._id, score } } },
-                { upsert: true }
-            );
-
-            res.status(200).json({ message: "Score changed successfully.", success: true });
-            console.log("Score changed successfully.");
         }
+
+        if (req.user?.username !== username && req.user?.id !== user._id) {
+            res.status(403).json({ message: "You are not authorized to set this score.", success: false });
+            return;
+        }
+
+        const course = await CourseScores.findOne({ courseId });
+        if (!course) {
+            const newCourse = new CourseScores({
+                courseId,
+                userData: [{ user, score }]
+            });
+            await newCourse.save();
+            res.status(200).json({ message: `New course created with ${username}'s score.`, success: true });
+            console.log(`New course created with ${username}'s score.`);
+            return;
+        }
+
+        await CourseScores.updateOne(
+            { courseId },
+            { $addToSet: { userData: { user: user._id, score } } },
+            { upsert: true }
+        );
+
+        res.status(200).json({ message: "Score changed successfully.", success: true });
+        console.log("Score changed successfully.");
 
         // if (user) {
         //     // const updatedCourse = await CourseScores.findOneAndUpdate(
@@ -91,7 +99,48 @@ export const addUpdateScores = async (req: Request, res: Response): Promise<void
         res.status(500).json({ message: "An error occurred while changing the score.", success: false });
         console.error("Error in addOrUpdateScore", err.message);
     }
-}
+}]
+
+export const deleteScore = [authenticateJwt, async (req: AuthenticatedRequest, res: Response) => {
+    try {
+        const { username, courseId } = req.body;
+
+        if (!username || !courseId) {
+            res.status(422).json({ message: "Username and courseId required.", success: false });
+            return;
+        }
+
+        const user = await User.findOne({ username }).exec();
+
+        if (!user) {
+            res.status(404).json({ message: "User not found", success: false });
+            return;
+        }
+
+        if (req.user?.username !== username && req.user?.id !== user._id) {
+            res.status(403).json({ message: "You are not authorized to delete this score.", success: false });
+            return;
+        }
+
+        const scores = await CourseScores.findOne({ courseId });
+
+        if (!scores) {
+            res.status(404).json({ message: `Course '${courseId}' not found.`, success: false });
+            return;
+        }
+
+        scores.userData = scores.userData.filter(
+            (userScore) => !userScore.user == user._id
+        );
+
+        await scores.save();
+
+        res.status(200).json({ message: "Score deleted.", success: true });
+    } catch (err: any) {
+        res.status(500).json({ message: "An error occurred when deleting the score.", error: err.message, success: false });
+        console.log("Error in deleteScore: ", err);
+    }
+}]
 
 // export const createScore = async (req: Request, res: Response): Promise<void> => {
 //     try {
