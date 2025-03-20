@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import CourseScores, { IUserScores } from "../models/CourseScores"
 import User from "../models/User";
-import mongoose from "mongoose";
+import mongoose, { ObjectId, Types } from "mongoose";
 import { AuthenticatedRequest } from "../types";
 import { authenticateJwt } from "../../middleware/authenticateJwt";
 
@@ -70,10 +70,9 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
             return;
         }
 
-        await CourseScores.updateOne(
-            { courseId },
-            { $addToSet: { userData: { user: user._id, score } } },
-            { upsert: true }
+        await course.updateOne(
+            { 'userData.user': user._id },
+            { $addToSet: { userData: { user: user._id, score } } }
         );
 
         res.status(200).json({ message: "Score changed successfully.", success: true });
@@ -122,18 +121,24 @@ export const deleteScore = [authenticateJwt, async (req: AuthenticatedRequest, r
             return;
         }
 
-        const scores = await CourseScores.findOne({ courseId });
+        const course = await CourseScores.findOne({ courseId }).exec();
 
-        if (!scores) {
+        if (!course) {
             res.status(404).json({ message: `Course '${courseId}' not found.`, success: false });
             return;
         }
 
-        scores.userData = scores.userData.filter(
-            (userScore) => !userScore.user == user._id
-        );
+        if (!await course.userData.find((user1: IUserScores) =>
+           (user1.user as Types.ObjectId).toString() === (user._id as ObjectId).toString())) {
+            res.status(404).json({ message: "Score not found.", success: false });
+            console.log("Score not found.");
+            return;
+        }
 
-        await scores.save();
+        await CourseScores.updateOne(
+            { courseId },
+            { $pull: { userData: { user: user._id } } }
+        );
 
         res.status(200).json({ message: "Score deleted.", success: true });
     } catch (err: any) {
