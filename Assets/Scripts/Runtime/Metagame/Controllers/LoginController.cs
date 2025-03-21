@@ -57,10 +57,20 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             }
         }
 
-        void OnSignupAttempt(SignupAttemptEvent evt)
+        async void OnSignupAttempt(SignupAttemptEvent evt)
         {
             SignupAttemptEvent.RegisterHelper(evt.Username, evt.Password);
-            LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+            bool success = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+
+            if (success)
+            {
+                View.Hide(); // Hide the login view
+                App.View.AccountMenu.Show(); // Show the Account Menu View
+            }
+            else
+            {
+                View.ShowError("Invalid username or password.");
+            }
 
         }
     }
