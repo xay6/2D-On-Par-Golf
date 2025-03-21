@@ -17,45 +17,79 @@ public class LaunchWithDrag : MonoBehaviour
     private Vector3 lastPosition;
     private bool hasCountedStroke = false;
 
+    private PowerMeterUI powerMeter; //added to reference the powermeter
+
     void Start()
+{
+    rb = gameObject.GetComponent<Rigidbody2D>();
+    clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+    mass = rb.mass;
+    linearDamping = rb.linearDamping;
+    angularDamping = rb.angularDamping;
+    lastPosition = transform.position;
+
+    powerMeter = FindFirstObjectByType<PowerMeterUI>();
+
+    if (powerMeter == null)
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
-        mass = rb.mass;
-        linearDamping = rb.linearDamping;
-        angularDamping = rb.angularDamping;
-        lastPosition = transform.position;
+        Debug.LogError("⚠️ PowerMeterUI not found in the scene!");
     }
+    else
+    {
+        Debug.Log("✅ PowerMeterUI successfully found.");
+    }
+}
 
     void Update()
+{
+    if (rb != null && clickAndDrag != null)
     {
-        if (rb != null && clickAndDrag != null)
+        if (!isMoving())
         {
-            
-            if (!isMoving())
+            hasCountedStroke = false;
+
+            if (clickAndDrag.isDragging)
             {
-                hasCountedStroke = false;
-                if (!clickAndDrag.isDragging)
+                Debug.Log("🟢 Dragging started. Showing Power Meter.");
+
+                if (powerMeter != null)
                 {
-                    // Calculate the difference between where the ball starts and ends and uses it to create a vector.
-                    rb.linearVelocity = new Vector2((clickAndDrag.startPos.x - clickAndDrag.endPos.x) * forceAmount, (clickAndDrag.startPos.y - clickAndDrag.endPos.y) * forceAmount);
+                    powerMeter.ShowPowerMeter();
+
+                    float dragDistance = Vector3.Distance(clickAndDrag.startPos, clickAndDrag.endPos);
+                    powerMeter.UpdatePowerMeter(dragDistance);
+
+                    Debug.Log("🔁 Updating Power Meter | Drag Distance: " + dragDistance);
                 }
             }
             else
             {
-                clickAndDrag.endPos = clickAndDrag.startPos;
-                clickAndDrag.isDragging = false;
-                CheckForMovement();
-            }
+                if (powerMeter != null)
+                {
+                    powerMeter.HidePowerMeter();
+                }
 
-            if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
-            {
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(inBoundsVector());
-
-                clickAndDrag.endPos = worldPosition;
+                rb.linearVelocity = new Vector2(
+                    (clickAndDrag.startPos.x - clickAndDrag.endPos.x) * forceAmount,
+                    (clickAndDrag.startPos.y - clickAndDrag.endPos.y) * forceAmount
+                );
             }
         }
+        else
+        {
+            clickAndDrag.endPos = clickAndDrag.startPos;
+            clickAndDrag.isDragging = false;
+            CheckForMovement();
+        }
+
+        if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
+        {
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(inBoundsVector());
+            clickAndDrag.endPos = worldPosition;
+        }
     }
+}
+
 
     // Returns a Vector3.
     // Limits mouse input from extending past the game window.
