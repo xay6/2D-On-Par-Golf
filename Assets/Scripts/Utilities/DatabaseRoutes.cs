@@ -10,6 +10,7 @@ namespace OnPar.Routers
     public class LoginRegisterResponse
     {
         public string message;
+        public string token;
         public bool success;
     }
 
@@ -48,6 +49,7 @@ namespace OnPar.Routers
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("Authorization", "Bearer " + LoginRegister.getToken());
 
                 var operation = request.SendWebRequest();
                 while (!operation.isDone)
@@ -76,6 +78,7 @@ namespace OnPar.Routers
 
     public static class LoginRegister
     {
+        private static string token = "";
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
         {
@@ -83,7 +86,9 @@ namespace OnPar.Routers
             // string url = "localhost:3000/api/users/login"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
-            return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+            LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+            token = res.token;
+            return res;
         }
 
         // Post request
@@ -94,6 +99,10 @@ namespace OnPar.Routers
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
             return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+        }
+
+        public static string getToken() {
+            return token;
         }
     }
     public static class Scores
