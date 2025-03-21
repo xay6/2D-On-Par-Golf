@@ -22,6 +22,17 @@ public class LaunchWithDrag : MonoBehaviour
     private PowerMeterUI powerMeter;
 
     void Start()
+{
+    rb = gameObject.GetComponent<Rigidbody2D>();
+    clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+    mass = rb.mass;
+    linearDamping = rb.linearDamping;
+    angularDamping = rb.angularDamping;
+    lastPosition = transform.position;
+
+    powerMeter = FindFirstObjectByType<PowerMeterUI>();
+
+    if (powerMeter == null)
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
@@ -43,10 +54,17 @@ public class LaunchWithDrag : MonoBehaviour
             Debug.LogError("PowerMeterUI not found in the scene!");
         }
     }
+    else
+    {
+        Debug.Log("✅ PowerMeterUI successfully found.");
+    }
+}
 
     void Update()
+{
+    if (rb != null && clickAndDrag != null)
     {
-        if (rb != null && clickAndDrag != null)
+        if (!isMoving())
         {
             if (!isMoving())
             {
@@ -91,7 +109,20 @@ public class LaunchWithDrag : MonoBehaviour
                 clickAndDrag.endPos = worldPosition;
             }
         }
+        else
+        {
+            clickAndDrag.endPos = clickAndDrag.startPos;
+            clickAndDrag.isDragging = false;
+            CheckForMovement();
+        }
+
+        if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
+        {
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(inBoundsVector());
+            clickAndDrag.endPos = worldPosition;
+        }
     }
+}
 
     public Vector3 inBoundsVector()
     {
