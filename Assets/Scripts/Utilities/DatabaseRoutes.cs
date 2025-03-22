@@ -86,9 +86,9 @@ namespace OnPar.Routers
         {
             string url = "https://on-par-server.onrender.com/api/users/login";
             // string url = "localhost:3000/api/users/login"; // Local development string.
-            string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
+            string json = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
-            LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+            LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", json);
 
             hasToken = true;
             token = res.token;
@@ -100,9 +100,18 @@ namespace OnPar.Routers
         {
             string url = "https://on-par-server.onrender.com/api/users/register";
             // string url = "localhost:3000/api/users/register"; // Local development string.
-            string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
+            string json = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
-            return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+            return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", json);
+        }
+
+        // Delete request
+        public static async Task<Message> DeleteUserRoute(string username) {
+            string url = "https://on-par-server.onrender.com/api/users/delete-user";
+            // string url = "localhost:3000/api/users/delete-user"; // Local development string.
+            string json = $"{{\"username\":\"{username}\"";
+
+            return await RequestHelper.SendRequest<Message>(url, "DELETE", json);
         }
 
         public static string getToken() {
@@ -116,23 +125,32 @@ namespace OnPar.Routers
     public static class Scores
     {
         // Get request
-        public static async Task<ScoresResponse> GetScore(string courseId, string username)
+        public static async Task<ScoresResponse> GetScoreRoute(string courseId, string username)
         {
             string url = "https://on-par-server.onrender.com/api/scores/get-score";
             // string url = "localhost:3000/api/users/scores/get-score"; // Local development string.
-            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
+            string json = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
 
-            return await RequestHelper.SendRequest<ScoresResponse>(url, "GET", userData);
+            return await RequestHelper.SendRequest<ScoresResponse>(url, "GET", json);
         }
 
         // Put request
-        public static async Task<Message> AddOrUpdateScore(string courseId, string username, int score)
+        public static async Task<Message> AddOrUpdateScoreRoute(string courseId, string username, int score)
         {
             string url = "https://on-par-server.onrender.com/api/scores/add-update";
             // string url = "localhost:3000/api/scores/add-update"; // Local development string.
-            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":\"{score}\"}}";
+            string json = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":\"{score}\"}}";
 
-            return await RequestHelper.SendRequest<Message>(url, "PUT", userData);
+            return await RequestHelper.SendRequest<Message>(url, "PUT", json);
+        }
+
+        // Delete request
+        public static async Task<Message> DeleteScoreRoute(string courseId, string username) {
+            string url = "https://on-par-server.onrender.com/api/scores/delete-score";
+            // string url = "localhost:3000/api/users/scores/delete-score"; // Local development string.
+            string json = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<Message>(url, "DELETE", json);
         }
     }
 
@@ -155,17 +173,26 @@ namespace OnPar.RouterHandlers
             return LoginRegister.LoginRoute(username, password);
         }
 
+        public static Task<Message> DeleteUserHandler(string username, string password)
+        {
+            return LoginRegister.DeleteUserRoute(username);
+        }
+
         /*
             Score Handlers
         */
         public static Task<ScoresResponse> GetScoresHandler(string courseId, string username)
         {
-            return Scores.GetScore(courseId, username);
+            return Scores.GetScoreRoute(courseId, username);
         }
 
         public static Task<Message> AddOrUpdateScore(string courseId, string username, int score)
         {
-            return Scores.AddOrUpdateScore(courseId, username, score);
+            return Scores.AddOrUpdateScoreRoute(courseId, username, score);
+        }
+
+        public static Task<Message> DeleteScore(string courseId, string username) {
+            return Scores.DeleteScoreRoute(courseId, username);
         }
     }
 }
