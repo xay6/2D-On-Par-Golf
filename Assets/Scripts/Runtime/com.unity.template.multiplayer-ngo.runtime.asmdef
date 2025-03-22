@@ -12,7 +12,8 @@
         "Unity.DedicatedServer.MultiplayerRoles",
         "Unity.Multiplayer.Playmode",
         "Unity.Services.Multiplayer.Server",
-        "Unity.Services.Authentication.Server"
+        "Unity.Services.Authentication.Server",
+        "Utilities"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

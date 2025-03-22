@@ -1,3 +1,9 @@
+using System;
+using System.Threading.Tasks;
+using Codice.Client.BaseCommands;
+using OnPar.Routers;
+using PlasticGui.Configuration.CloudEdition.Welcome;
+
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
     internal class EnterMatchmakerQueueEvent : AppEvent
@@ -53,11 +59,33 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
     {
         public string Username { get; }
         public string Password { get; }
+        public static LoginRegisterResponse Login;
 
         public LoginAttemptEvent(string username, string password)
         {
-            Username = username;
-            Password = password;
+            LoginHelper(username, password);
+        }
+
+        public static async void LoginHelper(string username, string password)
+        {
+            Login = await OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
+        }
+    }
+
+    internal class SignupAttemptEvent : AppEvent
+    {
+        public string Username { get; }
+        public string Password { get; }
+        public static LoginRegisterResponse Signup;
+
+        public SignupAttemptEvent(string username, string password)
+        {
+            RegisterHelper(username, password);
+        }
+
+        public static async void RegisterHelper(string username, string password)
+        {
+            Signup = await OnPar.RouterHandlers.Handlers.RegisterHandler(username, password);
         }
     }
 
