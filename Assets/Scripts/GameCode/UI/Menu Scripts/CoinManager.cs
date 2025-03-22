@@ -15,6 +15,8 @@ public class CoinManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); 
 
+            // PlayerPrefs.DeleteKey("GameStartedBefore"); Only if want to reset coin everytime
+
             if (IsFirstGameLaunch())
             {
                 ResetCoins();
