@@ -49,7 +49,8 @@ namespace OnPar.Routers
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-                request.SetRequestHeader("Authorization", "Bearer " + LoginRegister.getToken());
+                if(LoginRegister.isLoggedIn())
+                    request.SetRequestHeader("Authorization", "Bearer " + LoginRegister.getToken());
 
                 var operation = request.SendWebRequest();
                 while (!operation.isDone)
@@ -79,6 +80,7 @@ namespace OnPar.Routers
     public static class LoginRegister
     {
         private static string token = "";
+        private static bool hasToken = false;
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
         {
@@ -87,6 +89,8 @@ namespace OnPar.Routers
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
             LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+
+            hasToken = true;
             token = res.token;
             return res;
         }
@@ -103,6 +107,10 @@ namespace OnPar.Routers
 
         public static string getToken() {
             return token;
+        }
+
+        public static bool isLoggedIn() {
+            return hasToken;
         }
     }
     public static class Scores
