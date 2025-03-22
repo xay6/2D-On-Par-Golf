@@ -39,7 +39,8 @@ export const getScore = async (req: Request, res: Response): Promise<void> => {
 export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
         const { courseId, username, score } = req.body;
-        if (!courseId || !username || typeof score !== 'number') {
+        console.log(typeof score);
+        if (!courseId || !username || typeof parseInt(score) !== "number") {
             res.status(422).json({ message: 'Invalid input: courseId, username, and score are required.', success: false });
             console.log('Invalid input: courseId, username, and score are required.');
             return;
