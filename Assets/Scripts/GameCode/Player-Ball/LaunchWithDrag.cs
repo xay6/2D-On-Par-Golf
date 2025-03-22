@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LaunchWithDrag : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private ClickAndDrag clickAndDrag;
+    public Rigidbody2D rb;
+    public ClickAndDrag clickAndDrag;
     [SerializeField]
     private float forceAmount;
     // Added for testing purposes. Makes the variables show up in component view.
@@ -40,7 +41,7 @@ public class LaunchWithDrag : MonoBehaviour
 
     void Update()
     {
-        if (rb != null)
+        if (rb != null && clickAndDrag != null)
         {
             
             if (!isMoving())
@@ -62,12 +63,49 @@ public class LaunchWithDrag : MonoBehaviour
             else
             {
                 clickAndDrag.endPos = clickAndDrag.startPos;
+                clickAndDrag.isDragging = false;
                 PlayGolfBallSound();
                 CheckForMovement();
                 
             }
-            
+
+            if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
+            {
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(inBoundsVector());
+
+                clickAndDrag.endPos = worldPosition;
+            }
         }
+    }
+
+    // Returns a Vector3.
+    // Limits mouse input from extending past the game window.
+    public Vector3 inBoundsVector()
+    {
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        float x = mousePosition.x;
+        float y = mousePosition.y;
+
+        if (mousePosition.x < 0)
+        {
+            x = Mathf.Max(0, mousePosition.x);
+        }
+        else if (mousePosition.x > Screen.width)
+        {
+            x = Mathf.Min(Screen.width, mousePosition.x);
+        }
+
+        if (mousePosition.y < 0)
+        {
+            y = Mathf.Max(0, mousePosition.y);
+        }
+        else if (mousePosition.y > Screen.height)
+        {
+            y = Mathf.Min(Screen.height, mousePosition.y);
+        }
+
+        return new Vector3(x, y, 0f);
     }
 
     // Checks the ball velocity.
