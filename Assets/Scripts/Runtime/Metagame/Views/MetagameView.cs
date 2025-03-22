@@ -22,6 +22,21 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         [SerializeField]
         LoadingScreenView m_LoadingScreenView;
 
+        internal LeaderboardView Leaderboard => m_LeaderboardView;
+
+        [SerializeField]
+        LeaderboardView m_LeaderboardView;
+
+        internal LoginView Login => m_LoginView;
+
+        [SerializeField]
+        LoginView m_LoginView;
+
+        internal GuestView Guest => m_GuestView;
+
+        [SerializeField]
+        GuestView m_GuestView;
+
         void Start()
         {
             if (App.IsDedicatedServer)

@@ -20,6 +20,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             AddListener<MatchLoadingEvent>(OnMatchLoading);
             AddListener<ExitMatchLoadingEvent>(OnExitMatchLoading);
             AddListener<MatchEnteredEvent>(OnMatchEntered);
+            
             App.OnReturnToMetagameAfterMatch -= OnReturnToMetagameAfterMatch;
             App.OnReturnToMetagameAfterMatch += OnReturnToMetagameAfterMatch;
         }

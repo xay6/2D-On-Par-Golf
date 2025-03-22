@@ -1,4 +1,6 @@
+using Unity.Properties;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -13,6 +15,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             AddListener<MatchLoadingEvent>(OnMatchLoading);
             AddListener<ExitedMatchmakerQueueEvent>(OnExitedMatchmakerQueue);
             AddListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
+            AddListener<EnterGuestEvent>(OnEnterGuest);
+            AddListener<ExitGuestEvent>(OnExitGuest);
+            AddListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
+            AddListener<ExitLeaderboardEvent>(OnExitLeaderboard);
+            AddListener<EnterLoginEvent>(OnEnterLogin);
+            AddListener<ExitLoginEvent>(OnExitLogin);
         }
 
         void OnDestroy()
@@ -27,13 +35,19 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             RemoveListener<ExitMatchmakerQueueEvent>(OnExitMatchmakerQueue);
             RemoveListener<ExitedMatchmakerQueueEvent>(OnExitedMatchmakerQueue);
             RemoveListener<StartSinglePlayerModeEvent>(OnStartSinglePlayerMode);
+            RemoveListener<EnterGuestEvent>(OnEnterGuest);
+            RemoveListener<ExitGuestEvent>(OnExitGuest);
+            RemoveListener<EnterLeaderboardEvent>(OnEnterLeaderboard);
+            RemoveListener<ExitLeaderboardEvent>(OnExitLeaderboard);
+            RemoveListener<EnterLoginEvent>(OnEnterLogin);
+            RemoveListener<ExitLoginEvent>(OnExitLogin);
         }
 
         void OnMatchLoading(MatchLoadingEvent evt)
         {
             if (!CustomNetworkManager.Singleton.AutoConnectOnStartup)
             {
-                return; //then we're starting a match from the matchmaker
+                return;
             }
             View.Hide();
             App.View.LoadingScreen.Show();
@@ -47,18 +61,53 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnExitMatchmakerQueue(ExitMatchmakerQueueEvent evt)
         {
             View.Show();
-            View.FindMatchButton.SetEnabled(false); //needs to be called here as the defualt status of the button in the UI is enabled, so disabling it before showing the view does nothing
+            View.NewGameButton.SetEnabled(false);
         }
 
         void OnExitedMatchmakerQueue(ExitedMatchmakerQueueEvent evt)
         {
-            View.FindMatchButton.SetEnabled(true);
+            View.NewGameButton.SetEnabled(true);
         }
 
         void OnStartSinglePlayerMode(StartSinglePlayerModeEvent evt)
         {
             View.Hide();
             CustomNetworkManager.Singleton.InitializeNetworkLogic(true, false);
+        }
+
+        void OnEnterGuest(EnterGuestEvent evt)
+        {
+            View.Hide();
+            App.View.Guest.Show();
+        }
+
+        void OnExitGuest(ExitGuestEvent evt)
+        {
+            App.View.Guest.Hide();
+            View.Show();
+        }
+
+        void OnEnterLeaderboard(EnterLeaderboardEvent evt)
+        {
+            View.Hide();
+            App.View.Leaderboard.Show();
+        }
+
+        void OnExitLeaderboard(ExitLeaderboardEvent evt)
+        {
+            App.View.Leaderboard.Hide();
+            View.Show();
+        }
+
+        void OnEnterLogin(EnterLoginEvent evt)
+        {
+            View.Hide();
+            App.View.Login.Show();
+        }
+        void OnExitLogin(ExitLoginEvent evt)
+        {
+            App.View.Login.Hide();
+            View.Show();
         }
     }
 }

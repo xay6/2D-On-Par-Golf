@@ -27,6 +27,10 @@ public class CollisionDetection : MonoBehaviour
         if(circleCollider2D != null && ball != null) {
             if(circleCollider2D.OverlapPoint(ball.transform.position)) {
                 onSuperimposed = true;
+                
+                HoleInOne checkHole = FindAnyObjectByType<HoleInOne>();
+                checkHole.CheckHoleInOne();
+
                 return;
             }
             if(circleCollider2D.IsTouching(ball.GetComponent<Collider2D>())) {

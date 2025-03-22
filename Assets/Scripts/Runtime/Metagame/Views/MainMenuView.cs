@@ -5,28 +5,41 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 {
     internal class MainMenuView : View<MetagameApplication>
     {
-        internal Button FindMatchButton { get; private set; }
-        Button m_QuitButton;
-        Button m_SinglePlayerButton;
-        Label m_TitleLabel;
-        VisualElement m_Root;
+        internal Button NewGameButton { get; private set; }
+        Button GuestButton;
+        Button LoginButton;
+        Button LeaderboardButton;
+        Button QuitButton;
+        Label TitleLabel;
+        VisualElement Root;
 
         void OnEnable()
         {
             var uiDocument = GetComponent<UIDocument>();
-            m_Root = uiDocument.rootVisualElement;
+            Root = uiDocument.rootVisualElement;
 
-            FindMatchButton = m_Root.Q<Button>("findMatchButton");
-            FindMatchButton.RegisterCallback<ClickEvent>(OnClickFindMatch);
+            // Get buttons
+            //NewGameButton = Root.Q<Button>("newGameButton");
+            //NewGameButton.RegisterCallback<ClickEvent>(OnClickNewGame);
 
-            m_SinglePlayerButton = m_Root.Q<Button>("singlePlayerButton");
-            m_SinglePlayerButton.RegisterCallback<ClickEvent>(OnClickStartSinglePlayer);
+            GuestButton = Root.Q<Button>("guestButton");
+            GuestButton.RegisterCallback<ClickEvent>(OnClickGuest);
 
-            m_QuitButton = m_Root.Q<Button>("quitButton");
-            m_QuitButton.RegisterCallback<ClickEvent>(OnClickQuit);
+            LoginButton = Root.Q<Button>("loginButton");
+            LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
 
-            m_TitleLabel = m_Root.Query<Label>("titleLabel");
-            m_TitleLabel.text = "Game title";
+            LeaderboardButton = Root.Q<Button>("leaderboardButton");
+            LeaderboardButton.RegisterCallback<ClickEvent>(OnClickLeaderboard);
+
+            QuitButton = Root.Q<Button>("quitButton");
+            QuitButton.RegisterCallback<ClickEvent>(OnClickQuit);
+
+            // Update title label
+            TitleLabel = Root.Q<Label>("titleLabel");
+            if (TitleLabel != null)
+            {
+                TitleLabel.text = "Golf Game";
+            }
 
             CustomNetworkManager.OnConfigurationLoaded += OnGameConfigurationLoaded;
         }
@@ -38,8 +51,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnDisable()
         {
-            FindMatchButton.UnregisterCallback<ClickEvent>(OnClickFindMatch);
-            m_QuitButton.UnregisterCallback<ClickEvent>(OnClickQuit);
+            //FindMatchButton.UnregisterCallback<ClickEvent>(OnClickFindMatch);
+            //m_SinglePlayerButton.UnregisterCallback<ClickEvent>(OnClickStartSinglePlayer);
+            GuestButton.UnregisterCallback<ClickEvent>(OnClickGuest);
+            LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
+            LeaderboardButton.UnregisterCallback<ClickEvent>(OnClickLeaderboard); // Unregister Leaderboard
+            QuitButton.UnregisterCallback<ClickEvent>(OnClickQuit);
             CustomNetworkManager.OnConfigurationLoaded -= OnGameConfigurationLoaded;
         }
 
@@ -50,8 +67,22 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnClickStartSinglePlayer(ClickEvent evt)
         {
-            SceneManager.LoadScene("Level01");
-            //Broadcast(new StartSinglePlayerModeEvent());
+            Broadcast(new StartSinglePlayerModeEvent());
+        }
+
+        void OnClickLeaderboard(ClickEvent evt)
+        {
+            Broadcast(new EnterLeaderboardEvent()); // Broadcast leaderboard event
+        }
+
+        void OnClickLogin(ClickEvent evt)
+        {
+            Broadcast(new EnterLoginEvent()); // Broadcast leaderboard event
+        }
+
+        void OnClickGuest(ClickEvent evt)
+        {
+            Broadcast(new EnterGuestEvent());
         }
 
         void OnClickQuit(ClickEvent evt)
@@ -69,8 +100,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 return;
             }
-            FindMatchButton.SetEnabled(false);
-            m_SinglePlayerButton.SetEnabled(false);
+            //FindMatchButton.SetEnabled(false);
+            //m_SinglePlayerButton.SetEnabled(false);
         }
     }
 }
