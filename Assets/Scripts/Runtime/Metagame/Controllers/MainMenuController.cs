@@ -21,6 +21,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             AddListener<ExitLeaderboardEvent>(OnExitLeaderboard);
             AddListener<EnterLoginEvent>(OnEnterLogin);
             AddListener<ExitLoginEvent>(OnExitLogin);
+            AddListener<StartGameEvent>(OnStartGame);
         }
 
         void OnDestroy()
@@ -41,6 +42,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             RemoveListener<ExitLeaderboardEvent>(OnExitLeaderboard);
             RemoveListener<EnterLoginEvent>(OnEnterLogin);
             RemoveListener<ExitLoginEvent>(OnExitLogin);
+            RemoveListener<StartGameEvent>(OnStartGame);
         }
 
         void OnMatchLoading(MatchLoadingEvent evt)
@@ -108,6 +110,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             App.View.Login.Hide();
             View.Show();
+        }
+        void OnStartGame(StartGameEvent evt)
+        {
+            Debug.Log("🎮 MainMenuController received StartGameEvent. Loading Level01...");
+            SceneManager.LoadScene("Level01");
         }
     }
 }

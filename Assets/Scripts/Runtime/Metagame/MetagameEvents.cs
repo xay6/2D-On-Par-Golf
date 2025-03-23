@@ -63,4 +63,5 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
     internal class EnterGuestEvent : AppEvent { }
     internal class ExitGuestEvent : AppEvent { }
+    internal class StartGameEvent : AppEvent { }
 }
