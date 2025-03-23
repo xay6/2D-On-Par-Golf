@@ -96,6 +96,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         public static async void RegisterHelper(string username, string password)
         {
             Signup = await OnPar.RouterHandlers.Handlers.RegisterHandler(username, password);
+            Debug.Log(Signup.message);
         }
     }
 
