@@ -46,11 +46,11 @@ export const register = async (req: Request, res: Response): Promise<void> => {
             res.status(422);
             res.json({ message: "Username is already taken.", success: false });
             return;
-        } else if (!username.match(/^[a-zA-Z1-9]\w{6,12}$/gm)) {
+        } else if (!username.match(/^[a-zA-Z1-9]\w{3,12}$/gm)) {
             res.status(422);
-            res.json({ message: "Username must be 6 - 12 characters long, start with a letter or number, and can only contain letters, numbers, and _.", success: false });
+            res.json({ message: "Username must be 4 - 12 characters long, start with a letter or number, and can only contain letters, numbers, and _.", success: false });
             return;
-        } else if (!req.body.password.match(/^\w{6,}$/gm)) {
+        } else if (!req.body.password.match(/^\w{5,}$/gm)) {
             res.status(422);
             res.json({ message: "Password must be at least 6 characters long.", success: false });
             return;
