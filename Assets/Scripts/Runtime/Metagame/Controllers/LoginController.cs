@@ -59,6 +59,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 View.ShowError("Invalid username or password.");
             }
+
+            if (!success)
+            {
+                Debug.LogWarning("Login failed. Showing error message.");
+                View.ShowError("Invalid login. Try again.");
+            }
         }
 
         async void OnSignupAttempt(SignupAttemptEvent evt)

@@ -130,8 +130,7 @@ namespace OnPar.RouterHandlers
         */
         public static Task<LoginRegisterResponse> LoginHandler(string username, string password)
         {
-            return LoginRegister.RegisterRoute(username, password);
-        }
+            return LoginRegister.LoginRoute(username, password);        }
 
         public static Task<LoginRegisterResponse> RegisterHandler(string username, string password)
         {

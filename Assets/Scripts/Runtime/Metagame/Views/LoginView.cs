@@ -26,6 +26,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnable()
         {
+            Debug.Log("LoginController Awake()");
+
             m_UsernameField = m_Root.Q<TextField>("usernameField");
             m_PasswordField = m_Root.Q<TextField>("passwordField");
             m_LoginButton = m_Root.Q<Button>("loginButton");
@@ -47,6 +49,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnClickLogin(ClickEvent evt)
         {
+            Debug.Log($"Is App.View.Login null? {App.View.Login == null}");
+
             string username = m_UsernameField.value.Trim();
             string password = m_PasswordField.value.Trim();
 
@@ -65,6 +69,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             string username = m_UsernameField.value.Trim();
             string password = m_PasswordField.value.Trim();
+
+            Debug.Log($"Signup button clicked with username: {username}");
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
