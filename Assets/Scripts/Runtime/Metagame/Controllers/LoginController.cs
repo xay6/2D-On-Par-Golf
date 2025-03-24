@@ -48,8 +48,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
             if (success)
             {
-                View.Hide(); // Hide the login view
-                App.View.AccountMenu.Show(); // Show the Account Menu View
+                View.Hide();
+                App.View.AccountMenu.Show();
             }
             else
             {
@@ -60,18 +60,17 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         async void OnSignupAttempt(SignupAttemptEvent evt)
         {
             bool success = await SignupAttemptEvent.RegisterHelper(evt.Username, evt.Password);
-            //bool success = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
 
             if (success)
             {
-                View.Hide(); // Hide the login view
-                App.View.AccountMenu.Show(); // Show the Account Menu View
+                View.Hide();
+                App.View.AccountMenu.Show();
             }
             else
             {
-                View.ShowError("Invalid username or password.");
+                View.ShowError("Username is taken or invalid input.");
             }
-
         }
+
     }
 }

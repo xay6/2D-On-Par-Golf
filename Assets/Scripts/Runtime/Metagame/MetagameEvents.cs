@@ -62,11 +62,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         public string Password { get; }
         public static LoginRegisterResponse Login;
 
-        public async void LoginEvent(string username, string password)
-        {
-            await LoginHelper(username, password);
-        }
-
         public static async Task<bool> LoginHelper(string username, string password)
         {
             try
@@ -87,11 +82,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         public string Username { get; }
         public string Password { get; }
         public static LoginRegisterResponse Signup;
-
-        public async void SignupEvent(string username, string password)
-        {
-            await RegisterHelper(username, password);
-        }
 
         public static async Task<bool> RegisterHelper(string username, string password)
         {
