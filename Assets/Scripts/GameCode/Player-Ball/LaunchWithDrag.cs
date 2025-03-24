@@ -34,13 +34,9 @@ public class LaunchWithDrag : MonoBehaviour
     {
         Debug.LogError("⚠️ PowerMeterUI not found in the scene!");
     }
-    else
-    {
-        Debug.Log("✅ PowerMeterUI successfully found.");
-    }
 }
 
-    void Update()
+void Update()
 {
     if (rb != null && clickAndDrag != null)
     {
@@ -50,16 +46,12 @@ public class LaunchWithDrag : MonoBehaviour
 
             if (clickAndDrag.isDragging)
             {
-                Debug.Log("🟢 Dragging started. Showing Power Meter.");
-
                 if (powerMeter != null)
                 {
                     powerMeter.ShowPowerMeter();
 
                     float dragDistance = Vector3.Distance(clickAndDrag.startPos, clickAndDrag.endPos);
                     powerMeter.UpdatePowerMeter(dragDistance);
-
-                    Debug.Log("🔁 Updating Power Meter | Drag Distance: " + dragDistance);
                 }
             }
             else
