@@ -59,8 +59,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         async void OnSignupAttempt(SignupAttemptEvent evt)
         {
-            SignupAttemptEvent.RegisterHelper(evt.Username, evt.Password);
-            bool success = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+            bool success = await SignupAttemptEvent.RegisterHelper(evt.Username, evt.Password);
+            //bool success = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
 
             if (success)
             {
