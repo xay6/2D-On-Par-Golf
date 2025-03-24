@@ -42,7 +42,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnClickBack(ClickEvent evt)
         {
             Debug.Log("🎮 Continue clicked! Broadcasting StartGameEvent...");
-            Broadcast(new StartGameEvent()); // ✅ This will load Level01
+            Broadcast(new ExitGuestEvent());
+            Broadcast(new StartGameEvent()); // This will load Level01
         }
     }
 }
