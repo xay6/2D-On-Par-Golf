@@ -11,10 +11,17 @@ public class Settings : MonoBehaviour
     public Slider volumeSlider;
     public Button backToMenuButton;
 
+    private void OnEnable()
+    {
+        // Always hide the panel when the object becomes active again
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
+    }
     private void Start()
     {
         // Initialize settings panel
-        settingsPanel.SetActive(false);
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
 
         // Set UI values from SettingsManager
         volumeSlider.value = SettingsManager.Instance.masterVolume;
@@ -37,14 +44,17 @@ public class Settings : MonoBehaviour
     
     public void ToggleSettingsPanel()
     {
-        bool isActive = !settingsPanel.activeSelf; // Determine what the new state will be
-        settingsPanel.SetActive(isActive);         // Apply that new state
+        bool isActive = !settingsPanel.activeSelf; 
+        settingsPanel.SetActive(isActive);         
         Time.timeScale = isActive ? 0f : 1f;
     }
 
     public void BackToMainMenu()
     {
-        Time.timeScale = 1; // Unpause before switching scenes
-        SceneManager.LoadScene("MetagameScene"); // Make sure this name matches exactly
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
+        
+        Time.timeScale = 1; 
+        SceneManager.LoadScene("MetagameScene"); 
     }
 }
