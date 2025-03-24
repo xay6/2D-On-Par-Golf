@@ -54,13 +54,9 @@ public class LaunchWithDrag : MonoBehaviour
             Debug.LogError("PowerMeterUI not found in the scene!");
         }
     }
-    else
-    {
-        Debug.Log("✅ PowerMeterUI successfully found.");
-    }
 }
 
-    void Update()
+void Update()
 {
     if (rb != null && clickAndDrag != null)
     {
