@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
@@ -49,13 +50,15 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             string username = m_UsernameField.value.Trim();
             string password = m_PasswordField.value.Trim();
 
+            Debug.Log($"Login button clicked with username: {username}");
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 ShowError("Username and password cannot be empty.");
                 return;
             }
 
-            Broadcast(new LoginAttemptEvent());
+            Broadcast(new LoginAttemptEvent(username, password));
         }
 
         void OnClickSignUp(ClickEvent evt)
@@ -69,7 +72,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
                 return;
             }
 
-            Broadcast(new SignupAttemptEvent());
+            Broadcast(new SignupAttemptEvent(username, password));
         }
 
 

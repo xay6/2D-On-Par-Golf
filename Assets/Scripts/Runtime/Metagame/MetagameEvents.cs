@@ -61,13 +61,18 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         public string Username { get; }
         public string Password { get; }
         public static LoginRegisterResponse Login;
+        public LoginAttemptEvent(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
 
         public static async Task<bool> LoginHelper(string username, string password)
         {
             try
             {
                 var response = await OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
-                return response != null; // Return true if login is successful
+                return response != null && response.success; // Return true if login is successful
             }
             catch (Exception ex)
             {
@@ -82,6 +87,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         public string Username { get; }
         public string Password { get; }
         public static LoginRegisterResponse Signup;
+        public SignupAttemptEvent(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
 
         public static async Task<bool> RegisterHelper(string username, string password)
         {

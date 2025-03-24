@@ -44,7 +44,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         async void OnLoginAttempt(LoginAttemptEvent evt)
         {
+            Debug.Log("OnLoginAttempt called.");
+
             bool success = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+
+            Debug.Log($"Login attempt result: {success}");
 
             if (success)
             {
@@ -64,11 +68,17 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             if (success)
             {
                 View.Hide();
-                App.View.AccountMenu.Show();
-            }
-            else
-            {
-                View.ShowError("Username is taken or invalid input.");
+
+                // Auto-login after successful signup
+                bool loginSuccess = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+                if (loginSuccess)
+                {
+                    App.View.AccountMenu.Show();
+                }
+                else
+                {
+                    View.ShowError("Signup succeeded, but login failed.");
+                }
             }
         }
 
