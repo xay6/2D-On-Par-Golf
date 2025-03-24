@@ -2144,6 +2144,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &513992326 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5756840973158632169, guid: ef9da34053f3ed142ab30d08dedd8dd5, type: 3}
+  m_PrefabInstance: {fileID: 2876255943301870065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &584671267
 GameObject:
   m_ObjectHideFlags: 0
