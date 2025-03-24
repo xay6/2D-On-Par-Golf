@@ -28,6 +28,7 @@ public class CollisionDetection : MonoBehaviour
             if(circleCollider2D.OverlapPoint(ball.transform.position)) {
                 onSuperimposed = true;
                 
+                CoinManager.Instance.AddCoins(10);
                 HoleInOne checkHole = FindAnyObjectByType<HoleInOne>();
                 checkHole.CheckHoleInOne();
 
