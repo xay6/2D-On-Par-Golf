@@ -35,10 +35,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
             m_SignupButton.RegisterCallback<ClickEvent>(OnClickSignUp);
             m_BackButton.RegisterCallback<ClickEvent>(OnClickBack);
-
-            m_LoadingSpinner = m_Root.Q<ProgressBar>("loadingSpinner");
-            m_LoadingSpinner.style.display = DisplayStyle.None;
-
         }
 
         void OnDisable()
@@ -88,14 +84,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 m_ErrorLabel.text = message;
                 m_ErrorLabel.style.display = DisplayStyle.Flex;
-            }
-        }
-
-        public void SetLoading(bool isLoading)
-        {
-            if (m_LoadingSpinner != null)
-            {
-                m_LoadingSpinner.style.display = isLoading ? DisplayStyle.Flex : DisplayStyle.None;
             }
         }
     }
