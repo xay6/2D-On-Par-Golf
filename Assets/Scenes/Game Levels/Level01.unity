@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
 --- !u!114 &456945228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2818,7 +2818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strokes: 0
   overallScore: 0
-  scoreText: {fileID: 1556245554}
+  scoreText: {fileID: 0}
 --- !u!4 &618847869
 Transform:
   m_ObjectHideFlags: 0
@@ -4408,7 +4408,7 @@ GameObject:
   - component: {fileID: 1556245555}
   - component: {fileID: 1556245554}
   m_Layer: 5
-  m_Name: scoreText
+  m_Name: ScoreText
   m_TagString: ScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
