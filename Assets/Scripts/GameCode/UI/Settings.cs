@@ -34,16 +34,21 @@ public class Settings : MonoBehaviour
 
     private void Update()
     {
-        // Press ESC to toggle settings
-        /*if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.sKey.wasPressedThisFrame)
         {
             ToggleSettingsPanel();
-        }*/
+        }
     }
 
     
     public void ToggleSettingsPanel()
     {
+        if (settingsPanel == null)
+        {
+            Debug.LogWarning("Settings panel not assigned!");
+            return;
+        }
+        Debug.Log("ToggleSettingsPanel called!");
         bool isActive = !settingsPanel.activeSelf; 
         settingsPanel.SetActive(isActive);         
         Time.timeScale = isActive ? 0f : 1f;
