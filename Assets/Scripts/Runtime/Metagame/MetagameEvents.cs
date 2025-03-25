@@ -1,3 +1,10 @@
+using System;
+using System.Threading.Tasks;
+using Codice.Client.BaseCommands;
+using OnPar.Routers;
+using PlasticGui.Configuration.CloudEdition.Welcome;
+using UnityEngine;
+
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
     internal class EnterMatchmakerQueueEvent : AppEvent
@@ -53,14 +60,57 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
     {
         public string Username { get; }
         public string Password { get; }
-
+        public static LoginRegisterResponse Login;
         public LoginAttemptEvent(string username, string password)
         {
             Username = username;
             Password = password;
         }
+
+        public static async Task<bool> LoginHelper(string username, string password)
+        {
+            try
+            {
+                var response = await OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
+                return response != null && response.success; // Return true if login is successful
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Login failed: {ex.Message}");
+                return false; // Return false if login fails
+            }
+        }
+    }
+
+    internal class SignupAttemptEvent : AppEvent
+    {
+        public string Username { get; }
+        public string Password { get; }
+        public static LoginRegisterResponse Signup;
+        public SignupAttemptEvent(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
+
+        public static async Task<bool> RegisterHelper(string username, string password)
+        {
+             try
+            {
+                var response = await OnPar.RouterHandlers.Handlers.RegisterHandler(username, password);
+                return response != null; // Return true if login is successful
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Login failed: {ex.Message}");
+                return false; // Return false if login fails
+            }
+        }
     }
 
     internal class EnterGuestEvent : AppEvent { }
     internal class ExitGuestEvent : AppEvent { }
+
+    internal class EnterAccountEvent : AppEvent { }
+    internal class ExitAccountEvent : AppEvent { }
 }
