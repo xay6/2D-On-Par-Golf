@@ -7,19 +7,10 @@ public class SettingsManager : MonoBehaviour
     [Range(0f, 1f)]
     public float masterVolume = 1f;
 
-
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            LoadSettings();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this; 
+        LoadSettings();
     }
 
     public void SetVolume(float volume)
@@ -30,11 +21,9 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
     private void LoadSettings()
     {
         masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-
         AudioListener.volume = masterVolume;
     }
 }
