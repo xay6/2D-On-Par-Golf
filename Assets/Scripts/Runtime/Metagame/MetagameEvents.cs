@@ -110,8 +110,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
     internal class EnterGuestEvent : AppEvent { }
     internal class ExitGuestEvent : AppEvent { }
+<<<<<<< HEAD
 
     internal class EnterAccountEvent : AppEvent { }
     internal class ExitAccountEvent : AppEvent { }
+=======
+>>>>>>> origin/SCRUM-79-make-a-settings-button-panel-th
     internal class StartGameEvent : AppEvent { }
 }
