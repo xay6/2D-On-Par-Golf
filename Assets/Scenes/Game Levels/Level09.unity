@@ -8514,6 +8514,7 @@ GameObject:
   - component: {fileID: 1787856537}
   - component: {fileID: 1787856536}
   - component: {fileID: 1787856544}
+  - component: {fileID: 1787856545}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Player
@@ -8549,6 +8550,7 @@ MonoBehaviour:
   mass: 0
   linearDamping: 0
   angularDamping: 0
+  golfHit: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
 --- !u!114 &1787856538
 MonoBehaviour:
   m_ObjectHideFlags: 0
