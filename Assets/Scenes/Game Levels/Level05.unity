@@ -125,7 +125,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 456945230}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1508967500238389163, guid: 3d0e86dd3c1301c40a2e087f3bae901d, type: 3}
       propertyPath: m_Pivot.x
@@ -216,11 +216,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d0e86dd3c1301c40a2e087f3bae901d, type: 3}
---- !u!224 &98615671 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1508967500238389163, guid: 3d0e86dd3c1301c40a2e087f3bae901d, type: 3}
-  m_PrefabInstance: {fileID: 98615670}
-  m_PrefabAsset: {fileID: 0}
 --- !u!225 &98615672 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 2326464051607189862, guid: 3d0e86dd3c1301c40a2e087f3bae901d, type: 3}
@@ -2608,6 +2603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4513c91afe7c78e41affa48f8347b236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  clickAndDrag: {fileID: 0}
   forceAmount: 0
   mass: 0
   linearDamping: 0
@@ -2892,6 +2889,103 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b59e6b2f28a841b381b58b01c3d894b, type: 2}
   - {fileID: 11400000, guid: d279f28fd8bd0401e9510d1986f1f436, type: 2}
   CurrentClub: {fileID: 0}
+--- !u!82 &529429812
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529429802}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
+  m_Resource: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &537393440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,7 +3161,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 456945230}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 608939018020269911, guid: c39d6b240984cf54780ea873c8cb98a5, type: 3}
       propertyPath: failedPanel
@@ -3076,11 +3170,11 @@ PrefabInstance:
     - target: {fileID: 608939018020269911, guid: c39d6b240984cf54780ea873c8cb98a5, type: 3}
       propertyPath: successPanel
       value: 
-      objectReference: {fileID: 1269422566}
+      objectReference: {fileID: 0}
     - target: {fileID: 608939018020269911, guid: c39d6b240984cf54780ea873c8cb98a5, type: 3}
       propertyPath: challengePanel
       value: 
-      objectReference: {fileID: 393745216}
+      objectReference: {fileID: 0}
     - target: {fileID: 6901343264463043615, guid: c39d6b240984cf54780ea873c8cb98a5, type: 3}
       propertyPath: m_Name
       value: ChallengeUIManager
@@ -3170,22 +3264,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c39d6b240984cf54780ea873c8cb98a5, type: 3}
---- !u!224 &564775804 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9165270602490915346, guid: c39d6b240984cf54780ea873c8cb98a5, type: 3}
-  m_PrefabInstance: {fileID: 564775803}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &564775805 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 608939018020269911, guid: c39d6b240984cf54780ea873c8cb98a5, type: 3}
-  m_PrefabInstance: {fileID: 564775803}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef24ad42a7aa85845828fcf6ea563531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &584671267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4535,9 +4613,9 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 127185789}
+  m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1625590941}
-  m_HandleRect: {fileID: 127185788}
+  m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
@@ -4944,7 +5022,6 @@ GameObject:
   - component: {fileID: 1749412295}
   - component: {fileID: 1749412299}
   - component: {fileID: 1749412298}
-  - component: {fileID: 1749412300}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Goal
@@ -5233,8 +5310,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 127185788}
+  m_Children: []
   m_Father: {fileID: 1339319946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5325,9 +5401,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 323300727}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: ToggleSettingsPanel
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5735,3 +5811,5 @@ SceneRoots:
   - {fileID: 537393444}
   - {fileID: 1116668332}
   - {fileID: 323300730}
+  - {fileID: 98615670}
+  - {fileID: 564775803}

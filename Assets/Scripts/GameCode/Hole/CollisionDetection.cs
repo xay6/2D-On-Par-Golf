@@ -29,8 +29,14 @@ public class CollisionDetection : MonoBehaviour
                 onSuperimposed = true;
                 
                 HoleInOne checkHole = FindAnyObjectByType<HoleInOne>();
-                checkHole.CheckHoleInOne();
-
+                if (checkHole != null)
+                {
+                    checkHole.CheckHoleInOne();
+                }
+                else
+                {
+                    Debug.LogWarning("HoleInOne script not found in this scene.");
+                }
                 return;
             }
             if(circleCollider2D.IsTouching(ball.GetComponent<Collider2D>())) {
