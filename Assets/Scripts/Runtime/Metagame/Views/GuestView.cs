@@ -1,4 +1,5 @@
 using UnityEngine.UIElements;
+using UnityEngine;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -35,12 +36,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnClickContinue(ClickEvent evt)
         {
-            Broadcast(new EnterMatchmakerQueueEvent("Standard"));
+            Broadcast(new StartGameEvent());
         }
 
         void OnClickBack(ClickEvent evt)
         {
+            Debug.Log("🎮 Continue clicked! Broadcasting StartGameEvent...");
             Broadcast(new ExitGuestEvent());
+            Broadcast(new StartGameEvent()); // This will load Level01
         }
     }
 }
