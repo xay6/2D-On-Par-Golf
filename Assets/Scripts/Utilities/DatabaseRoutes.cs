@@ -49,7 +49,7 @@ namespace OnPar.Routers
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-                if(LoginRegister.isLoggedIn())
+                if (LoginRegister.isLoggedIn())
                     request.SetRequestHeader("Authorization", "Bearer " + LoginRegister.getToken());
 
                 var operation = request.SendWebRequest();
@@ -80,6 +80,7 @@ namespace OnPar.Routers
     public static class LoginRegister
     {
         private static string token = "";
+        private static string username = "";
         private static bool hasToken = false;
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
@@ -105,12 +106,19 @@ namespace OnPar.Routers
             return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
         }
 
-        public static string getToken() {
+        public static string getToken()
+        {
             return token;
         }
 
-        public static bool isLoggedIn() {
+        public static bool isLoggedIn()
+        {
             return hasToken;
+        }
+
+        public static string getUsername()
+        {
+            return username;
         }
     }
     public static class Scores
