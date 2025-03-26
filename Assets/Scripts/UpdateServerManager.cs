@@ -45,5 +45,6 @@ public class UpdateServerManager : MonoBehaviour
         int score = ScoreManager.Instance.strokes;
         string courseId = SceneManager.GetActiveScene().name;
         UpdateScoreResponse = await Handlers.AddOrUpdateScore(courseId, username, score);
+        Debug.LogWarning(score);
     }
 }

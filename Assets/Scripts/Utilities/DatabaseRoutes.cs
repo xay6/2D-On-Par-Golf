@@ -79,9 +79,9 @@ namespace OnPar.Routers
 
     public static class LoginRegister
     {
-        private static string token = "";
-        private static string username = "";
-        private static bool hasToken = false;
+        private static string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJyYW5kb24iLCJpZCI6IjY3YzlhYjRlZDRkOGZjMjllY2MwYWM2NSIsImlhdCI6MTc0MzAyMzIxNn0.54TW9LRbQcItLDj7v9PEvy-pXCEU0h4cCm1B-BDMdIY";
+        private static string username = "brandon";
+        private static bool hasToken = true;
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
         {
@@ -138,7 +138,8 @@ namespace OnPar.Routers
         {
             string url = "https://on-par-server.onrender.com/api/scores/add-update";
             // string url = "localhost:3000/api/scores/add-update"; // Local development string.
-            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":\"{score}\"}}";
+            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":{score}}}";
+            Debug.Log(userData);
 
             return await RequestHelper.SendRequest<Message>(url, "PUT", userData);
         }

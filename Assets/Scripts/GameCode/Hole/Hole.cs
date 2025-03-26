@@ -49,9 +49,9 @@ public class Hole : MonoBehaviour
         int nextSceneIndex = currentSceneIndex + 1;
 
         ScoreManager.Instance.AddToOverallScore(ScoreManager.Instance.strokes);
-
-        
         ScoreManager.Instance.ResetStrokes();
+        
+
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             Debug.Log($"Loading Level {nextSceneIndex}: {SceneManager.GetSceneByBuildIndex(nextSceneIndex).name}");

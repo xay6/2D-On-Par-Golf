@@ -53,6 +53,10 @@ public class Settings : MonoBehaviour
         settingsPanel.SetActive(isActive);         
         Time.timeScale = isActive ? 0f : 1f;
     }
+    public void testClick()
+    {
+        Debug.Log("test click");
+    }
 
     public void BackToMainMenu()
     {
