@@ -6,9 +6,23 @@ public class Wind : MonoBehaviour
     public Vector2 windDirection { get; private set; }
     public float windStrength { get; private set; }
     public Text windDisplayText;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip windSound;
+
+    private bool isPlayingWindSound;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.loop = true; 
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0; 
+        audioSource.volume = 0.7f;
         GenerateNewWind(true);
     }
 
@@ -61,6 +75,27 @@ public class Wind : MonoBehaviour
         if (angle >= 202.5 && angle < 247.5) return "↙ SW";
         if (angle >= 247.5 && angle < 292.5) return "↓ South";
         return "↘ SE";
+    }
+    public void PlayWindSound()
+    {
+        if (windSound == null)
+        {
+            Debug.LogError("ERROR: Wind AudioClip is NULL! Assign it in the Inspector.");
+            return;
+        }
+
+        if (SoundFXManager.instance != null && !isPlayingWindSound)
+        {
+            Debug.Log("✅ Playing Wind Sound...");
+            SoundFXManager.instance.PlaySoundEffect(windSound, transform, 0.7f);
+            isPlayingWindSound = true; 
+        }
+    }
+
+    
+    public void StopWindSound()
+    {
+        isPlayingWindSound = false; 
     }
 }
 

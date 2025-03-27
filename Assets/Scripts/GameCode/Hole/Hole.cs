@@ -1,4 +1,7 @@
+
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 using UnityEngine.SceneManagement;
 
 public class Hole : MonoBehaviour
@@ -33,20 +36,22 @@ public class Hole : MonoBehaviour
             if (isGoal)
             {
                 Debug.Log("Goal reached! Loading next level...");
-                LoadNextLevel();
+                StartCoroutine(LoadNextLevel(2f));
             }
         }
     }
 
-    void LoadNextLevel()
+    IEnumerator LoadNextLevel(float delay)
     {
+        yield return new WaitForSeconds(delay);
+
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
 
         ScoreManager.Instance.AddToOverallScore(ScoreManager.Instance.strokes);
-
-        
         ScoreManager.Instance.ResetStrokes();
+        
+
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             Debug.Log($"Loading Level {nextSceneIndex}: {SceneManager.GetSceneByBuildIndex(nextSceneIndex).name}");

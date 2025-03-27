@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windDisplayText: {fileID: 0}
+  windSound: {fileID: 8300000, guid: b269f4e5cb13047429f3614f59246d47, type: 3}

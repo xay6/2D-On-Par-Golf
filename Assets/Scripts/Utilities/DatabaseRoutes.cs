@@ -10,6 +10,7 @@ namespace OnPar.Routers
     public class LoginRegisterResponse
     {
         public string message;
+        public string token;
         public bool success;
     }
 
@@ -48,6 +49,8 @@ namespace OnPar.Routers
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
+                if (LoginRegister.isLoggedIn())
+                    request.SetRequestHeader("Authorization", "Bearer " + LoginRegister.getToken());
 
                 var operation = request.SendWebRequest();
                 while (!operation.isDone)
@@ -76,6 +79,9 @@ namespace OnPar.Routers
 
     public static class LoginRegister
     {
+        private static string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJyYW5kb24iLCJpZCI6IjY3YzlhYjRlZDRkOGZjMjllY2MwYWM2NSIsImlhdCI6MTc0MzAyMzIxNn0.54TW9LRbQcItLDj7v9PEvy-pXCEU0h4cCm1B-BDMdIY";
+        private static string username = "brandon";
+        private static bool hasToken = true;
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
         {
@@ -83,7 +89,11 @@ namespace OnPar.Routers
             // string url = "localhost:3000/api/users/login"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
-            return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+            LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+
+            hasToken = true;
+            token = res.token;
+            return res;
         }
 
         // Post request
@@ -94,6 +104,21 @@ namespace OnPar.Routers
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
             return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
+        }
+
+        public static string getToken()
+        {
+            return token;
+        }
+
+        public static bool isLoggedIn()
+        {
+            return hasToken;
+        }
+
+        public static string getUsername()
+        {
+            return username;
         }
     }
     public static class Scores
@@ -113,7 +138,8 @@ namespace OnPar.Routers
         {
             string url = "https://on-par-server.onrender.com/api/scores/add-update";
             // string url = "localhost:3000/api/scores/add-update"; // Local development string.
-            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":\"{score}\"}}";
+            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":{score}}}";
+            Debug.Log(userData);
 
             return await RequestHelper.SendRequest<Message>(url, "PUT", userData);
         }
