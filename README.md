@@ -223,7 +223,7 @@ Xavier Ortiz:
 Jalen Stewart:
 
 
-## Next Steps for Sprint 
+## Next Steps for Sprint 3
 
 Brandon Mason: 
 
