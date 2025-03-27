@@ -45,7 +45,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_LogoutButton?.UnregisterCallback<ClickEvent>(OnLogoutClicked);
         }
 
-        void OnNewGameClicked(ClickEvent evt) => Broadcast(new StartSinglePlayerModeEvent());
+        void OnNewGameClicked(ClickEvent evt) => Broadcast(new StartGameEvent());
         void OnAllLevelsClicked(ClickEvent evt) => Broadcast(new EnterLeaderboardEvent()); // swap if needed
         void OnSettingsClicked(ClickEvent evt) => Debug.Log("Settings clicked"); // replace with actual event
         void OnRewardsClicked(ClickEvent evt) => Debug.Log("Rewards clicked"); // replace with actual event
