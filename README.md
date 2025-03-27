@@ -215,19 +215,34 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
 Brandon Mason: 
 
 Ariana Zapata:
+Enhanced backend integration and expanded UI functionality, including login/signup database linkage, score tracking, AccountView development, and bug fixes.
 
-Natalie Morales: 
+- SCRUM-120 Main Menu/Login UI Updates
+    Description: Made layout and button adjustments to improve usability and consistency in the main menu and login views.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-120-update-mainmenu-ui)
+    - [Jira](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-120?atlOrigin=eyJpIjoiNTkyZjYwMjYxMzdhNDE1ZTk0ODUzZjZlNjcwNmM0MDIiLCJwIjoiaiJ9)
 
-Xavier Ortiz:
+- SCRUM-121 Backend Integration with UI (Login/Signup + AccountView)
+    Description:
+    – Connected login and signup UI functionality to backend database methods.
+    – Implemented OnLoginAttempt and OnSignupAttempt event handlers in LoginController.cs.
+    – Created initial AccountView and AccountController components to display user info after login.
+    – Set up navigation path to AccountMenu.
+    – Iterated UI adjustments based on testing and feedback.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-121-connect-ui-to-backend-methods)
+    - [Jira](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-121?atlOrigin=eyJpIjoiYzI0ZDM5MjcxZTk0NDZiYzk0ZTg4YjJkZTQ5OGVjODciLCJwIjoiaiJ9)
 
-Jalen Stewart:
+- SCRUM-111 Asset and UI Script Additions
+    Description: Added new UI assets and scripts to support the AccountView and improve visual consistency.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-111-design-leaderboard-ui)
+    - [Jira](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-111?atlOrigin=eyJpIjoiOGRmNDQ1ZjRiNzUwNDJjY2E1ZmQxMjMxYzQ4ZmZmMzMiLCJwIjoiaiJ9)
 
+- SCRUM-116 Debugging and UI Fixes
+    Description: Conducted extensive debugging of UI flow and backend integration. Fixed bugs, adjusted code logic, and ensured components (like GuestView, AccountView, LoginView) were correctly connected in the Unity project.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-116-test-debug)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/30)
+    - [Jira](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-116?atlOrigin=eyJpIjoiYTA1Njg1M2ZiMWY0NDE4MTgzOTg0MzVhMmEwZTQxZGUiLCJwIjoiaiJ9)
 
-## Next Steps for Sprint 3
-
-Brandon Mason: 
-
-Ariana Zapata:
 
 Natalie Morales: 
 Redesigned the levels on the UI development to look cohesive with Main Menu, implemented a settings panel that connects UI and levels through Guest, Created a prefab for wind animation using Unity’s particle effect, and created a soundManager to create instances of sounds throughout the game. 
@@ -254,8 +269,6 @@ Redesigned the levels on the UI development to look cohesive with Main Menu, imp
     - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-79-make-a-settings-button-panel-th)
     - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/31)
     - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-79)
-
-
 
 Xavier Ortiz:
 I finished implementing the challenge UI banner and logic and added rewards (coins) for completing the challenges, and just for completing the level, you were given rewards.
@@ -291,6 +304,22 @@ I finished implementing the challenge UI banner and logic and added rewards (coi
     - [Bitbucket Branch and Commit(s)](Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-90-design-challenge-mechanics-rewa)
     - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-90)
 
+Jalen Stewart:
+
+
+## Next Steps for Sprint 3
+
+Brandon Mason: 
+
+- Ariana Zapata:
+    - Connect Leaderboard to Database: Implement backend integration for the leaderboard so it displays real-time player rankings based on scores stored in the database.
+    - Finalize Leaderboard UI: Polish the visual design of the leaderboard panel and ensure it dynamically updates with correct styling and scroll behavior.
+    - Implement "All Levels" View: Create a new UI view that allows users to access any previously unlocked level. Ensure this view reflects the player's progress and includes locked/unlocked states visually.
+    - Add Password Visibility Toggle: Enhance the login UI with a security feature that allows users to toggle visibility of their typed password (e.g., a "show/hide" eye icon).
+
+Natalie Morales: 
+
+Xavier Ortiz:
 
 Jalen Stewart:
 
