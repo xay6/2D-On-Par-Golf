@@ -230,6 +230,32 @@ Brandon Mason:
 Ariana Zapata:
 
 Natalie Morales: 
+Redesigned the levels on the UI development to look cohesive with Main Menu, implemented a settings panel that connects UI and levels through Guest, Created a prefab for wind animation using Unity’s particle effect, and created a soundManager to create instances of sounds throughout the game. 
+
+- SCRUM-77 Create animation for wind into a prefab
+    - Description: Used Unity’s particle effect to create wind animations that move and act  like wind.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-77-create-animation-to-enhance-use)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-77)
+
+- SCRUM-78 Implement subtle sound effect for hitting the golf ball
+    - Description: Created SoundFXManager object and script that instantiates sounds throughout the game by creating an audio source of your choosing. We applied this to the ball to create a hitting sound. 
+    - [Bitbucket Branch and Commit(s)]https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-78-implement-subtle-sound-effects-)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/20)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-78)
+
+- SCRUM-76 Create a UI that has consistent fonts, colors, and button styles across all screens and displays all player information (score, current club, etc.).
+    - Description: Changed the UI to all the levels to better match the Main Menu graphics.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-76-Second-UI-branch)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-76)
+
+ 
+- SCRUM-79 Make a settings button/panel that allows you to change the game settings (volume, back button to main menu, skins, etc.
+    - Description: Created a settings panel that is accessible from every level and inside the panel the player can access the main menu and vice versa. It connects through GuestController.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-79-make-a-settings-button-panel-th)
+    - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/31)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-79)
+
+
 
 Xavier Ortiz:
 
