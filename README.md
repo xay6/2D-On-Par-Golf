@@ -211,16 +211,45 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
 ## Burnup Chart for Sprint 1
 ![Burnup Chart](./img/burnupChart.png)
 
+## Sprint 2 Contributions
+Brandon Mason: 
+
+Ariana Zapata:
+
+Natalie Morales: 
+
+Xavier Ortiz:
+
+Jalen Stewart:
+
+
+## Next Steps for Sprint 
+
+Brandon Mason: 
+
+Ariana Zapata:
+
+Natalie Morales: 
+
+Xavier Ortiz:
+
+Jalen Stewart:
+
+
+
+## Burnup Chart for Sprint 2
+
+
 ## Features
 - Mouse controls - Will launch the ball into the air.
 - 18 Custom golf courses
-- Stroke Counter â€“ Tracks the number of strokes per level.
+- Stroke Counter Tracks the number of strokes per level.
 - Total Score Tracking and Maintains the player's score across different levels.
-- Golf Club Selection â€“ Switch between Driver, Iron, and Putter, each affecting the shot differently.
-- Wind Mechanics â€“ Wind dynamically influences ball trajectory based on direction and strength.
-- Obstacles and Hazards â€“ Trees, water hazards, sand traps, and other environmental challenges.
-- Main Menu & Navigation â€“ Easy access to game modes and settings.
-- Leaderboard UI â€“ Tracks top scores for competitive play.
-- Realistic Shot Force System â€“ Uses Unityâ€™s Rigidbody2D for accurate physics-based golf shots.
-- Collision Detection â€“ Ensures the ball interacts correctly with terrain, walls, and obstacles.
-- Camera Follow System â€“ Automatically tracks the ball after each shot.
+- Golf Club Selection Switch between Driver, Iron, and Putter, each affecting the shot differently.
+- Wind Mechanics Wind dynamically influences ball trajectory based on direction and strength.
+- Obstacles and Hazards Trees, water hazards, sand traps, and other environmental challenges.
+- Main Menu & Navigation Easy access to game modes and settings.
+- Leaderboard UI Tracks top scores for competitive play.
+- Realistic Shot Force System Uses Unity Rigidbody2D for accurate physics-based golf shots.
+- Collision Detection Ensures the ball interacts correctly with terrain, walls, and obstacles.
+- Camera Follow System Automatically tracks the ball after each shot.
