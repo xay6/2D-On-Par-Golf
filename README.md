@@ -258,6 +258,35 @@ Redesigned the levels on the UI development to look cohesive with Main Menu, imp
 
 
 Xavier Ortiz:
+I finished implementing the challenge UI banner and logic and added rewards (coins) for completing the challenges, and just for completing the level, you were given rewards.
+
+- SCRUM-93 Design & Implement UI for Challenges and Rewards (Unity UI)
+    -Description: Create UI elements in Unity (e.g., TextMeshPro, UI Panels) to display the challenge details and earned rewards. Develop a C# script to update UI dynamically based on challenge progress and completion. Ensured UI scales properly across different screen resolutions.
+    - [Bitbucket Branch and Commit(s)]([Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-93-design-implement-ui-for-challen)
+    -[Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-93)
+
+-SCRUM-72 Hole In One Challenge Logic - Working off of SCRUM-56-55
+    -Description: Pulling SCRUM-56: Implement Hole-in-One Challenge Logic into sprint 2 from sprint 1 to work on. Still need to add more quality changes and to make it run with team mates code.
+    -[Bitbucket Branch and Commit(s)]([Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-72-hole-in-one-REDO)
+    -[Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-72)
+-SCRUM-71 Hole In One UI - Working off of SCRUM-55-56
+    -Description: Pulling SCRUM-55: Design the Hole-in-One Challenge UI & Level Indicators into sprint 2 from sprint 1 to work on. Still need to add more quality changes and to make it run with team mates code. 
+    -[Bitbucket Branch and Commit(s)]([Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-72-hole-in-one-REDO)
+    -[Bitbucket Branch and Commit(s)]([Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-71-hole-in-one-UI-Continuing)
+    -[Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-71)
+-SCRUM-91 Implement Challenge Activation Logic in C# (Unity Script)
+    -Description: Write a C# script in Unity to determine which holes have active challenges. Use Unity's ScriptableObject or GameManager to manage challenge activation conditions. Test by logging activations in Unity's console to ensure proper behavior. 
+    -[Bitbucket Branch and Commit(s)]([Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-91-implement-challenge-activation-)
+    -[Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-91)
+-SCRUM-92 Develop Performance-Based Reward System in C#
+    -Description: Create a C# script to calculate challenge performance (e.g., accuracy, completion time). Implement reward logic using Unity’s PlayerPrefs or a custom data-saving method. Ensure rewards are dynamically adjusted based on challenge difficulty.
+    -[Bitbucket Branch and Commit(s)]([Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-92-develop-performance-based-rewar)
+    -[Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-92)
+-SCRUM-90 Design Challenge Mechanics & Reward System
+    -Descriptions: Create a design document outlining the challenge types, scoring system, and reward tiers. Use a flowchart or state diagram to visualize how challenges activate and how rewards are assigned. Store the document in the Unity project folder for reference.
+    -[Bitbucket Branch and Commit(s)]([Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-90-design-challenge-mechanics-rewa)
+    -[Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-90)
+
 
 Jalen Stewart:
 
