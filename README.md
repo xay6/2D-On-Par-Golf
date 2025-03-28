@@ -326,7 +326,7 @@ Jalen Stewart: Created a power meter bar that synced the shot to correlate with 
 
 ## Next Steps for Sprint 3
 
-Brandon Mason: 
+- Brandon Mason: 
 
 - Ariana Zapata:
     - Connect Leaderboard to Database: Implement backend integration for the leaderboard so it displays real-time player rankings based on scores stored in the database.
@@ -334,14 +334,17 @@ Brandon Mason:
     - Implement "All Levels" View: Create a new UI view that allows users to access any previously unlocked level. Ensure this view reflects the player's progress and includes locked/unlocked states visually.
     - Add Password Visibility Toggle: Enhance the login UI with a security feature that allows users to toggle visibility of their typed password (e.g., a "show/hide" eye icon).
 
-Natalie Morales: 
+- Natalie Morales: 
+    - Working with team to incorporate the wind animations prefab to work with a wind api so it follows the same direction.
+    - redesigning score manager so the player can start from any level once unlocked.
+    - connect sounds to the volume slider in settings and add background music that a player can personalize. 
 
-Xavier Ortiz:
+- Xavier Ortiz:
 
-Jalen Stewart:
-- Complete Sand and other hazards for more uniqueness and playability
-- Implement an API to effect the wind patterns in a more durastic way
-- Creating the UI for the rewards panel
+- Jalen Stewart:
+    - Complete Sand and other hazards for more uniqueness and playability
+    - Implement an API to effect the wind patterns in a more durastic way
+    - Creating the UI for the rewards panel
 
 
 
@@ -361,3 +364,5 @@ Jalen Stewart:
 - Realistic Shot Force System Uses Unity Rigidbody2D for accurate physics-based golf shots.
 - Collision Detection Ensures the ball interacts correctly with terrain, walls, and obstacles.
 - Camera Follow System Automatically tracks the ball after each shot.
+- wind animations
+- sound effects in game 
