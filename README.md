@@ -214,6 +214,7 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
 ## Sprint 2 Contributions
 Brandon Mason: 
 Developed the backend server with database connections built with Node using TypeScript and Express. Also wrote the Unity methods to connect the game to the backend server.
+
 - SCRUM-83
 	- Description: Create a backend with an API that connects to the database.
 	- [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-83-create-a-backend-with-an-api-to)
@@ -230,7 +231,7 @@ Developed the backend server with database connections built with Node using Typ
     - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/19)
 	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-85)
 - SCRUM-88
-	- Description: # Write a Unity script with predefined methods to fetch common sets of data requested by the game.
+	- Description: Write a Unity script with predefined methods to fetch common sets of data requested by the game.
     - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-88-write-a-unity-script-with-prede)
     - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/23)
 	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-88)
