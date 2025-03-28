@@ -340,6 +340,9 @@ Jalen Stewart: Created a power meter bar that synced the shot to correlate with 
     - connect sounds to the volume slider in settings and add background music that a player can personalize. 
 
 - Xavier Ortiz:
+    - Create a daily reward tracker for every time the user logs in to the game. Will be given coins or maybe cosmetics.
+    - Create 6-10 challenge levels that are based on the hole-in-one challenge, that you only have a few attempts to beat or else you restart.
+    - Make a UI that shows up after you complete a levels which you can exit the game or restart level, etc.,instead of just force loading the level.
 
 - Jalen Stewart:
     - Complete Sand and other hazards for more uniqueness and playability
