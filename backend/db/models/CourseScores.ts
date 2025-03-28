@@ -15,12 +15,11 @@ const UserScoresSchema: Schema = new mongoose.Schema({
     score: {type: Number, required: true}
 });
 
-const CourseScoresSchema: Schema = new mongoose.Schema({
+const courseScoresSchema: Schema = new mongoose.Schema({
     courseId: {type: String, required: true},
     userData: [UserScoresSchema]
 });
 
-export const CourseScores = mongoose.model<ICourseScores>('CourseScores', CourseScoresSchema);
-export const UserScores = mongoose.model<IUserScores>('UserScores', UserScoresSchema);
+const CourseScores = mongoose.model<ICourseScores>('CourseScores', courseScoresSchema);
 
-// export default { CourseScores, UserScores };
+export default CourseScores;
