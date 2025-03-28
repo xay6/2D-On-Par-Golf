@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using OnPar.Routers;
+using Codice.Client.Common;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -13,6 +15,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             AddListener<EnterLoginEvent>(OnEnterLogin);
             AddListener<ExitLoginEvent>(OnExitLogin);
+            AddListener<LoginAttemptEvent>(OnLoginAttempt);
+            AddListener<SignupAttemptEvent>(OnSignupAttempt);
         }
 
         void OnDestroy()
@@ -24,6 +28,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             RemoveListener<EnterLoginEvent>(OnEnterLogin);
             RemoveListener<ExitLoginEvent>(OnExitLogin);
+            RemoveListener<LoginAttemptEvent>(OnLoginAttempt);
+            RemoveListener<SignupAttemptEvent>(OnSignupAttempt);
         }
 
         void OnEnterLogin(EnterLoginEvent evt)
@@ -36,10 +42,51 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             View.Hide();
         }
 
-        bool Authenticate(string username, string password)
+        async void OnLoginAttempt(LoginAttemptEvent evt)
         {
-            // Mock authentication - replace with actual logic
-            return username == "admin";
+            Debug.Log("OnLoginAttempt called.");
+
+            bool success = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+
+            Debug.Log($"Login attempt result: {success}");
+
+            if (success)
+            {
+                View.Hide();
+                App.View.AccountMenu.Show();
+            }
+            else
+            {
+                View.ShowError("Invalid username or password.");
+            }
+
+            if (!success)
+            {
+                Debug.LogWarning("Login failed. Showing error message.");
+                View.ShowError("Invalid login. Try again.");
+            }
         }
+
+        async void OnSignupAttempt(SignupAttemptEvent evt)
+        {
+            bool success = await SignupAttemptEvent.RegisterHelper(evt.Username, evt.Password);
+
+            if (success)
+            {
+                View.Hide();
+
+                // Auto-login after successful signup
+                bool loginSuccess = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
+                if (loginSuccess)
+                {
+                    App.View.AccountMenu.Show();
+                }
+                else
+                {
+                    View.ShowError("Signup succeeded, but login failed.");
+                }
+            }
+        }
+
     }
 }

@@ -30,6 +30,14 @@ public class CollisionDetection : MonoBehaviour
                 
                 //CoinManager.Instance.AddCoins(10);
                 HoleInOne checkHole = FindAnyObjectByType<HoleInOne>();
+                if (checkHole != null)
+                {
+                    checkHole.CheckHoleInOne();
+                }
+                else
+                {
+                    Debug.LogWarning("HoleInOne script not found in this scene.");
+                }
                 checkHole.CheckHoleInOne();
                 CoinManager.Instance.AddCoins(10);
 
