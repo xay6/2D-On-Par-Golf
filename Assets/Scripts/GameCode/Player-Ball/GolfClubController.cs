@@ -27,6 +27,7 @@ public class GolfClubController : MonoBehaviour
     {
         if(clubs.Length > 0) {
             launchWithDrag = GameObject.Find("Ball").GetComponent<LaunchWithDrag>();
+            clubText = GameObject.FindWithTag("ClubText").GetComponent<TextMeshProUGUI>();
             CurrentClub = clubs[currentClubIndex];
             UpdateClubText();
             UpdateClubStats();

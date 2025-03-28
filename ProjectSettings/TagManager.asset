@@ -7,6 +7,11 @@ TagManager:
   - Goal
   - Ball
   - ScoreText
+  - BackToMenuButton
+  - SettingsPanel
+  - VolumeSlider
+  - WindText
+  - ClubText
   layers:
   - Default
   - TransparentFX

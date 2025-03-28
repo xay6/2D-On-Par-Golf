@@ -19,6 +19,12 @@ public class Wind : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
+        GameObject textObj = GameObject.FindWithTag("WindText");
+        if(textObj != null) 
+        {
+            windDisplayText = textObj.GetComponent<Text>();
+        }
+
         audioSource.loop = true; 
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 0; 
