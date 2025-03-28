@@ -305,7 +305,24 @@ I finished implementing the challenge UI banner and logic and added rewards (coi
     - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-90)
 
 Jalen Stewart:
+Jalen Stewart: Created a power meter bar that synced the shot to correlate with the matching animation left room to add percentage text.Added different images and sprites into the prefabs. Began research for changing the layout for the sand hazard. 
 
+- Scrum-107: Create a power meter UI with a specific visual style to fit games theme
+- [Bitbucket Branch and Commit(s)] https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-107-create-power-meter-ui
+- [Jira Link]https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-107
+
+- Scrum-106: Implement the power meter logic 
+- [Bitbucket Branch and Commit(s)] https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-106-design-the-power-meter-ui
+- [Jira Link]https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-106
+
+- Scrum-108: Sync Power Meter With Shot Strength
+- [Bitbucket Branch and Commit(s)] https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-108-sync-power-meter-with-shot-str
+- [Jira Link]https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-108
+
+- Scrum-109: Test Power Meter Usability
+- [Bitbucket Branch and Commit(s)] https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-109-test-power-meter-usability
+- [Jira Link]https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-109
+- Pull Request: https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/29
 
 ## Next Steps for Sprint 3
 
@@ -322,6 +339,9 @@ Natalie Morales:
 Xavier Ortiz:
 
 Jalen Stewart:
+- Complete Sand and other hazards for more uniqueness and playability
+- Implement an API to effect the wind patterns in a more durastic way
+- Creating the UI for the rewards panel
 
 
 
