@@ -346,7 +346,7 @@ Jalen Stewart:
 
 
 ## Burnup Chart for Sprint 2
-
+![Burnup Chart 2](./img/burnupChart2.png)
 
 ## Features
 - Mouse controls - Will launch the ball into the air.
