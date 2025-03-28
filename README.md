@@ -213,6 +213,37 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
 
 ## Sprint 2 Contributions
 Brandon Mason: 
+Developed the backend server with database connections built with Node using TypeScript and Express. Also wrote the Unity methods to connect the game to the backend server.
+- SCRUM-83
+	- Description: Create a backend with an API that connects to the database.
+	- [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-83-create-a-backend-with-an-api-to)
+	- Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-83)
+- SCRUM-84
+	- Description: Access the database and implement a system for adding, removing, and updating score entries.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-84-access-the-database-and-impleme)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-84)
+- SCRUM-85
+	- Description: Create secure login method with unique username requirements and password encryption.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-85-create-secure-login-method-with)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/19)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-85)
+- SCRUM-88
+	- Description: # Write a Unity script with predefined methods to fetch common sets of data requested by the game.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-88-write-a-unity-script-with-prede)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/23)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-88)
+- SCRUM-118
+	- Description: Live updating for score changes.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-118-live-updating-for-score-change)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/32)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-118)
+- SCRUM-119
+	- Description: Initialize MongoDB and Redis instances hosted online.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-119-initialize-mongodb-and-redis-i)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-119)
 
 Ariana Zapata:
 Enhanced backend integration and expanded UI functionality, including login/signup database linkage, score tracking, AccountView development, and bug fixes.
@@ -242,7 +273,6 @@ Enhanced backend integration and expanded UI functionality, including login/sign
     - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-116-test-debug)
     - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/30)
     - [Jira](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-116?atlOrigin=eyJpIjoiYTA1Njg1M2ZiMWY0NDE4MTgzOTg0MzVhMmEwZTQxZGUiLCJwIjoiaiJ9)
-
 
 Natalie Morales: 
 Redesigned the levels on the UI development to look cohesive with Main Menu, implemented a settings panel that connects UI and levels through Guest, Created a prefab for wind animation using Unity’s particle effect, and created a soundManager to create instances of sounds throughout the game. 
@@ -327,6 +357,9 @@ Jalen Stewart: Created a power meter bar that synced the shot to correlate with 
 ## Next Steps for Sprint 3
 
 - Brandon Mason: 
+    - Add any other necessary fields to the database. Currently managing coins, purchased rewards, and challenge completion status wil need to be added.
+    - Make server error messages display on various parts of the game UI(i.e. Incorrect username or password message in login screen).
+    - Implement the leaderboard and write the necessary methods to integrate it with Unity.
 
 - Ariana Zapata:
     - Connect Leaderboard to Database: Implement backend integration for the leaderboard so it displays real-time player rankings based on scores stored in the database.
