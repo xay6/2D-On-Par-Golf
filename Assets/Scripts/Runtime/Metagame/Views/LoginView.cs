@@ -8,10 +8,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         Button m_LoginButton;
         Button m_SignupButton;
         Button m_BackButton;
+        Button m_TogglePasswordVisibilityButton;
+        bool m_IsPasswordVisible = false;
         TextField m_UsernameField;
         TextField m_PasswordField;
         Label m_ErrorLabel;
         VisualElement m_Root;
+        StyleBackground eyeOpenIcon;
+        StyleBackground eyeClosedIcon;
         UIDocument m_UIDocument;
 
         void Awake()
@@ -37,6 +41,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
             m_SignupButton.RegisterCallback<ClickEvent>(OnClickSignUp);
             m_BackButton.RegisterCallback<ClickEvent>(OnClickBack);
+
+            m_TogglePasswordVisibilityButton = m_Root.Q<Button>("togglePasswordVisibilityButton");
+            m_TogglePasswordVisibilityButton.RegisterCallback<ClickEvent>(OnTogglePasswordVisibility);
+            m_PasswordField.isPasswordField = true;
+
         }
 
         void OnDisable()
@@ -44,6 +53,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
             m_SignupButton.UnregisterCallback<ClickEvent>(OnClickSignUp);
             m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
+            m_TogglePasswordVisibilityButton.UnregisterCallback<ClickEvent>(OnTogglePasswordVisibility);
         }
 
         void OnClickLogin(ClickEvent evt)
@@ -93,6 +103,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
                 m_ErrorLabel.text = message;
                 m_ErrorLabel.style.display = DisplayStyle.Flex;
             }
+        }
+
+        void OnTogglePasswordVisibility(ClickEvent evt)
+        {
+            m_IsPasswordVisible = !m_IsPasswordVisible;
+            m_PasswordField.isPasswordField = !m_IsPasswordVisible;
         }
     }
 }
