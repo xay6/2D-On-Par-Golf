@@ -59,32 +59,10 @@ public class Hole : MonoBehaviour
                 Debug.Log("Goal reached! Loading next level...");
 
                 LevelManager.main.LevelComplete();
-                StartCoroutine(LoadNextLevel(2f));
             }
         }
     }
 
-    IEnumerator LoadNextLevel(float delay)
-    {
-        yield return new WaitForSeconds(delay);
 
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-
-        ScoreManager.Instance.AddToOverallScore(ScoreManager.Instance.strokes);
-        ScoreManager.Instance.ResetStrokes();
-        
-
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            Debug.Log($"Loading Level {nextSceneIndex}: {SceneManager.GetSceneByBuildIndex(nextSceneIndex).name}");
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-        else
-        {
-            Debug.Log("No more levels! Restarting from Level 1.");
-            SceneManager.LoadScene(2); 
-        }
-    }
 
 }
