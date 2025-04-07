@@ -86,9 +86,17 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScoreText()
     {
         //scoreText.GetScoresHandler(string courseId, string username);
+
+        string scoreString = $"Strokes: {strokes} \nTotal Score: {overallScore}";
+
         if (scoreText != null)
         {
-            scoreText.text = $"Strokes: {strokes} \nTotal Score: {overallScore}";
+            scoreText.text = scoreString;
+        }
+
+        if (scoreTextPostUI != null)
+        {
+            scoreTextPostUI.text = scoreString;
         }
     }
     private async void UpdateScoresHelper(string username) {
