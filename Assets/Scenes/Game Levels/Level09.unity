@@ -5665,7 +5665,7 @@ GameObject:
   - component: {fileID: 654286598}
   m_Layer: 5
   m_Name: ClubText
-  m_TagString: Untagged
+  m_TagString: ClubText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
