@@ -37,7 +37,6 @@ public class CollisionDetection : MonoBehaviour
                 {
                     Debug.LogWarning("HoleInOne script not found in this scene.");
                 }
-                checkHole.CheckHoleInOne();
                 CoinManager.Instance.AddCoins(10);
 
                 return;
