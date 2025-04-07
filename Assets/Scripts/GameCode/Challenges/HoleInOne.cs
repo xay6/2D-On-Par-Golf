@@ -10,18 +10,27 @@ public ChallengeUIManger uiManager;
             Debug.LogError("ChallengeUIManager is not assigned in HoleInOne script");
             return;
         }
+        if (ScoreManager.Instance == null) {
+            Debug.LogError("ScoreManager.Instance is null! Make sure it's in the scene.");
+            return;
+        }
 
         int s = ScoreManager.Instance.strokes;
 
-        if(s == 1 ){
+        if (s == 1) {
             uiManager.ShowSuccessPanel();
-            Debug.Log("Succucess Panel Show");
+            Debug.Log("Success Panel Shown");
 
-            CoinManager.Instance.AddCoins(100);
-        }
-        else{
+            if (CoinManager.Instance != null) {
+                CoinManager.Instance.AddCoins(100);
+            } else {
+                Debug.LogError("CoinManager.Instance is null!");
+            }
+        } 
+        else 
+        {
             uiManager.ShowFailedPanel();
-            Debug.Log("Failed Panel Show: ");
+            Debug.Log("Failed Panel Shown");
         }
     }
 }

@@ -20,7 +20,10 @@ public class LaunchWithDrag : MonoBehaviour
     [SerializeField] private AudioClip golfHit;
 
     private PowerMeterUI powerMeter;
-
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Start()
 {
     rb = gameObject.GetComponent<Rigidbody2D>();

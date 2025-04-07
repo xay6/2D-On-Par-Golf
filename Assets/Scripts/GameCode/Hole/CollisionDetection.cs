@@ -38,8 +38,12 @@ public class CollisionDetection : MonoBehaviour
                 {
                     Debug.LogWarning("HoleInOne script not found in this scene.");
                 }
-                checkHole.CheckHoleInOne();
+                if (CoinManager.Instance != null) {
                 CoinManager.Instance.AddCoins(10);
+                } 
+                else {
+                    Debug.LogWarning("CoinManager not found in the scene!");
+                }
 
                 return;
             }
