@@ -36,6 +36,9 @@ public class Hole : MonoBehaviour
             if (isGoal)
             {
                 Debug.Log("Goal reached! Loading next level...");
+
+                LevelManager.main.LevelComplete();
+                
                 StartCoroutine(LoadNextLevel(2f));
             }
         }
