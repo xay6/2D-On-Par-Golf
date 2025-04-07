@@ -14,36 +14,33 @@ public class ApplyWind : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         wind = FindFirstObjectByType<Wind>();
+        audioSource = GetComponent<AudioSource>();  
     }
 
     void FixedUpdate()
     {
         if (rb != null && wind != null)
         {
-            if (rb.linearVelocity.magnitude > 0.5f)
+            if (rb.linearVelocity.magnitude > 0.5f) // Ball is moving
             {
+                // Apply wind force based on direction and strength from the wind script
                 Vector2 windForce = wind.windDirection * (wind.windStrength * 0.05f);
                 rb.AddForce(windForce);
 
                 Debug.Log($"Applying Wind: {wind.windStrength:F1} mph {wind.GetWindDirectionString(wind.windDirection)}");
-                isMoving = true;
 
-                if (!isMoving)
+                if (!hasPlayedSound)
                 {
-                    isMoving = true;
-
-                    if (wind != null)
-                    {
-                        Debug.Log("✅ Calling PlayWindSound() in Wind.cs");
-                        wind.PlayWindSound();
-                    }
+                    wind.PlayWindSound();
+                    hasPlayedSound = true;  
                 }
             }
             else if (isMoving) 
             {
-                rb.linearVelocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;  
                 wind.GenerateNewWind(); 
                 isMoving = false;
+
                 if (wind != null)
                 {
                     wind.StopWindSound(); 
@@ -51,13 +48,4 @@ public class ApplyWind : MonoBehaviour
             }
         }
     }
-
-
 }
-
-
-
-
-
-
-
