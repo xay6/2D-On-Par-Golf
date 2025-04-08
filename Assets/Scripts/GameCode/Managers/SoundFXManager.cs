@@ -43,9 +43,20 @@ public void PlaySoundEffect(AudioClip audioClip, Transform spawnTransform, float
 
     // Instantiate the AudioSource at the given transform's position
     AudioSource audioSource = Instantiate(SoundFXObject, spawnTransform.position, Quaternion.identity);
+    if (audioSource == null)
+    {
+        Debug.LogError("AudioSource IS NULL on the instantiated prefab!");
+        return;
+    }
+    else
+    {
+        Debug.Log(" AudioSource was found on prefab");
+    }
+    Debug.Log("Clip length: " + audioClip.length);
+    
     audioSource.clip = audioClip;
     audioSource.volume = volume;
-    audioSource.spatialBlend = 1f; // 3D sound (set to 0 for 2D)
+    audioSource.spatialBlend = 0f; 
     audioSource.Play();
 
     // Destroy after the clip finishes playing

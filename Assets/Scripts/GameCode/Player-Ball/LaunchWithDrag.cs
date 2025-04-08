@@ -16,7 +16,6 @@ public class LaunchWithDrag : MonoBehaviour
     private bool hasCountedStroke = false;
     private bool hasPlayedSound = false;
 
-    private AudioSource audioSource;
     [SerializeField] private AudioClip golfHit;
 
     private PowerMeterUI powerMeter;
@@ -25,39 +24,33 @@ public class LaunchWithDrag : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     void Start()
-{
-    rb = gameObject.GetComponent<Rigidbody2D>();
-    clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
-    mass = rb.mass;
-    linearDamping = rb.linearDamping;
-    angularDamping = rb.angularDamping;
-    lastPosition = transform.position;
-
-    powerMeter = FindFirstObjectByType<PowerMeterUI>();
-
-    if (powerMeter == null)
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
-        audioSource = GetComponent<AudioSource>();
-
-        if (audioSource == null)
-        {
-            Debug.LogError("No AudioSource found! Add one to the object.");
-        }
-
         mass = rb.mass;
         linearDamping = rb.linearDamping;
         angularDamping = rb.angularDamping;
         lastPosition = transform.position;
 
         powerMeter = FindFirstObjectByType<PowerMeterUI>();
+
         if (powerMeter == null)
         {
-            Debug.LogError("PowerMeterUI not found in the scene!");
+            rb = gameObject.GetComponent<Rigidbody2D>();
+            clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+
+            mass = rb.mass;
+            linearDamping = rb.linearDamping;
+            angularDamping = rb.angularDamping;
+            lastPosition = transform.position;
+
+            powerMeter = FindFirstObjectByType<PowerMeterUI>();
+            if (powerMeter == null)
+            {
+                Debug.LogError("PowerMeterUI not found in the scene!");
+            }
         }
     }
-}
 
 void Update()
 {
@@ -65,10 +58,10 @@ void Update()
     {
         if (!isMoving())
         {
+            hasPlayedSound = false;
             if (!isMoving())
             {
                 hasCountedStroke = false;
-                hasPlayedSound = false;
 
                 if (clickAndDrag.isDragging)
                 {
@@ -93,14 +86,12 @@ void Update()
                     );
                 }
             }
-            else
+            /*else
             {
                 clickAndDrag.endPos = clickAndDrag.startPos;
                 clickAndDrag.isDragging = false;
-
-                PlayGolfBallSound();
                 CheckForMovement();
-            }
+            }*/
 
             if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
             {
@@ -113,6 +104,7 @@ void Update()
             clickAndDrag.endPos = clickAndDrag.startPos;
             clickAndDrag.isDragging = false;
             CheckForMovement();
+            PlayGolfBallSound();
         }
 
         if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
@@ -185,14 +177,9 @@ void Update()
             Debug.LogError("ERROR: golfHit AudioClip is NULL! Assign it in the Inspector.");
             return;
         }
-        if (audioSource == null)
-        {
-            Debug.LogError("ERROR: AudioSource is NULL! Make sure an AudioSource is attached.");
-            return;
-        }
-
         if (!hasPlayedSound)
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
             SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
             hasPlayedSound = true;
         }
