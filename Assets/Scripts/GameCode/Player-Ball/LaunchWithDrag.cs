@@ -21,40 +21,58 @@ public class LaunchWithDrag : MonoBehaviour
 
     private PowerMeterUI powerMeter;
 
-    void Start()
+void Awake()
 {
     rb = gameObject.GetComponent<Rigidbody2D>();
     clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
-    mass = rb.mass;
-    linearDamping = rb.linearDamping;
-    angularDamping = rb.angularDamping;
-    lastPosition = transform.position;
+    audioSource = GetComponent<AudioSource>();
+
+    if (audioSource == null)
+    {
+        Debug.LogError("No AudioSource found! Add one to the object.");
+    }
 
     powerMeter = FindFirstObjectByType<PowerMeterUI>();
-
     if (powerMeter == null)
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
-        audioSource = GetComponent<AudioSource>();
-
-        if (audioSource == null)
-        {
-            Debug.LogError("No AudioSource found! Add one to the object.");
-        }
-
-        mass = rb.mass;
-        linearDamping = rb.linearDamping;
-        angularDamping = rb.angularDamping;
-        lastPosition = transform.position;
-
-        powerMeter = FindFirstObjectByType<PowerMeterUI>();
-        if (powerMeter == null)
-        {
-            Debug.LogError("PowerMeterUI not found in the scene!");
-        }
+        Debug.LogError("PowerMeterUI not found in the scene!");
     }
 }
+// Not needed
+// void Start()
+// {
+//     rb = gameObject.GetComponent<Rigidbody2D>();
+//     clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+//     mass = rb.mass;
+//     linearDamping = rb.linearDamping;
+//     angularDamping = rb.angularDamping;
+//     lastPosition = transform.position;
+
+//     powerMeter = FindFirstObjectByType<PowerMeterUI>();
+
+//     if (powerMeter == null)
+//     {
+//         rb = gameObject.GetComponent<Rigidbody2D>();
+//         clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+//         audioSource = GetComponent<AudioSource>();
+
+//         if (audioSource == null)
+//         {
+//             Debug.LogError("No AudioSource found! Add one to the object.");
+//         }
+
+//         mass = rb.mass;
+//         linearDamping = rb.linearDamping;
+//         angularDamping = rb.angularDamping;
+//         lastPosition = transform.position;
+
+//         powerMeter = FindFirstObjectByType<PowerMeterUI>();
+//         if (powerMeter == null)
+//         {
+//             Debug.LogError("PowerMeterUI not found in the scene!");
+//         }
+//     }
+// }
 
 void Update()
 {
