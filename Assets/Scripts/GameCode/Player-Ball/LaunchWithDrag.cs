@@ -179,7 +179,6 @@ void Update()
         }
         if (!hasPlayedSound)
         {
-            AudioSource audioSource = GetComponent<AudioSource>();
             SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
             hasPlayedSound = true;
         }
