@@ -12,6 +12,7 @@ TagManager:
   - VolumeSlider
   - WindText
   - ClubText
+  - ScoreTextPostUI
   layers:
   - Default
   - TransparentFX

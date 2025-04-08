@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
     public int overallScore = 0;
     public static Message UpdateScoreResponse;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreTextPostUI;
 
     private void Awake()
     {
@@ -40,10 +41,20 @@ public class ScoreManager : MonoBehaviour
     void FindScoreText()
     {
         GameObject textObj = GameObject.FindWithTag("ScoreText");
+        GameObject postUITextobj = GameObject.FindWithTag("ScoreTextPostUI");
 
         if (textObj != null)
         {
             scoreText = textObj.GetComponent<TextMeshProUGUI>();
+        }
+        else
+        {
+            Debug.LogWarning("ScoreText not found! Make sure it's tagged properly in the scene.");
+        }
+
+        if (postUITextobj != null)
+        {
+            scoreTextPostUI = postUITextobj.GetComponent<TextMeshProUGUI>();
         }
         else
         {
@@ -75,9 +86,17 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScoreText()
     {
         //scoreText.GetScoresHandler(string courseId, string username);
+
+        string scoreString = $"Strokes: {strokes} \nTotal Score: {overallScore}";
+
         if (scoreText != null)
         {
-            scoreText.text = $"Strokes: {strokes} \nTotal Score: {overallScore}";
+            scoreText.text = scoreString;
+        }
+
+        if (scoreTextPostUI != null)
+        {
+            scoreTextPostUI.text = scoreString;
         }
     }
     private async void UpdateScoresHelper(string username) {
