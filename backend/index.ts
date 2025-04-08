@@ -3,6 +3,9 @@ import express, { Request, Response } from 'express';
 import connectDB from "./db/connection";
 import userRoutes from './db/routes/userRoutes';
 import scoresRoutes from './db/routes/scoresRoutes';
+
+import getRedisClient from './db/redis';
+
 import * as dotenv from "dotenv";
 dotenv.config();
     
@@ -19,6 +22,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/scores", scoresRoutes);
 
 connectDB();
+getRedisClient();
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
