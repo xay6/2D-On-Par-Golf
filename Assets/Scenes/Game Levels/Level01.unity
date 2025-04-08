@@ -2943,6 +2943,18 @@ PrefabInstance:
       propertyPath: clubText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 661131048423757381, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
+      propertyPath: golfHit
+      value: 
+      objectReference: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
+    - target: {fileID: 4323158788747489760, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
+    - target: {fileID: 4323158788747489760, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
     - target: {fileID: 4732733952249331575, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4

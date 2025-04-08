@@ -16,7 +16,6 @@ public class LaunchWithDrag : MonoBehaviour
     private bool hasCountedStroke = false;
     private bool hasPlayedSound = false;
 
-    private AudioSource audioSource;
     [SerializeField] private AudioClip golfHit;
 
     private PowerMeterUI powerMeter;
@@ -80,10 +79,10 @@ void Update()
     {
         if (!isMoving())
         {
+            hasPlayedSound = false;
             if (!isMoving())
             {
                 hasCountedStroke = false;
-                hasPlayedSound = false;
 
                 if (clickAndDrag.isDragging)
                 {
@@ -108,14 +107,12 @@ void Update()
                     );
                 }
             }
-            else
+            /*else
             {
                 clickAndDrag.endPos = clickAndDrag.startPos;
                 clickAndDrag.isDragging = false;
-
-                PlayGolfBallSound();
                 CheckForMovement();
-            }
+            }*/
 
             if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
             {
@@ -128,6 +125,7 @@ void Update()
             clickAndDrag.endPos = clickAndDrag.startPos;
             clickAndDrag.isDragging = false;
             CheckForMovement();
+            PlayGolfBallSound();
         }
 
         if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
@@ -200,14 +198,9 @@ void Update()
             Debug.LogError("ERROR: golfHit AudioClip is NULL! Assign it in the Inspector.");
             return;
         }
-        if (audioSource == null)
-        {
-            Debug.LogError("ERROR: AudioSource is NULL! Make sure an AudioSource is attached.");
-            return;
-        }
-
         if (!hasPlayedSound)
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
             SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
             hasPlayedSound = true;
         }
