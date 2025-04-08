@@ -21,7 +21,6 @@ const connectRedis = async () => {
         return redisClient;
     } catch (err) {
         console.error(`Failed to connect to Redis.\n${err}`);
-        throw new Error(`Failed to connect to Redis.\n${err}`);
     }
 }
 
