@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import CourseScores, { IUserScores } from "../models/CourseScores"
 import User from "../models/User";
 import mongoose, { ObjectId, Types } from "mongoose";
@@ -36,7 +36,7 @@ export const getScore = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
     try {
         const { courseId, username } = req.body;
         const score = parseInt(req.body.score, 10);
@@ -69,59 +69,62 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
                 userData: [{ user, score }]
             });
             await newCourse.save();
-            res.status(200).json({ message: `New course created with ${username}'s score.`, success: true });
-            console.log(`New course created with ${username}'s score.`);
-            return;
-        }
-
-        const courseWithUser = await CourseScores.findOne({
-            courseId: courseId,
-            "userData.user": user,
-        });
-
-        if (courseWithUser) {
-            const result = await CourseScores.updateOne(
-                {
-                    courseId: courseId,
-                    "userData": {
-                        $elemMatch: {
-                            user,
-                            score: { $gt: score },
-                        }
-                    }
-                },
-                {
-                    $set: { "userData.$.score": score },
-                }
-            );
-
-            if (result.modifiedCount > 0) {
-                message = "Score updated successfully.";
-            } else {
-                message = "Score was already up to date.";
-            }
+            // res.status(200).json({ message: `New course created with ${username}'s score.`, success: true });
+            // console.log(`New course created with ${username}'s score.`);
+            message = `New course created with ${username}'s score.`;
+            // return;
         } else {
-            const result = await CourseScores.updateOne(
-                {
-                    courseId: courseId,
-                },
-                {
-                    $push: { userData: { user: user, score: score } },
-                },
-                { upsert: true }
-            );
+            const courseWithUser = await CourseScores.findOne({
+                courseId: courseId,
+                "userData.user": user,
+            });
 
-            if (result.upsertedCount > 0) {
-                message = "New course and user entry created.";
-            } else if (result.modifiedCount > 0) {
-                message = "New user entry added to existing course.";
+            if (courseWithUser) {
+                const result = await CourseScores.updateOne(
+                    {
+                        courseId: courseId,
+                        "userData": {
+                            $elemMatch: {
+                                user,
+                                score: { $gt: score },
+                            }
+                        }
+                    },
+                    {
+                        $set: { "userData.$.score": score },
+                    }
+                );
+
+                if (result.modifiedCount > 0) {
+                    message = "Score updated successfully.";
+                } else {
+                    message = "Score was already up to date.";
+                }
             } else {
-                message = "No changes made.";
+                const result = await CourseScores.updateOne(
+                    {
+                        courseId: courseId,
+                    },
+                    {
+                        $push: { userData: { user: user, score: score } },
+                    },
+                    { upsert: true }
+                );
+
+                if (result.upsertedCount > 0) {
+                    message = "New course and user entry created.";
+                } else if (result.modifiedCount > 0) {
+                    message = "New user entry added to existing course.";
+                } else {
+                    message = "No changes made.";
+                }
             }
         }
 
-        res.status(200).json({ message, success: true });
+        // res.status(200).json({ message, success: true });
+        req.locals = { message, success: true }
         console.log(message);
+        next();
     } catch (err: any) {
         res.status(500).json({ message: "An error occurred while changing the score.", success: false });
         console.error("Error in addOrUpdateScore", err);
