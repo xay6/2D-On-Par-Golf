@@ -26,3 +26,27 @@ export const addScore = async (req: AuthenticatedRequest, res: Response): Promis
         return;
     }
 }
+
+export const getTopUsers = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+        const { courseId } = req.body;
+
+        if (!courseId) {
+            res.status(400).json({ message: 'Invalid input: courseId is required.', success: false });
+            return;
+        }
+
+        
+        const lowerLimit = parseInt(req.query.lowerlimit as string) || 0;
+        const upperLimit = parseInt(req.query.upperlimit as string) || 10;
+        
+        const redisClient = await getRedisClient();
+        const topUsers = await redisClient?.zRangeWithScores(courseId, lowerLimit, upperLimit);
+        
+        res.status(200).json({ data: topUsers, success: true });
+    } catch (err: any) {
+        console.error('Error in getTopUsers:\n', err);
+        res.status(500).json({ message: 'Internal server error', success: false });
+        return;
+    }
+}
