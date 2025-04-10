@@ -12,6 +12,7 @@ public class Hole : MonoBehaviour
     private ClickAndDrag clickAndDrag;
     private LaunchWithDrag launchWithDrag;
     private LineRendererController lineRendererController;
+    private bool goalProcessed = false;
  
 
     void Start(){
@@ -40,8 +41,10 @@ public class Hole : MonoBehaviour
 
     void Update()
     {
-        if (collisionDetection != null && player != null && collisionDetection.onSuperimposed)
+        if (!goalProcessed && collisionDetection != null && player != null && collisionDetection.onSuperimposed)
         {
+            goalProcessed = true; 
+
             player.GetComponent<SpriteRenderer>().enabled = false;
 
             if (clickAndDrag != null) clickAndDrag.enabled = false;

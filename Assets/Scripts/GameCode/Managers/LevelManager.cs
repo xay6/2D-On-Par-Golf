@@ -11,8 +11,17 @@ public class LevelManager : MonoBehaviour
     {
         main = this;
     }
+
     public void LevelComplete(){
-        levelCompleted = true;
-        levelCompleteUI.SetActive(true);
+    levelCompleted = true;
+
+    // ✅ Add the current strokes to the total score
+    if (ScoreManager.Instance != null)
+    {
+        ScoreManager.Instance.AddToOverallScore(ScoreManager.Instance.strokes);
     }
+
+    levelCompleteUI.SetActive(true);
+}
+
 }
