@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Security.Cryptography.X509Certificates;
-
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance; 
