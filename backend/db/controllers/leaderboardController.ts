@@ -36,6 +36,10 @@ export const getTopUsers = async (req: AuthenticatedRequest, res: Response): Pro
             return;
         }
 
+        if(!req.query.lowerlimit && !req.query.upperLimit) {
+            res.status(400).json({ message: 'Invalid input: upper and lower limits invalid.', success: false });
+            return;
+        }
         
         const lowerLimit = parseInt(req.query.lowerlimit as string) || 0;
         const upperLimit = parseInt(req.query.upperlimit as string) || 10;
