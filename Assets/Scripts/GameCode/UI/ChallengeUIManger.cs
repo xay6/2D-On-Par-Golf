@@ -36,6 +36,7 @@ public class ChallengeUIManger : MonoBehaviour
 
     public void ShowFailedPanel(){
         StartCoroutine(ShowPanel(failedPanel));
+
     }
 
     IEnumerator ShowPanel(CanvasGroup panel){
