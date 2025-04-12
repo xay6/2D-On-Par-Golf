@@ -67,17 +67,20 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             Password = password;
         }
 
+        public static Func<string, string, Task<LoginRegisterResponse>> LoginHandler = 
+            (username, password) => OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
+
         public static async Task<bool> LoginHelper(string username, string password)
         {
             try
             {
-                var response = await OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
-                return response != null && response.success; // Return true if login is successful
+                var response = await LoginHandler(username, password);
+                return response != null && response.success;
             }
             catch (Exception ex)
             {
                 Debug.LogError($"Login failed: {ex.Message}");
-                return false; // Return false if login fails
+                return false;
             }
         }
     }
@@ -93,17 +96,20 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             Password = password;
         }
 
+        public static Func<string, string, Task<LoginRegisterResponse>> RegisterHandler =
+            (username, password) => OnPar.RouterHandlers.Handlers.RegisterHandler(username, password);
+
         public static async Task<bool> RegisterHelper(string username, string password)
         {
-             try
+            try
             {
-                var response = await OnPar.RouterHandlers.Handlers.RegisterHandler(username, password);
-                return response != null; // Return true if login is successful
+                var response = await RegisterHandler(username, password);
+                return response != null;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Login failed: {ex.Message}");
-                return false; // Return false if login fails
+                Debug.LogError($"Signup failed: {ex.Message}");
+                return false;
             }
         }
     }
