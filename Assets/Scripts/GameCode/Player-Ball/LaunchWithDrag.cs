@@ -17,6 +17,7 @@ public class LaunchWithDrag : MonoBehaviour
     private bool hasPlayedSound = false;
 
     [SerializeField] private AudioClip golfHit;
+    private AudioSource audioSource;
 
     private PowerMeterUI powerMeter;
 
