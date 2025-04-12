@@ -1,18 +1,21 @@
 {
     "name": "Unity.Template.Multiplayer.NGO.Tests",
+    "rootNamespace": "",
     "references": [
-      "Unity.Template.Multiplayer.NGO.Runtime",
-      "UnityEngine.TestRunner",
-      "nunit.framework"
+       "com.unity.template.multiplayer-ngo.runtime",
+        "UnityEngine.TestRunner",
+        "nunit.framework",
+        "Utilities"
     ],
-    "optionalUnityReferences": [],
-    "includePlatforms": [ "Editor" ],
-    "autoReferenced": true,
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
-  }
-  
+}

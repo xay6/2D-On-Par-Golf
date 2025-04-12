@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Unity.Template.Multiplayer.NGO.Runtime;
 using OnPar.Routers;
+using Unity.Template.Multiplayer.NGO.Runtime;
 
 namespace Unity.Template.Multiplayer.NGO.Tests
 {
