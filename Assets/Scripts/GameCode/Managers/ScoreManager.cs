@@ -1,17 +1,19 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System;
 using OnPar.RouterHandlers;
 using OnPar.Routers;
+
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+
     public int strokes = 0;
     public int overallScore = 0;
     public static Message UpdateScoreResponse;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI scoreTextPostUI;
+
+    private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI scoreTextPostUI;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class ScoreManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -26,46 +29,37 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnDestroy()
     {
-        FindScoreText();
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // No need to find UI here anymore — UI elements will register themselves!
         UpdateScoreText();
     }
 
-    private void OnLevelWasLoaded(int level)
+    // Public method for UI to register itself
+    public void RegisterScoreText(TextMeshProUGUI text)
     {
-        FindScoreText();
+        scoreText = text;
         UpdateScoreText();
     }
 
-    void FindScoreText()
+    public void RegisterScoreTextPostUI(TextMeshProUGUI text)
     {
-        GameObject textObj = GameObject.FindWithTag("ScoreText");
-        GameObject postUITextobj = GameObject.FindWithTag("ScoreTextPostUI");
-
-        if (textObj != null)
-        {
-            scoreText = textObj.GetComponent<TextMeshProUGUI>();
-        }
-        else
-        {
-            Debug.LogWarning("ScoreText not found! Make sure it's tagged properly in the scene.");
-        }
-
-        if (postUITextobj != null)
-        {
-            scoreTextPostUI = postUITextobj.GetComponent<TextMeshProUGUI>();
-        }
-        else
-        {
-            Debug.LogWarning("ScoreText not found! Make sure it's tagged properly in the scene.");
-        }
+        scoreTextPostUI = text;
+        UpdateScoreText();
     }
+
     public void AddStroke()
     {
         strokes++;
         UpdateScoreText();
-       
     }
 
     public void AddToOverallScore(int score)
@@ -77,14 +71,13 @@ public class ScoreManager : MonoBehaviour
     public void ResetStrokes()
     {
         UpdateScoresHelper(LoginRegister.getUsername());
-        FindScoreText();
         strokes = 0;
         UpdateScoreText();
-        
     }
 
     private void UpdateScoreText()
     {
+
         //scoreText.GetScoresHandler(string courseId, string username);
 
         string scoreString = $"Strokes: {strokes} \nTotal Score: {overallScore}";
@@ -99,8 +92,10 @@ public class ScoreManager : MonoBehaviour
             scoreTextPostUI.text = scoreString;
         }
     }
-    private async void UpdateScoresHelper(string username) {
-        int score = ScoreManager.Instance.strokes;
+
+    private async void UpdateScoresHelper(string username)
+    {
+        int score = strokes;
         string courseId = SceneManager.GetActiveScene().name;
         UpdateScoreResponse = await Handlers.AddOrUpdateScore(courseId, username, score);
     }
