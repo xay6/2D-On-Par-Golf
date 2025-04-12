@@ -8,7 +8,9 @@ public class Settings : MonoBehaviour
 {
     [Header("UI Elements")]
     public GameObject settingsPanel;
-    public Slider volumeSlider;
+    public Slider MasterVolumeSlider;
+    public Slider MusicVolumeSlider;
+    public Slider SoundFXVolumeSlider;
     public Button backToMenuButton;
 
     private void OnEnable()
@@ -24,11 +26,15 @@ public class Settings : MonoBehaviour
             settingsPanel.SetActive(false);
 
         // Set UI values from SettingsManager
-        volumeSlider.value = SettingsManager.Instance.masterVolume;
+        MasterVolumeSlider.value = SettingsManager.Instance.masterVolume;
+        MusicVolumeSlider.value  = SettingsManager.Instance.musicVolume;
+        SoundFXVolumeSlider.value = SettingsManager.Instance.soundfxVolume;
     
 
         // Hook up listeners
-        volumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetVolume);
+        MasterVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetMasterVolume);
+        MusicVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetMusicVolume);
+        SoundFXVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetSFXVolume);
         backToMenuButton.onClick.AddListener(BackToMainMenu);
     }
 
