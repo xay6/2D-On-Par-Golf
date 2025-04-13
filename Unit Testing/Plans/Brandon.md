@@ -6,16 +6,17 @@
 	- A report of what tests passed, failed, or were skipped.
 	- A stack trace if there were any errors.
 	- A table showing what percentage of code per file was tested(Only if using "npm run test:coverage")
-### Registering a new user and then logging in
+### Registering a new user
 - Code to be tested: API call
 - Executes two POST requests that each use a request body including a username and password.
 - Output:
 	- A report of what tests passed, failed, or were skipped.
 	- A stack trace if there were any errors.
 	- A table showing what percentage of code per file was tested(Only if using "npm run test:coverage")
-### Establishing a connection to a  MongoDB instance
-- Code to be tested: Connection establishment and error logging.
-- Makes use of a mocked MongoDB instance and the contents of a .env file relating to the database
+### Logging in a new user
+- Code to be tested: API call
+- Executes two POST requests that each use a request body including a username and password.
 - Output:
+	- A report of what tests passed, failed, or were skipped.
 	- A stack trace if there were any errors.
-	- A success or failure message.
+	- A table showing what percentage of code per file was tested(Only if using "npm run test:coverage")
