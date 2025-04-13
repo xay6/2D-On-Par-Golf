@@ -52,15 +52,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
             if (success)
             {
+                App.SetCurrentUsername(evt.Username);
                 View.Hide();
                 App.View.AccountMenu.Show();
             }
             else
-            {
-                View.ShowError("Invalid username or password.");
-            }
-
-            if (!success)
             {
                 Debug.LogWarning("Login failed. Showing error message.");
                 View.ShowError("Invalid login. Try again.");
