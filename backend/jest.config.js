@@ -1,8 +1,8 @@
 module.exports = {
     testEnvironment: 'node',
-    testMatch: ['**/tests/**/*.test.js'],
+    testMatch: ['**/tests/**/*.test.ts'],
     coverageDirectory: './coverage',
-    collectCoverageFrom: ['./tests/*.js'],
+    collectCoverageFrom: ['./tests/*.ts'],
     transform: {
         '^.+\\.ts$': 'ts-jest'
     },
@@ -13,5 +13,5 @@ module.exports = {
       '/db/types.ts',
       '.*\\.d\\.ts$'
     ],
-    setupFilesAfterEnv: ['./tests/setup.js']
+    setupFilesAfterEnv: ['./tests/setup.ts']
   };
