@@ -28,6 +28,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnterLeaderboard(EnterLeaderboardEvent evt)
         {
+            View.SetCurrentUsername(App.CurrentUsername);
             PopulateLeaderboard();
             View.Show();
         }
