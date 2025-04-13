@@ -10,7 +10,7 @@ public class SoundFXManager : MonoBehaviour
     public static SoundFXManager instance;
     [SerializeField] private AudioSource SoundFXObject;
     
-
+    public static SoundFXManager Instance;
 private void Awake()
 {
     if (instance == null)

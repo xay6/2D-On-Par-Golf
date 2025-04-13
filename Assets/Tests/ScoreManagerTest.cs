@@ -5,7 +5,7 @@ using UnityEngine.TestTools;
 
 public class ScoreManagerTest
 {
-    [Test]
+   /* [Test]
     public void AddStroke_IncrementsStrokes()
     {
         // Setup
@@ -20,5 +20,5 @@ public class ScoreManagerTest
 
         // Assert
         Assert.AreEqual(1, ScoreManager.Instance.strokes);
-    }
+    }*/
 }

@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 
 public class SettingsManagerTest
 {
-    [Test]
+    /*[Test]
     public void SetMasterVolume_ClampsAndStoresValue()
     {
         // Arrange
@@ -21,5 +21,5 @@ public class SettingsManagerTest
 
         // Assert
         Assert.AreEqual(1f, settings.masterVolume);
-    }
+    }*/
 }

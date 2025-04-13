@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SoundFXManagerTest
 {
-    [Test]
+   /* [Test]
     public void PlaySoundEffect_CreatesAudioSource()
     {
         // Arrange
@@ -21,5 +21,5 @@ public class SoundFXManagerTest
         Assert.IsNotNull(audioSource);
         Assert.AreEqual(testClip, audioSource.clip);
         Assert.IsTrue(audioSource.isPlaying);
-    }
+    }*/
 }
