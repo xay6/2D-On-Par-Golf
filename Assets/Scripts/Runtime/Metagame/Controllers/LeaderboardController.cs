@@ -39,24 +39,9 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             View.Hide();
         }
 
-        async Task PopulateLeaderboard()
+        async void PopulateLeaderboard()
         {
-            var response = await Handlers.GetTopUsersHandler("global", 0, 10);
-
-            List<(string username, int score)> leaderboardData = new();
-
-            if (response != null && response.success && response.topUsers != null)
-            {
-                foreach (var entry in response.topUsers)
-                {
-                    leaderboardData.Add((entry.username, entry.score));
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Failed to load leaderboard data.");
-            }
-
+            var leaderboardData = await LeaderboardService.FetchLeaderboard("global");
             View.PopulateLeaderboard(leaderboardData);
         }
     }
