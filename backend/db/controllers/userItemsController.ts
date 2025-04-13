@@ -50,3 +50,50 @@ export const updateCoins = [authenticateJwt, async (req: AuthenticatedRequest, r
 
     }
 }]
+
+export const updateRewards = [authenticateJwt, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+        const { username, rewards } = req.body;
+        if (!username && !rewards) {
+            res.status(422).json({ message: "Invalid input.", success: false });
+            return;
+        }
+
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            res.status(404).json({ message: "User not found.", success: false });
+            console.error("User not found.");
+            return;
+        }
+
+        if (req.user?.username !== username && req.user?.id !== user._id) {
+            res.status(403).json({ message: "You are not authorized to set edit items.", success: false });
+            console.error("You are not authorized to edit items.");
+            return;
+        }
+
+        const userItems = await UserItems.findOne({ user });
+        if (!userItems) {
+            const newUserItems = new UserItems({
+                user,
+                rewards: rewards || [],
+            });
+            await newUserItems.save();
+            res.status(200).json({ message: `Items created for ${username}.`, success: true });
+            console.log(`Items created for ${username}.`);
+            return;
+        }
+
+        if (rewards)
+            await userItems.updateOne({
+                rewards: rewards,
+            });
+
+        res.status(200).json({ message: `Items changed for ${username}.`, success: true });
+        console.log(`Items changed for ${username}.`);
+
+    } catch (err: any) {
+
+    }
+}]
