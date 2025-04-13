@@ -38,18 +38,10 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             View.Hide();
         }
 
-        void PopulateLeaderboard()
+        async void PopulateLeaderboard()
         {
-            List<(string username, int score)> mockLeaderboard = new()
-            {
-                ("Player1", 120),
-                ("Player2", 100),
-                ("Player3", 80),
-                ("Player4", 60),
-                ("Player5", 40),
-            };
-
-            View.PopulateLeaderboard(mockLeaderboard);
+            var leaderboardData = await LeaderboardService.FetchLeaderboard("global");
+            View.PopulateLeaderboard(leaderboardData);
         }
     }
 }
