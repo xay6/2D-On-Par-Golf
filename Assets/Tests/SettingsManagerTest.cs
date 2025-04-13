@@ -1,24 +1,25 @@
-using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
+using UnityEngine.Audio;
 
-public class NewTestScript
+public class SettingsManagerTest
 {
-    // A Test behaves as an ordinary method
     [Test]
-    public void NewTestScriptSimplePasses()
+    public void SetMasterVolume_ClampsAndStoresValue()
     {
-        // Use the Assert class to test conditions
-    }
+        // Arrange
+        var settingsGO = new GameObject("SettingsManager");
+        var settings = settingsGO.AddComponent<SettingsManager>();
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator NewTestScriptWithEnumeratorPasses()
-    {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
+        var mixer = new AudioMixer(); // mock mixer
+        typeof(SettingsManager)
+            .GetField("audioMixer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            ?.SetValue(settings, mixer);
+
+        // Act
+        settings.SetMasterVolume(2f);  // out of range, should clamp to 1
+
+        // Assert
+        Assert.AreEqual(1f, settings.masterVolume);
     }
 }
