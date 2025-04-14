@@ -55,8 +55,8 @@ export const updateCoins = [authenticateJwt, async (req: AuthenticatedRequest, r
 
 export const updateRewards = [authenticateJwt, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-        const { username, rewards } = req.body;
-        if (!username && !rewards) {
+        const { username, reward } = req.body;
+        if (!username && !reward) {
             res.status(422).json({ message: "Invalid input.", success: false });
             return;
         }
@@ -77,6 +77,7 @@ export const updateRewards = [authenticateJwt, async (req: AuthenticatedRequest,
 
         const userItems = await UserItems.findOne({ user });
         if (!userItems) {
+            const rewards = [reward]
             const newUserItems = new UserItems({
                 user,
                 rewards: rewards || [],
@@ -87,10 +88,10 @@ export const updateRewards = [authenticateJwt, async (req: AuthenticatedRequest,
             return;
         }
 
-        if (rewards)
-            await userItems.updateOne({
-                rewards: rewards,
-            });
+        if (userItems) {
+            userItems.rewards.push(reward);
+            await userItems.save()
+        }
 
         res.status(200).json({ message: `Items changed for ${username}.`, success: true });
         console.log(`Items changed for ${username}.`);
@@ -135,8 +136,8 @@ export const getCoins = [authenticateJwt, async (req: AuthenticatedRequest, res:
             return;
         }
 
-        res.status(200).json({ message: `${username} has ${userItems.coinAmount}.`, coinAmount: userItems.coinAmount, success: true });
-        console.log(`Items fetched for ${username}.`);
+        res.status(200).json({ message: `${username} has ${userItems.coinAmount} coins.`, coinAmount: userItems.coinAmount, success: true });
+        console.log(`Coins fetched for ${username}.`);
     } catch (err: any) {
         console.error('Error in updateRewards:\n', err);
         res.status(500).json({ message: `Internal server error: ${err.message}`, success: false });
