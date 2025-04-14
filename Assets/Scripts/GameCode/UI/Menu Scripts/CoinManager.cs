@@ -77,22 +77,16 @@ public class CoinManager : MonoBehaviour
 
     private void UpdateCoinUI()
     {
+        string coinsString  = "Coins: " + coins;
+
         if (coinTotalText != null)
         {
-            coinTotalText.text = "Coins: " + coins;
-        }
-        else
-        {
-            Debug.LogError("CoinTotal Text UI is not assigned in CoinManager.");
+            coinTotalText.text = coinsString;
         }
 
         if (postCoinTotalText != null)
         {
-            postCoinTotalText.text = "Coins: " + coins;
-        }
-        else
-        {
-            Debug.LogError("PostCoinTotal Text UI is not assigned in CoinManager.");
+            postCoinTotalText.text = coinsString;
         }
     }
 

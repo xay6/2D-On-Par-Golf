@@ -2772,7 +2772,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1702432468230979623, guid: fcd9dacbb568a4949b61cacc7bf6aef1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2803,6 +2804,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+--- !u!114 &1297370828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3796178727398808834, guid: fcd9dacbb568a4949b61cacc7bf6aef1, type: 3}
+  m_PrefabInstance: {fileID: 1297370824}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1318448805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2927,6 +2939,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8349594243780024518, guid: 7f4156f55edfaa64db9dcb7e05d16f9d, type: 3}
+      propertyPath: coinTotalText
+      value: 
+      objectReference: {fileID: 1382376028}
+    - target: {fileID: 8349594243780024518, guid: 7f4156f55edfaa64db9dcb7e05d16f9d, type: 3}
+      propertyPath: postCoinTotalText
+      value: 
+      objectReference: {fileID: 1297370828}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3108,6 +3128,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
+--- !u!114 &1382376028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7851416885284598259, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
+  m_PrefabInstance: {fileID: 1382376027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1621087322
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,6 +3530,7 @@ SceneRoots:
   - {fileID: 200447448}
   - {fileID: 1990108781}
   - {fileID: 1749412297}
+  - {fileID: 1330944856}
   - {fileID: 1331659319}
   - {fileID: 1087757783}
   - {fileID: 1621087323}
@@ -3507,4 +3539,3 @@ SceneRoots:
   - {fileID: 1297370824}
   - {fileID: 1318448805}
   - {fileID: 1382376027}
-  - {fileID: 1330944856}
