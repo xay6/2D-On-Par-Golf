@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Security.Cryptography.X509Certificates;
+using UnityEngine.SceneManagement;
 
 public class CoinManager : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class CoinManager : MonoBehaviour
             DontDestroyOnLoad(gameObject); 
 
             // PlayerPrefs.DeleteKey("GameStartedBefore"); Only if want to reset coin everytime
-
+            SceneManager.sceneLoaded += OnSceneLoaded;
             if (IsFirstGameLaunch())
             {
                 ResetCoins();
@@ -36,6 +36,20 @@ public class CoinManager : MonoBehaviour
         }
 
         LoadCoins();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // No need to find UI here anymore — UI elements will register themselves!
+        UpdateCoinUI();
     }
 
     private void Start()
@@ -88,6 +102,18 @@ public class CoinManager : MonoBehaviour
         {
             postCoinTotalText.text = coinsString;
         }
+    }
+
+    public void RegisterCoinText(TextMeshProUGUI text)
+    {
+        coinTotalText = text;
+        UpdateCoinUI();
+    }
+
+    public void RegisterPostCoinText(TextMeshProUGUI text)
+    {
+        postCoinTotalText = text;
+        UpdateCoinUI();
     }
 
     public bool CheckReward(){
