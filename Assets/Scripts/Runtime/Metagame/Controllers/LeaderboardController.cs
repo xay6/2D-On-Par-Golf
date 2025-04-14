@@ -1,7 +1,8 @@
-using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using OnPar.RouterHandlers;
+using OnPar.Routers;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -28,8 +29,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnterLeaderboard(EnterLeaderboardEvent evt)
         {
-            View.SetCurrentUsername(App.CurrentUsername);
-            PopulateLeaderboard();
+            View.SetCurrentUsername(LoginRegister.getUsername());
+            _ = PopulateLeaderboard();
             View.Show();
         }
 
@@ -38,9 +39,24 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             View.Hide();
         }
 
-        async void PopulateLeaderboard()
+        async Task PopulateLeaderboard()
         {
-            var leaderboardData = await LeaderboardService.FetchLeaderboard("global");
+            var response = await Handlers.GetTopUsersHandler("global", 0, 10);
+
+            List<(string username, int score)> leaderboardData = new();
+
+            if (response != null && response.success && response.topUsers != null)
+            {
+                foreach (var entry in response.topUsers)
+                {
+                    leaderboardData.Add((entry.username, entry.score));
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Failed to load leaderboard data.");
+            }
+
             View.PopulateLeaderboard(leaderboardData);
         }
     }
