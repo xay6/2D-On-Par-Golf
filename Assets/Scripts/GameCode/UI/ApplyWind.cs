@@ -21,30 +21,32 @@ public class ApplyWind : MonoBehaviour
     {
         if (rb != null && wind != null)
         {
-            if (rb.linearVelocity.magnitude > 0.5f) // Ball is moving
+            if (rb.linearVelocity.magnitude > 0.3f) // Ball is moving
             {
-                // Apply wind force based on direction and strength from the wind script
-                Vector2 windForce = wind.windDirection * (wind.windStrength * 0.05f);
+                
+                float adjustedStrength = Mathf.Clamp(wind.windStrength, 7f, 18f);
+                float gust = Random.Range(0.8f, 1.2f); 
+                Vector2 windForce = wind.windDirection * adjustedStrength * gust * 0.12f;
+
                 rb.AddForce(windForce);
 
-                Debug.Log($"Applying Wind: {wind.windStrength:F1} mph {wind.GetWindDirectionString(wind.windDirection)}");
+                Debug.Log($"💨 Wind Applied: {adjustedStrength:F1} mph | Force: {windForce} | Gust: {gust:F2}");
 
                 if (!hasPlayedSound)
                 {
                     wind.PlayWindSound();
                     hasPlayedSound = true;  
                 }
+
+                isMoving = true; // Mark ball as moving
             }
-            else if (isMoving) 
+            else if (isMoving)
             {
-                rb.linearVelocity = Vector2.zero;  
-                wind.GenerateNewWind(); 
+                rb.linearVelocity = Vector2.zero;
                 isMoving = false;
 
-                if (wind != null)
-                {
-                    wind.StopWindSound(); 
-                }
+                wind.StopWindSound();
+                hasPlayedSound = false;
             }
         }
     }
