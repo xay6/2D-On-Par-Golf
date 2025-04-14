@@ -51,7 +51,7 @@ export const getTopUsers = async (req: AuthenticatedRequest, res: Response): Pro
         const redisClient = await getRedisClient();
         const topUsers = await redisClient?.zRangeWithScores(courseId, lowerLimit, upperLimit);
         
-        res.status(200).json({ data: topUsers, success: true });
+        res.status(200).json({ topUsers, success: true });
     } catch (err: any) {
         console.error('Error in getTopUsers:\n', err);
         res.status(500).json({ message: 'Internal server error', success: false });
