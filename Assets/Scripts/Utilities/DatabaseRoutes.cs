@@ -173,6 +173,16 @@ namespace OnPar.Routers
 
             return await RequestHelper.SendRequest<TopUsersResponse>(url + urlParams, "GET", userData);
         }
+
+        // Get request
+        public static async Task<TopUser> GetUserRank(string courseId, string username)
+        {
+            string url = "https://on-par-server.onrender.com/api/leaderboard/get-rank";
+            // string url = "localhost:3000/api/leaderboard/get-rank"; // Local development string.
+            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<TopUser>(url, "GET", userData);
+        }
     }
 }
 
@@ -185,7 +195,8 @@ namespace OnPar.RouterHandlers
         */
         public static Task<LoginRegisterResponse> LoginHandler(string username, string password)
         {
-            return LoginRegister.LoginRoute(username, password);        }
+            return LoginRegister.LoginRoute(username, password);
+        }
 
         public static Task<LoginRegisterResponse> RegisterHandler(string username, string password)
         {
@@ -211,6 +222,11 @@ namespace OnPar.RouterHandlers
         public static Task<TopUsersResponse> GetTopUsersHandler(string courseId, int lowerLimit, int upperLimit)
         {
             return Leaderboard.GetTopUsers(courseId, lowerLimit, upperLimit);
+        }
+
+        public static Task<TopUser> GetUserRankHandler(string courseId, string username)
+        {
+            return Leaderboard.GetUserRank(courseId, username);
         }
     }
 }
