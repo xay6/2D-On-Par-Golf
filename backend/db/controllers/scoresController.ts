@@ -41,6 +41,7 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
         const { courseId, username } = req.body;
         const score = parseInt(req.body.score, 10);
         let message = "";
+        let globalScore = -1;
 
         if (!courseId || !username || isNaN(score) || score < 1) {
             res.status(422).json({ message: 'Invalid input: courseId, username, and score are required.', success: false });
@@ -72,6 +73,13 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
             // res.status(200).json({ message: `New course created with ${username}'s score.`, success: true });
             // console.log(`New course created with ${username}'s score.`);
             message = `New course created with ${username}'s score.`;
+            const allScores = await CourseScores.find({ "userData.user": user }, { "userData.user": 1, "userData.score": 1, _id: 0 }).exec();
+            if(allScores) {
+                const val = allScores.flatMap(doc => 
+                    doc.userData.filter(userD => userD.user._id.toString() === user._id?.toString())
+                )
+                val.forEach((score) => globalScore += score.score.valueOf());
+            }
             // return;
         } else {
             const courseWithUser = await CourseScores.findOne({
@@ -94,9 +102,16 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
                         $set: { "userData.$.score": score },
                     }
                 );
-
+                
                 if (result.modifiedCount > 0) {
                     message = "Score updated successfully.";
+                    const allScores = await CourseScores.find({ "userData.user": user }, { "userData.user": 1, "userData.score": 1, _id: 0 }).exec();
+                    if(allScores) {
+                        const val = allScores.flatMap(doc => 
+                            doc.userData.filter(userD => userD.user._id.toString() === user._id?.toString())
+                        )
+                        val.forEach((score) => globalScore += score.score.valueOf());
+                    }
                 } else {
                     message = "Score was already up to date.";
                 }
@@ -120,9 +135,9 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
                 }
             }
         }
+        
 
-        // res.status(200).json({ message, success: true });
-        req.locals = { message, success: true }
+        req.locals = { message, globalScore, success: true }
         console.log(message);
         next();
     } catch (err: any) {
