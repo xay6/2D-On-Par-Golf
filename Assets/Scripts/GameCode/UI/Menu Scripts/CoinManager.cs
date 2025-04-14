@@ -9,7 +9,8 @@ public class CoinManager : MonoBehaviour
     private int coins = 0;
     public bool hasReward = false; 
 
-    public TextMeshProUGUI coinTotalText; 
+    public TextMeshProUGUI coinTotalText;
+    public TextMeshProUGUI postCoinTotalText; 
     private void Awake()
     {
         if (Instance == null)
@@ -83,6 +84,15 @@ public class CoinManager : MonoBehaviour
         else
         {
             Debug.LogError("CoinTotal Text UI is not assigned in CoinManager.");
+        }
+
+        if (postCoinTotalText != null)
+        {
+            postCoinTotalText.text = "Coins: " + coins;
+        }
+        else
+        {
+            Debug.LogError("PostCoinTotal Text UI is not assigned in CoinManager.");
         }
     }
 
