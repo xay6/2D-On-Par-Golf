@@ -22,6 +22,15 @@ app.get('/', (req: Request, res: Response) => {
 app.use("/api/users", userRoutes);
 app.use("/api/scores", scoresRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
+app.use("/api/items", userItemsRoutes);
+
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  if (err.name === 'UnauthorizedError') {
+      // Handle express-jwt errors
+      console.log("User not authorized to perform this action. Invalid or missing token.");
+      res.status(401).json({ message: 'User not authorized to perform this action. Invalid or missing token.', success: false });
+  }
+});
 
 connectDB();
 
