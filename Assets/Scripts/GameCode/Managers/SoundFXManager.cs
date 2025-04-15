@@ -45,7 +45,7 @@ public void PlaySoundEffect(AudioClip audioClip, Transform spawnTransform, float
     AudioSource audioSource = Instantiate(SoundFXObject, spawnTransform.position, Quaternion.identity);
     audioSource.clip = audioClip;
     audioSource.volume = volume;
-    audioSource.spatialBlend = 1f; // 3D sound (set to 0 for 2D)
+    audioSource.spatialBlend = 0f; // 3D sound (set to 0 for 2D)
     audioSource.Play();
 
     // Destroy after the clip finishes playing

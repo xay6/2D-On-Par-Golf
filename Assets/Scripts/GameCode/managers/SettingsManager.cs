@@ -5,7 +5,8 @@ public class SettingsManager : MonoBehaviour
     public static SettingsManager Instance;
 
     [Range(0f, 1f)]
-    public float masterVolume = 1f;
+    public float soundFXvolume = 1f;
+    public float musicVolume = 1f;
 
     private void Awake()
     {
@@ -13,17 +14,24 @@ public class SettingsManager : MonoBehaviour
         LoadSettings();
     }
 
-    public void SetVolume(float volume)
+    public void SetMusicVolume(float volume)
     {
-        masterVolume = Mathf.Clamp01(volume);
-        AudioListener.volume = masterVolume;
-        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
+        musicVolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat("music", musicVolume);
+        PlayerPrefs.Save();
+    }
+    public void SetSoundFXVolume(float volume)
+    {
+        soundFXvolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat("soundFX", soundFXvolume);
         PlayerPrefs.Save();
     }
 
     private void LoadSettings()
     {
-        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        AudioListener.volume = masterVolume;
+        musicVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        AudioListener.volume = musicVolume;
+        soundFXvolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        AudioListener.volume = soundFXvolume;
     }
 }

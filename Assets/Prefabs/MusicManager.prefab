@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6198832622912784887
+--- !u!1 &157039799691583250
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6664592127063173977}
-  - component: {fileID: 4717968932065468438}
+  - component: {fileID: 3654972776292723499}
+  - component: {fileID: 7435675673162911707}
   m_Layer: 0
-  m_Name: SoundFXObject
+  m_Name: MusicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6664592127063173977
+--- !u!4 &3654972776292723499
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6198832622912784887}
+  m_GameObject: {fileID: 157039799691583250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1439.8423, y: 409.4599, z: -4.9026904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &4717968932065468438
+--- !u!82 &7435675673162911707
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6198832622912784887}
+  m_GameObject: {fileID: 157039799691583250}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 4915266274665844739, guid: c710802146ccb9348a84a751f569fd9b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
-  m_Resource: {fileID: 8300000, guid: e900b7cc0aad3884cb5910074ef33487, type: 3}
-  m_PlayOnAwake: 0
+  OutputAudioMixerGroup: {fileID: 8514894865726760936, guid: c710802146ccb9348a84a751f569fd9b, type: 2}
+  m_audioClip: {fileID: 8300000, guid: fa328213119b6ff43898cfb7b58ad026, type: 3}
+  m_Resource: {fileID: 8300000, guid: fa328213119b6ff43898cfb7b58ad026, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
