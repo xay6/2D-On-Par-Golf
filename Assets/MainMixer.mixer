@@ -36,9 +36,8 @@ AudioMixerController:
     name: soundFX
   m_AudioMixerGroupViews:
   - guids:
-    - d777f2dfcef3957419614882bbcb1190
-    - 5b30f9c37bd55e14aa027fb91f807306
     - 332e799d305d016418b30c488ed3fd35
+    - 5b30f9c37bd55e14aa027fb91f807306
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -86,7 +85,9 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 345a6913f5c0e3b46b9ee6d8c278a6df
-  m_FloatValues: {}
+  m_FloatValues:
+    dcadec821f45f054caecaafca3601ab4: 0.01
+    bf2f640a34918c8439958538dc6ba285: -10.3
   m_TransitionOverrides: {}
 --- !u!243 &4915266274665844739
 AudioMixerGroupController:

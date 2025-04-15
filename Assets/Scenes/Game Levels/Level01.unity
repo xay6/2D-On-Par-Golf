@@ -2271,9 +2271,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 112397313300991770, guid: 027c5aafdaaf7ed40ad0143ee9cb4a35, type: 3}
+      propertyPath: MusicVolumeSlider
+      value: 
+      objectReference: {fileID: 1084379190}
+    - target: {fileID: 112397313300991770, guid: 027c5aafdaaf7ed40ad0143ee9cb4a35, type: 3}
+      propertyPath: SoundFxVolumeSlider
+      value: 
+      objectReference: {fileID: 199291865}
     - target: {fileID: 307683855337972720, guid: 027c5aafdaaf7ed40ad0143ee9cb4a35, type: 3}
       propertyPath: m_text
       value: Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 1665254895838903600, guid: 027c5aafdaaf7ed40ad0143ee9cb4a35, type: 3}
+      propertyPath: soundFXvolume
+      value: 0.034
       objectReference: {fileID: 0}
     - target: {fileID: 1762462276599982359, guid: 027c5aafdaaf7ed40ad0143ee9cb4a35, type: 3}
       propertyPath: m_Pivot.x
@@ -2636,7 +2648,7 @@ GameObject:
   - component: {fileID: 616353785}
   - component: {fileID: 616353784}
   m_Layer: 0
-  m_Name: SoundFXMananager
+  m_Name: SoundFXManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

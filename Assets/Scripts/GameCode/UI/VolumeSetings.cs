@@ -7,7 +7,21 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider musicVolume;
     [SerializeField] private Slider soundFXVolume;
 
-    
+    public void Start()
+    {
+        float savedMusic = PlayerPrefs.GetFloat("music", 1f);
+        float savedSFX = PlayerPrefs.GetFloat("soundFXVolume", 1f);
+
+        musicVolume.value = savedMusic;
+        soundFXVolume.value = savedSFX;
+
+        setMusicVolume();
+        setSoundFXVolume();
+        
+        float saved = PlayerPrefs.GetFloat("soundFXVolume", 1f);
+        soundFXVolume.value = saved;
+        setSoundFXVolume(); 
+    }
     public void setMusicVolume()
     {
         float volume= musicVolume.value;

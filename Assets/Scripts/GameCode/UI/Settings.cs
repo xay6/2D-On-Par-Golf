@@ -25,13 +25,13 @@ public class Settings : MonoBehaviour
             settingsPanel.SetActive(false);
 
         // Set UI values from SettingsManager
-        MusicVolumeSlider.value = SettingsManager.Instance.masterVolume;
-        SoundFxVolumeSlider.value = SettingsManager.Instance.masterVolume;
+        MusicVolumeSlider.value = SettingsManager.Instance.musicVolume;
+        SoundFxVolumeSlider.value = SettingsManager.Instance.soundFXvolume;
     
 
         // Hook up listeners
-        MusicVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetVolume);
-         SoundFxVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetVolume);
+        MusicVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetMusicVolume);
+        SoundFxVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetSoundFXVolume);
         backToMenuButton.onClick.AddListener(BackToMainMenu);
     }
 
