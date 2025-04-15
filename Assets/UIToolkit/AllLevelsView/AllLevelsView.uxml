@@ -1,18 +1,14 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:VisualElement name="container" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; align-items: center; margin: 0; background-image: url(&quot;project://database/Assets/UIToolkit/Images/BlankBackground.png?fileID=2800000&amp;guid=fc1898a2105d8417b9d4892e5b22733f&amp;type=3#BlankBackground&quot;); padding-top: 5%;">
-        
-        <engine:Label text="All Levels" name="title" style="padding-bottom: 25px; font-size: 60px; color: rgb(223, 223, 223); -unity-font-definition: url(&quot;project://database/Assets/UIToolkit/Fonts/PublicPixel-rv0pA.ttf?fileID=12800000&amp;guid=e7e38a501b8474bc584dd0369db027dc&amp;type=3#PublicPixel-rv0pA&quot;);" />
-        
-        <engine:GroupBox name="levelList" style="width: 80%; height: 75%; flex-wrap: wrap; flex-direction: row; justify-content: center; align-items: center;">
-            <!-- Buttons are now generated dynamically in C# -->
+    <engine:VisualElement name="container" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; align-items: center; margin-top: 0; background-image: url(&quot;project://database/Assets/UIToolkit/Images/BlankBackground.png?fileID=2800000&amp;guid=fc1898a2105d8417b9d4892e5b22733f&amp;type=3#BlankBackground&quot;); margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 5%;">
+        <engine:Label text="All Levels" enable-rich-text="false" name="title" style="flex-direction: column; align-self: auto; align-items: center; justify-content: center; align-content: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 25px; padding-left: 0; -unity-font-definition: url(&quot;project://database/Assets/UIToolkit/Fonts/PublicPixel-rv0pA.ttf?fileID=12800000&amp;guid=e7e38a501b8474bc584dd0369db027dc&amp;type=3#PublicPixel-rv0pA&quot;); color: rgb(223, 223, 223); font-size: 60px;" />
+        <engine:GroupBox style="width: 80%; height: 75%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-wrap: wrap; flex-direction: row; align-items: center; justify-content: center; align-self: auto; align-content: auto;">
+            <engine:Button text="Button" />
+            <engine:Button text="Button" />
+            <engine:Button text="Button" />
+            <engine:Button text="Button" />
+            <engine:Button text="Button" />
+            <engine:Button text="Button" />
         </engine:GroupBox>
-
-        <engine:VisualElement style="flex-direction: row; justify-content: space-between; width: 80%; margin-top: 20px;">
-            <engine:Button text="Previous" name="prevButton" style="width: 150px; height: 50px; font-size: 25px;" />
-            <engine:Button text="Next" name="nextButton" style="width: 150px; height: 50px; font-size: 25px;" />
-        </engine:VisualElement>
-
-        <engine:Button text="Back" name="back-button" style="margin-top: 20px; width: 150px; height: 50px; font-size: 25px; background-color: rgb(239, 28, 36); color: rgb(255, 255, 255); border-radius: 25px;" />
-    
+        <engine:Button text="Back" name="back-button" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-definition: url(&quot;project://database/Assets/UIToolkit/Fonts/PublicPixel-rv0pA.ttf?fileID=12800000&amp;guid=e7e38a501b8474bc584dd0369db027dc&amp;type=3#PublicPixel-rv0pA&quot;); font-size: 25px; background-color: rgb(239, 28, 36); color: rgb(255, 255, 255); border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px; width: 150px; height: 50px;" />
     </engine:VisualElement>
 </engine:UXML>
