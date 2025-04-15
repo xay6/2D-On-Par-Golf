@@ -31,7 +31,7 @@ export const addScore = async (req: AuthenticatedRequest, res: Response): Promis
     }
 }
 
-export const getTopUsers = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const getTopUsers = async (req: Request, res: Response): Promise<void> => {
     try {
         const { courseId } = req.body;
 

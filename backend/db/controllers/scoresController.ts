@@ -31,8 +31,39 @@ export const getScore = async (req: Request, res: Response): Promise<void> => {
             }
         }
     } catch (err: any) {
-        res.status(500).json({ message: "An error occurred while adding the score.", success: false });
+        res.status(500).json({ message: `An error occurred while fetching the score: ${err.message}`, success: false });
         console.error("Error in getScore", err.message);
+    }
+}
+
+export const getScores = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { username } = req.body;
+
+        if (!username) {
+            res.status(400).json({ message: 'Invalid input: username is required.', success: false });
+            return;
+        }
+
+        const user = await User.findOne({ username }).exec();
+        if (user) {
+            const scores = await CourseScores.find({ "userData.user": user }).exec();
+            if(scores){
+                console.log(typeof(scores));
+                const userScores = scores.map((course) => {
+                    const userScore = course.userData.find((cUser) => cUser.user._id.equals(user._id as mongoose.Types.ObjectId))
+                    return { courseId: course.courseId, score: userScore!.score }
+                })
+                console.log(userScores);
+                res.status(200).json({ message: "Scores fetched successfully.", "username": user.username, userScores, success: true });
+            } else {
+                res.status(404).json({ message: "User scores not found.", success: false });
+                console.error("User scores not found.");
+            }
+        }
+    } catch (err: any) {
+        res.status(500).json({ message: `An error occurred while fetching the scores: ${err.message}`, success: false });
+        console.error("Error in getScores", err.message);
     }
 }
 

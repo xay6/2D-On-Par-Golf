@@ -1,10 +1,12 @@
 import express from "express";
-import { getScore, addUpdateScores, deleteScore } from "../controllers/scoresController";
+import { getScore, addUpdateScores, deleteScore, getScores } from "../controllers/scoresController";
 import { addScore } from "../controllers/leaderboardController";
 
 const scoresRouter = express.Router();
 
 scoresRouter.get("/get-score", getScore);
+
+scoresRouter.get("/get-scores", getScores);
 
 // scoresRouter.post("/scores/create", createScore);
 
