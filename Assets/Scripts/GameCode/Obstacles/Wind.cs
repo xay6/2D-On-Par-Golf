@@ -36,13 +36,13 @@ public class Wind : MonoBehaviour
     {
         if (firstTime)
         {
-            // ✅ Generate a fully random wind direction on game start
+            // Generate a fully random wind direction on game start
             windDirection = GetRandomWindDirection();
             windStrength = Random.Range(1f, 5f);
         }
         else
         {
-            // ✅ Ensure wind changes more randomly each time
+            // Ensure wind changes more randomly each time
             windDirection = GetRandomWindDirection();
             windStrength = Mathf.Clamp(windStrength + Random.Range(-1f, 1f), 1f, 5f);
         }
@@ -63,7 +63,6 @@ public class Wind : MonoBehaviour
 
     Vector2 GetRandomWindDirection()
     {
-        // ✅ Generate a completely random wind direction between 0 and 360 degrees
         float randomAngle = Random.Range(0f, 360f);
         return new Vector2(Mathf.Cos(randomAngle * Mathf.Deg2Rad), Mathf.Sin(randomAngle * Mathf.Deg2Rad)).normalized;
     }

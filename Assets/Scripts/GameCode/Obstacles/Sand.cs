@@ -8,10 +8,13 @@ public class Sand : MonoBehaviour
     public bool ballEnteredSand { set; get; }
     private float decelerationRate;
 
+    private float originalDamping;
+    private float originalForce;
+
     void Start()
     {
         ballEnteredSand = false;
-        decelerationRate = 0.7f;
+        decelerationRate = 0.4f; 
     }
 
     void Update()
@@ -20,8 +23,8 @@ public class Sand : MonoBehaviour
         {
             if (ballRB != null && currentClub != null)
             {
-                ballRB.linearDamping = currentClub.linearDamping * 20f;
-                launchWithDrag.setForce(Mathf.Exp(currentClub.forceMultiplier / 4));
+                ballRB.linearDamping = originalDamping * 3f; 
+                launchWithDrag.setForce(originalForce * 0.6f); 
                 ballRB.linearVelocity *= Mathf.Clamp01(1 - decelerationRate * Time.deltaTime);
             }
         }
@@ -34,9 +37,14 @@ public class Sand : MonoBehaviour
             ballRB = other.GetComponent<Rigidbody2D>();
             currentClub = other.GetComponent<GolfClubController>().CurrentClub;
             launchWithDrag = other.GetComponent<LaunchWithDrag>();
+
             if (ballRB != null && currentClub != null && launchWithDrag != null)
             {
                 ballEnteredSand = true;
+
+                originalDamping = currentClub.linearDamping;
+                originalForce = currentClub.forceMultiplier;
+
                 ballRB.linearVelocity *= Mathf.Clamp01(1 - decelerationRate * Time.deltaTime);
             }
         }
@@ -48,8 +56,8 @@ public class Sand : MonoBehaviour
         {
             if (ballRB != null && currentClub != null)
             {
-                ballRB.linearDamping = currentClub.linearDamping;
-                launchWithDrag.setForce(currentClub.forceMultiplier);
+                ballRB.linearDamping = originalDamping;
+                launchWithDrag.setForce(originalForce);
                 ballEnteredSand = false;
             }
         }
