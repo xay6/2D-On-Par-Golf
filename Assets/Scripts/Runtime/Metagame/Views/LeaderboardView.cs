@@ -23,14 +23,23 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnable()
         {
+            // Re-fetch root and elements in case the UI was reloaded
+            m_UIDocument = GetComponent<UIDocument>();
+            if (m_UIDocument != null)
+            {
+                m_Root = m_UIDocument.rootVisualElement;
+            }
+
             m_LeaderboardList = m_Root.Q<ScrollView>("leaderboardList");
             m_BackButton = m_Root.Q<Button>("backButton");
+
             m_BackButton.RegisterCallback<ClickEvent>(OnClickBack);
         }
 
         void OnDisable()
         {
-            m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
+            if (m_BackButton != null)
+                m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
         }
 
         void OnClickBack(ClickEvent evt)
