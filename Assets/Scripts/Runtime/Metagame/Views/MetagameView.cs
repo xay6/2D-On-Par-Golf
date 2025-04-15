@@ -42,6 +42,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         [SerializeField]
         AccountView m_AccountView;
 
+        internal AccountSettingsView AccountSettings => m_AccountSettings;
+
+        [SerializeField]
+        AccountSettingsView m_AccountSettings;
+
         void Start()
         {
             if (App.IsDedicatedServer)
