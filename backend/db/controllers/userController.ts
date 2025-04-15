@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import User, { IUser } from "../models/User";
 import { AuthenticatedRequest } from "../types";
 import { authenticateJwt } from "../../middleware/authenticateJwt";
@@ -136,7 +136,14 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
         You are not authorized to delete this user.
         User not found.
 */
-export const deleteUser = [authenticateJwt,
+export const deleteUser = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    },
 async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
         const { username } = req.body;

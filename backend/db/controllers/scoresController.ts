@@ -36,7 +36,15 @@ export const getScore = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
+export const addUpdateScores = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    },
+    async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
     try {
         const { courseId, username } = req.body;
         const score = parseInt(req.body.score, 10);
@@ -141,12 +149,19 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
         console.log(message);
         next();
     } catch (err: any) {
-        res.status(500).json({ message: "An error occurred while changing the score.", success: false });
-        console.error("Error in addOrUpdateScore", err);
+        res.status(500).json({ message: `An error occurred while changing the score: ${err.message}`, success: false });
+        console.error("Error in addOrUpdateScore", err.message);
     }
 }]
 
-export const deleteScore = [authenticateJwt, async (req: AuthenticatedRequest, res: Response) => {
+export const deleteScore = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    }, async (req: AuthenticatedRequest, res: Response) => {
     try {
         const { username, courseId } = req.body;
 
