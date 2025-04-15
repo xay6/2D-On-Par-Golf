@@ -23,5 +23,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             OnReturnToMetagameAfterMatch?.Invoke();
         }
+
+        public string CurrentUsername { get; private set; }
+        public void SetCurrentUsername(string username)
+        {
+            CurrentUsername = username;
+        }
     }
 }
