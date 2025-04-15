@@ -114,4 +114,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
     internal class EnterAccountEvent : AppEvent { }
     internal class ExitAccountEvent : AppEvent { }
     internal class StartGameEvent : AppEvent { }
+    internal class EnterAccountSettingsEvent : AppEvent { }
+    internal class ExitAccountSettingsEvent : AppEvent { }
 }
