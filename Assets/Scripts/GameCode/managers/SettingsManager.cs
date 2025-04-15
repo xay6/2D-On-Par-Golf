@@ -23,7 +23,7 @@ public class SettingsManager : MonoBehaviour
     public void SetSoundFXVolume(float volume)
     {
         soundFXvolume = Mathf.Clamp01(volume);
-        PlayerPrefs.SetFloat("soundFXVolume", soundFXvolume);
+        PlayerPrefs.SetFloat("soundFX", soundFXvolume);
         PlayerPrefs.Save();
     }
 

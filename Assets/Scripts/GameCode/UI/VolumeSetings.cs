@@ -10,7 +10,7 @@ public class VolumeSettings : MonoBehaviour
     public void Start()
     {
         float savedMusic = PlayerPrefs.GetFloat("music", 1f);
-        float savedSFX = PlayerPrefs.GetFloat("soundFXVolume", 1f);
+        float savedSFX = PlayerPrefs.GetFloat("soundFX", 1f);
 
         musicVolume.value = savedMusic;
         soundFXVolume.value = savedSFX;
@@ -18,9 +18,10 @@ public class VolumeSettings : MonoBehaviour
         setMusicVolume();
         setSoundFXVolume();
         
-        float saved = PlayerPrefs.GetFloat("soundFXVolume", 1f);
-        soundFXVolume.value = saved;
-        setSoundFXVolume(); 
+        //float saved = PlayerPrefs.GetFloat("soundFX", 1f);
+        //soundFXVolume.value = saved;
+
+
     }
     public void setMusicVolume()
     {
