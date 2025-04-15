@@ -93,7 +93,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private async void UpdateScoresHelper(string username)
+    public async void UpdateScoresHelper(string username)
     {
         int score = strokes;
         string courseId = SceneManager.GetActiveScene().name;

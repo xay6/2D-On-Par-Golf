@@ -28,6 +28,7 @@ namespace OnPar.Routers
         public string username;
         public int score;
         public bool success;
+    
     }
 
     [System.Serializable]
