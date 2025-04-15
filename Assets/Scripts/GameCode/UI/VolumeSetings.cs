@@ -7,7 +7,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider musicVolume;
     [SerializeField] private Slider soundFXVolume;
 
-
+    
     public void setMusicVolume()
     {
         float volume= musicVolume.value;
