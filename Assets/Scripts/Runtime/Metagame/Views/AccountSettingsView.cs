@@ -53,7 +53,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         async void LoadUserStats()
         {
             string username = LoginRegister.getUsername();
-            SetUsername(username);
+            Debug.Log($"[AccountSettingsView] Fetching stats for username: {username}");
 
             int bestStrokes = int.MaxValue;
             string bestCourse = "N/A";

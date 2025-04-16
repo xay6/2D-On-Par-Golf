@@ -217,8 +217,18 @@ export const getAllUserScores = async (req: Request, res: Response): Promise<voi
             return;
         }
 
-        const user = await User.findOne({ username }).exec();
+        console.log("[getAllUserScores] Querying for username:", username);
 
+        const user = await User.findOne({ username }).exec();
+        
+        if (!user) {
+            console.error("[getAllUserScores] User NOT found for username:", username);
+            res.status(404).json({ success: false, message: 'User not found.' });
+            return;
+        }
+        
+        console.log("[getAllUserScores] Found user:", user);
+        
         if (!user) {
             res.status(404).json({ success: false, message: 'User not found.' });
             return;
