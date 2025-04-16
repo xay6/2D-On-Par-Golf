@@ -1,10 +1,17 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import User from "../models/User";
 import { AuthenticatedRequest } from "../types";
 import UserItems from "../models/UserItems";
 import { authenticateJwt } from "../../middleware/authenticateJwt";
 
-export const updateCoins = [authenticateJwt, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const updateCoins = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    }, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
         const { username, coinAmount } = req.body;
         if (!username && isNaN(coinAmount)) {
@@ -43,7 +50,7 @@ export const updateCoins = [authenticateJwt, async (req: AuthenticatedRequest, r
                 coinAmount,
             });
 
-        res.status(200).json({ message: `Coins changed for ${username}.`, success: true });
+        res.status(200).json({ message: `Coins changed for ${username} to ${coinAmount}.`, coinAmount, success: true });
         console.log(`Coins changed for ${username}.`);
 
     } catch (err: any) {
@@ -53,7 +60,14 @@ export const updateCoins = [authenticateJwt, async (req: AuthenticatedRequest, r
     }
 }]
 
-export const updateRewards = [authenticateJwt, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const updateRewards = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    }, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
         const { username, reward } = req.body;
         if (!username && !reward) {
@@ -103,7 +117,14 @@ export const updateRewards = [authenticateJwt, async (req: AuthenticatedRequest,
     }
 }]
 
-export const getCoins = [authenticateJwt, async (req: AuthenticatedRequest, res: Response) => {
+export const getCoins = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    }, async (req: AuthenticatedRequest, res: Response) => {
     try {
         const { username } = req.body;
         if(!username) {
@@ -145,7 +166,14 @@ export const getCoins = [authenticateJwt, async (req: AuthenticatedRequest, res:
     }
 }]
 
-export const getRewards = [authenticateJwt, async (req: AuthenticatedRequest, res: Response) => {
+export const getRewards = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    }, async (req: AuthenticatedRequest, res: Response) => {
     try {
         const { username } = req.body;
         if(!username) {
