@@ -111,7 +111,7 @@ namespace OnPar.Routers
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
         {
-            string url = "https://on-par-server.onrender.com/api/users/login";
+            string url = "https://on-par.onrender.com/api/users/login";
             // string url = "localhost:3000/api/users/login"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
@@ -126,7 +126,7 @@ namespace OnPar.Routers
         // Post request
         public static async Task<LoginRegisterResponse> RegisterRoute(string username, string password)
         {
-            string url = "https://on-par-server.onrender.com/api/users/register";
+            string url = "https://on-par.onrender.com/api/users/register";
             // string url = "localhost:3000/api/users/register"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
@@ -153,7 +153,7 @@ namespace OnPar.Routers
         // Get request
         public static async Task<ScoresResponse> GetScore(string courseId, string username)
         {
-            string url = "https://on-par-server.onrender.com/api/scores/get-score";
+            string url = "https://on-par.onrender.com/api/scores/get-score";
             // string url = "localhost:3000/api/users/scores/get-score"; // Local development string.
             string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
 
@@ -163,7 +163,7 @@ namespace OnPar.Routers
         // Put request
         public static async Task<Message> AddOrUpdateScore(string courseId, string username, int score)
         {
-            string url = "https://on-par-server.onrender.com/api/scores/add-update";
+            string url = "https://on-par.onrender.com/api/scores/add-update";
             // string url = "localhost:3000/api/scores/add-update"; // Local development string.
             string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":{score}}}";
 
@@ -178,7 +178,7 @@ namespace OnPar.Routers
         }
         public static async Task<AllUserScoresResponse> GetAllUserScores(string username)
         {
-            string url = $"https://on-par-server.onrender.com/api/scores/user-all?username={username}";
+            string url = $"https://on-par.onrender.com/api/scores/user-all?username={username}";
             return await RequestHelper.SendRequest<AllUserScoresResponse>(url, "GET", "");
         }
 
@@ -189,7 +189,7 @@ namespace OnPar.Routers
         // Get request
         public static async Task<TopUsersResponse> GetTopUsers(string courseId, int lowerLimit = 0, int upperLimit = 10)
         {
-            string url = "https://on-par-server.onrender.com/api/leaderboard/top-users";
+            string url = "https://on-par.onrender.com/api/leaderboard/top-users";
             string urlParams = $"?lowerlimit={lowerLimit}&upperlimit={upperLimit}";
             // string url = "localhost:3000/api/leaderboard/top-users?lowerlimit={lowerLimit}&upperlimit={upperLimit}"; // Local development string.
             string userData = $"{{\"courseId\":\"{courseId}\"}}";
@@ -200,7 +200,7 @@ namespace OnPar.Routers
         // Get request
         public static async Task<TopUser> GetUserRank(string courseId, string username)
         {
-            string url = "https://on-par-server.onrender.com/api/leaderboard/get-rank";
+            string url = "https://on-par.onrender.com/api/leaderboard/get-rank";
             // string url = "localhost:3000/api/leaderboard/get-rank"; // Local development string.
             string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
 
@@ -212,7 +212,7 @@ namespace OnPar.Routers
     {
         public static async Task<UserItems> UpdateCoins(string username, int coinAmount)
         {
-            string url = "https://on-par-server.onrender.com/api/items/update-coins";
+            string url = "https://on-par.onrender.com/api/items/update-coins";
             // string url = "localhost:3000/api/items/update-coins"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"coinAmout\":\"{coinAmount}\"}}";
 
@@ -221,7 +221,7 @@ namespace OnPar.Routers
 
         public static async Task<UserItems> UpdateRewards(string username, string reward)
         {
-            string url = "https://on-par-server.onrender.com/api/items/update-rewards";
+            string url = "https://on-par.onrender.com/api/items/update-rewards";
             // string url = "localhost:3000/api/items/update-rewards"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"reward\":\"{reward}\"}}";
 
@@ -230,7 +230,7 @@ namespace OnPar.Routers
 
         public static async Task<UserItems> GetCoins(string username)
         {
-            string url = "https://on-par-server.onrender.com/api/items/get-coins";
+            string url = "https://on-par.onrender.com/api/items/get-coins";
             // string url = "localhost:3000/api/items/get-coins"; // Local development string.
             string userData = $"{{\"username\":\"{username}\"}}";
 
@@ -239,7 +239,7 @@ namespace OnPar.Routers
 
         public static async Task<UserItems> GetRewards(string username)
         {
-            string url = "https://on-par-server.onrender.com/api/items/get-rewards";
+            string url = "https://on-par.onrender.com/api/items/get-rewards";
             // string url = "localhost:3000/api/items/update-rewards"; // Local development string.
             string userData = $"{{\"username\":\"{username}\"}}";
 
@@ -330,7 +330,7 @@ namespace OnPar.RouterHandlers
 //     // Post request
 //     public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/users/login";
+//         // string url = "https://on-par.onrender.com/api/users/login";
 //         string url = "localhost:3000/api/users/login"; // Local development string.
 //         string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
@@ -370,7 +370,7 @@ namespace OnPar.RouterHandlers
 //     // Post request
 //     public static async Task<LoginRegisterResponse> RegisterRoute(string username, string password)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/users/register";
+//         // string url = "https://on-par.onrender.com/api/users/register";
 //         string url = "localhost:3000/api/users/register"; // Local development string.
 //         string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
@@ -412,7 +412,7 @@ namespace OnPar.RouterHandlers
 //     // Get request
 //     public static async Task<ScoresResponse> GetScore(string courseId, string username)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/scores/get-score";
+//         // string url = "https://on-par.onrender.com/api/scores/get-score";
 //         string url = "localhost:3000/api/users/scores/get-score"; // Local development string.
 //         string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
 
@@ -452,7 +452,7 @@ namespace OnPar.RouterHandlers
 //     // Put request
 //     public static async Task<Message> AddOrUpdateScore(string courseId, string username, int score)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/scores/add-update";
+//         // string url = "https://on-par.onrender.com/api/scores/add-update";
 //         string url = "localhost:3000/api/scores/add-update"; // Local development string.
 //         string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":\"{score}\"}}";
 
