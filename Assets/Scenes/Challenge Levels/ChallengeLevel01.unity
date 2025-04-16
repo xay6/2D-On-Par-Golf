@@ -1168,6 +1168,7 @@ GameObject:
   - component: {fileID: 200744948}
   - component: {fileID: 200744950}
   - component: {fileID: 200744949}
+  - component: {fileID: 200744951}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1189,6 +1190,7 @@ RectTransform:
   m_Children:
   - {fileID: 2055145392}
   - {fileID: 1702907585}
+  - {fileID: 1265340744}
   m_Father: {fileID: 1121951485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1234,6 +1236,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200744947}
   m_CullTransparentMesh: 1
+--- !u!114 &200744951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200744947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267704daf2811d24bb3e2a73f8bee79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Panel: {fileID: 200744947}
 --- !u!1 &332968333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,7 +2679,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 200744948}
-  - {fileID: 1265340744}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2777,17 +2791,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265340743}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 685104521}
-  m_Father: {fileID: 1121951485}
+  m_Father: {fileID: 200744948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -84, y: 69}
+  m_AnchoredPosition: {x: -8, y: 59.059814}
   m_SizeDelta: {x: 355.0648, y: 66.57471}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1265340745
@@ -2833,7 +2847,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1265340746}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 200744951}
+        m_TargetAssemblyTypeName: PanelOpener, Assembly-CSharp
+        m_MethodName: TogglePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1265340746
 MonoBehaviour:
   m_ObjectHideFlags: 0
