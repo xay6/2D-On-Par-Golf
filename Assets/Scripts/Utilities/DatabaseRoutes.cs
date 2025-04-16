@@ -38,6 +38,22 @@ namespace OnPar.Routers
         public bool success;
     }
 
+    [System.Serializable]
+    public class TopUser
+    {
+        public string username;
+        public int score;
+        public bool success;
+    }
+
+    [System.Serializable]
+    public class TopUsersResponse
+    {
+        public string message;
+        public TopUser[] topUsers;
+        public bool success;
+    }
+
     public static class RequestHelper
     {
         public static async Task<T> SendRequest<T>(string url, string method, string json)
@@ -79,9 +95,9 @@ namespace OnPar.Routers
 
     public static class LoginRegister
     {
-        private static string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJyYW5kb24iLCJpZCI6IjY3YzlhYjRlZDRkOGZjMjllY2MwYWM2NSIsImlhdCI6MTc0MzAyMzIxNn0.54TW9LRbQcItLDj7v9PEvy-pXCEU0h4cCm1B-BDMdIY";
-        private static string username = "brandon";
-        private static bool hasToken = true;
+        private static string token = "";
+        private static string username = "";
+        private static bool hasToken = false;
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
         {
@@ -91,6 +107,7 @@ namespace OnPar.Routers
 
             LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
 
+            LoginRegister.username = username;
             hasToken = true;
             token = res.token;
             return res;
@@ -139,12 +156,24 @@ namespace OnPar.Routers
             string url = "https://on-par-server.onrender.com/api/scores/add-update";
             // string url = "localhost:3000/api/scores/add-update"; // Local development string.
             string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":{score}}}";
-            Debug.Log(userData);
 
             return await RequestHelper.SendRequest<Message>(url, "PUT", userData);
         }
     }
 
+    public static class Leaderboard
+    {
+        // Get request
+        public static async Task<TopUsersResponse> GetTopUsers(string courseId, int lowerLimit = 0, int upperLimit = 10)
+        {
+            string url = "https://on-par-server.onrender.com/api/leaderboard/top-users";
+            string urlParams = $"?lowerlimit={lowerLimit}&upperlimit={upperLimit}";
+            // string url = "localhost:3000/api/leaderboard/top-users?lowerlimit={lowerLimit}&upperlimit={upperLimit}"; // Local development string.
+            string userData = $"{{\"courseId\":\"{courseId}\"}}";
+
+            return await RequestHelper.SendRequest<TopUsersResponse>(url + urlParams, "GET", userData);
+        }
+    }
 }
 
 namespace OnPar.RouterHandlers
@@ -174,6 +203,14 @@ namespace OnPar.RouterHandlers
         public static Task<Message> AddOrUpdateScore(string courseId, string username, int score)
         {
             return Scores.AddOrUpdateScore(courseId, username, score);
+        }
+
+        /*
+            Leaderboard Handlers
+        */
+        public static Task<TopUsersResponse> GetTopUsersHandler(string courseId, int lowerLimit, int upperLimit)
+        {
+            return Leaderboard.GetTopUsers(courseId, lowerLimit, upperLimit);
         }
     }
 }

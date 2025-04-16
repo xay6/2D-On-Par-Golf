@@ -36,11 +36,20 @@ export const getScore = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
+export const addUpdateScores = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    },
+    async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
     try {
         const { courseId, username } = req.body;
         const score = parseInt(req.body.score, 10);
         let message = "";
+        let globalScore = -1;
 
         if (!courseId || !username || isNaN(score) || score < 1) {
             res.status(422).json({ message: 'Invalid input: courseId, username, and score are required.', success: false });
@@ -72,6 +81,13 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
             // res.status(200).json({ message: `New course created with ${username}'s score.`, success: true });
             // console.log(`New course created with ${username}'s score.`);
             message = `New course created with ${username}'s score.`;
+            const allScores = await CourseScores.find({ "userData.user": user }, { "userData.user": 1, "userData.score": 1, _id: 0 }).exec();
+            if(allScores) {
+                const val = allScores.flatMap(doc => 
+                    doc.userData.filter(userD => userD.user._id.toString() === user._id?.toString())
+                )
+                val.forEach((score) => globalScore += score.score.valueOf());
+            }
             // return;
         } else {
             const courseWithUser = await CourseScores.findOne({
@@ -94,9 +110,16 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
                         $set: { "userData.$.score": score },
                     }
                 );
-
+                
                 if (result.modifiedCount > 0) {
                     message = "Score updated successfully.";
+                    const allScores = await CourseScores.find({ "userData.user": user }, { "userData.user": 1, "userData.score": 1, _id: 0 }).exec();
+                    if(allScores) {
+                        const val = allScores.flatMap(doc => 
+                            doc.userData.filter(userD => userD.user._id.toString() === user._id?.toString())
+                        )
+                        val.forEach((score) => globalScore += score.score.valueOf());
+                    }
                 } else {
                     message = "Score was already up to date.";
                 }
@@ -120,18 +143,25 @@ export const addUpdateScores = [authenticateJwt, async (req: AuthenticatedReques
                 }
             }
         }
+        
 
-        // res.status(200).json({ message, success: true });
-        req.locals = { message, success: true }
+        req.locals = { message, globalScore, success: true }
         console.log(message);
         next();
     } catch (err: any) {
-        res.status(500).json({ message: "An error occurred while changing the score.", success: false });
-        console.error("Error in addOrUpdateScore", err);
+        res.status(500).json({ message: `An error occurred while changing the score: ${err.message}`, success: false });
+        console.error("Error in addOrUpdateScore", err.message);
     }
 }]
 
-export const deleteScore = [authenticateJwt, async (req: AuthenticatedRequest, res: Response) => {
+export const deleteScore = [authenticateJwt, 
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+          next();
+        }
+    }, async (req: AuthenticatedRequest, res: Response) => {
     try {
         const { username, courseId } = req.body;
 

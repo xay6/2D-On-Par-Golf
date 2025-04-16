@@ -1,19 +1,23 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import getRedisClient from "../redis";
 import { AuthenticatedRequest } from "../types";
 
 export const addScore = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-        const { courseId, username, score } = req.body;
-        if (!courseId || !username || typeof score !== 'number') {
+        const { courseId, username } = req.body;
+        const score = parseInt(req.body.score, 10);
+        if (!courseId || !username || isNaN(score)) {
             let message = `${req.locals.message}\nRedis: Invalid input: courseId, username, and score are required.`;
-            res.status(400).json({ message, success: (req.locals.success) });
             console.log('Redis: Invalid input: courseId, username, and score are required.');
+            res.status(400).json({ message, success: (req.locals.success) });
             return;
         }
 
         const redisClient = await getRedisClient();
         await redisClient?.zAdd(courseId, { score, value: username });
+
+        if(req.locals.globalScore > 0)
+            await redisClient?.zAdd("global", { score: req.locals.globalScore, value: username })
 
         let leaderboard = await redisClient?.zRangeWithScores(courseId, 0, -1);
         
@@ -36,6 +40,10 @@ export const getTopUsers = async (req: AuthenticatedRequest, res: Response): Pro
             return;
         }
 
+        if(!req.query.lowerlimit && !req.query.upperLimit) {
+            res.status(400).json({ message: 'Invalid input: upper and lower limits invalid.', success: false });
+            return;
+        }
         
         const lowerLimit = parseInt(req.query.lowerlimit as string) || 0;
         const upperLimit = parseInt(req.query.upperlimit as string) || 10;
@@ -43,10 +51,36 @@ export const getTopUsers = async (req: AuthenticatedRequest, res: Response): Pro
         const redisClient = await getRedisClient();
         const topUsers = await redisClient?.zRangeWithScores(courseId, lowerLimit, upperLimit);
         
-        res.status(200).json({ data: topUsers, success: true });
+        res.status(200).json({ topUsers, success: true });
     } catch (err: any) {
         console.error('Error in getTopUsers:\n', err);
         res.status(500).json({ message: 'Internal server error', success: false });
+        return;
+    }
+}
+
+export const getUserRank = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { courseId, username } = req.body;
+
+        if (!courseId || !username) {
+            res.status(400).json({ message: 'Invalid input: courseId and username are required.', success: false });
+            return;
+        }
+
+        const redisClient = await getRedisClient();
+        const rank = await redisClient?.zRank(courseId, username);
+
+        if (!isNaN(rank!)) {
+            console.log(`${username}'s rank for ${courseId} is: ${rank! + 1}`);
+            res.status(200).json({ message: `${username}'s rank for ${courseId} is: ${rank! + 1}`, data: { username, rank: rank! + 1 }, success: true });
+        } else {
+            console.log("User not found.");
+            res.status(404).json({ message: "User not found.", success: false });
+        }
+    } catch (err: any) {
+        console.error('Error in getUserRank:\n', err);
+        res.status(500).json({ message: err.message, success: false });
         return;
     }
 }

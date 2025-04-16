@@ -128,6 +128,7 @@ void Update()
             clickAndDrag.endPos = clickAndDrag.startPos;
             clickAndDrag.isDragging = false;
             CheckForMovement();
+            PlayGolfBallSound();
         }
 
         if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
@@ -208,7 +209,8 @@ void Update()
 
         if (!hasPlayedSound)
         {
-            SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
+            //SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
+            AudioSource.PlayClipAtPoint(golfHit, Vector3.zero, 1f);
             hasPlayedSound = true;
         }
     }
