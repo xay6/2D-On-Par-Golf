@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System.Text;
 using System.Threading.Tasks;
 using OnPar.Routers;
+using System.Collections.Generic;
 
 namespace OnPar.Routers
 {
@@ -168,6 +169,19 @@ namespace OnPar.Routers
 
             return await RequestHelper.SendRequest<Message>(url, "PUT", userData);
         }
+
+        public class AllUserScoresResponse
+        {
+            public bool success;
+            public string message;
+            public List<Score> scores;
+        }
+        public static async Task<AllUserScoresResponse> GetAllUserScores(string username)
+        {
+            string url = $"https://on-par-server.onrender.com/api/scores/user-all?username={username}";
+            return await RequestHelper.SendRequest<AllUserScoresResponse>(url, "GET", "");
+        }
+
     }
 
     public static class Leaderboard
@@ -262,6 +276,11 @@ namespace OnPar.RouterHandlers
         public static Task<Message> AddOrUpdateScore(string courseId, string username, int score)
         {
             return Scores.AddOrUpdateScore(courseId, username, score);
+        }
+
+        public static Task<Scores.AllUserScoresResponse> GetAllUserScoresHandler(string username)
+        {
+            return Scores.GetAllUserScores(username);
         }
 
         /*

@@ -47,7 +47,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnNewGameClicked(ClickEvent evt) => Broadcast(new StartGameEvent());
         void OnAllLevelsClicked(ClickEvent evt) => Broadcast(new EnterLeaderboardEvent()); // swap if needed
-        void OnSettingsClicked(ClickEvent evt) => Debug.Log("Settings clicked"); // replace with actual event
+        void OnSettingsClicked(ClickEvent evt) => Broadcast (new EnterAccountSettingsEvent());
         void OnRewardsClicked(ClickEvent evt) => Debug.Log("Rewards clicked"); // replace with actual event
         void OnMainMenuClicked(ClickEvent evt) => Broadcast(new ExitAccountEvent());
     }
