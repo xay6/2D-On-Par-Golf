@@ -2,14 +2,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using OnPar.RouterHandlers;
 using OnPar.Routers;
+using System.Linq;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
     internal class AccountSettingsView : View<MetagameApplication>
     {
         Label m_UsernameLabel;
-        Toggle m_MusicToggle;
-        Toggle m_SoundToggle;
         Label m_UnlockedLevelsLabel;
         Label m_BestScoresLabel;
         Label m_TotalStrokesLabel;
@@ -24,8 +23,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_Root = uiDoc.rootVisualElement;
 
             m_UsernameLabel = m_Root.Q<Label>("usernameLabel");
-            m_MusicToggle = m_Root.Q<Toggle>("musicToggle");
-            m_SoundToggle = m_Root.Q<Toggle>("soundToggle");
             m_UnlockedLevelsLabel = m_Root.Q<Label>("unlockedLevelsLabel");
             m_BestScoresLabel = m_Root.Q<Label>("bestScoresLabel");
             m_TotalStrokesLabel = m_Root.Q<Label>("totalStrokesLabel");
@@ -33,21 +30,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_LogoutButton = m_Root.Q<Button>("logoutButton");
             m_BackButton = m_Root.Q<Button>("backButton");
 
-            // Register toggle events
-            // m_MusicToggle.RegisterValueChangedCallback(evt => ToggleMusic(evt.newValue));
-            // m_SoundToggle.RegisterValueChangedCallback(evt => ToggleSound(evt.newValue));
-
             m_LogoutButton.clicked += OnLogout;
             m_BackButton.clicked += OnBack;
 
-            // Sync toggle state with saved volume
-            float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-            bool isVolumeOn = savedVolume > 0.01f;
-            m_MusicToggle.value = isVolumeOn;
-            m_SoundToggle.value = isVolumeOn;
-
             // Load data
-            LoadUserStats("Level1"); // Replace with dynamic courseId if needed
+            LoadUserStats();
         }
 
         internal void SetUsername(string username)
@@ -55,51 +42,71 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_UsernameLabel.text = $"Username: {username}";
         }
 
-        internal void SetProgress(string levels, string scores, int strokes, string achievements)
+        internal void SetProgress(int Maxlevel, string scores, int strokes, string achievements)
         {
-            m_UnlockedLevelsLabel.text = $"Unlocked Levels: {levels}";
+            m_UnlockedLevelsLabel.text = $"Unlocked Levels: 1 - {Maxlevel}";
             m_BestScoresLabel.text = $"Best Scores: {scores}";
             m_TotalStrokesLabel.text = $"Total Strokes: {strokes}";
             m_AchievementsLabel.text = $"Achievements: {achievements}";
         }
 
-        async void LoadUserStats(string courseId)
+        async void LoadUserStats()
         {
             string username = LoginRegister.getUsername();
             SetUsername(username);
 
-            ScoresResponse scoreResponse = await Handlers.GetScoresHandler(courseId, username);
+            int bestStrokes = int.MaxValue;
+            string bestCourse = "N/A";
+            int highestLevel = 0;
+            int totalStrokes = 0;
 
-            if (scoreResponse != null && scoreResponse.success)
+            var allScores = await Handlers.GetAllUserScoresHandler(username);
+
+            if (allScores != null && allScores.success && allScores.scores != null && allScores.scores.Count > 0)
             {
-                int strokes = scoreResponse.userScore.score;
-                string bestScore = $"{courseId} - {strokes} strokes";
-                SetProgress($"Only {courseId}", bestScore, strokes, "Hole in One Club");
+                foreach (var score in allScores.scores)
+                {
+                    if (int.TryParse(new string(score.courseId.Where(char.IsDigit).ToArray()), out int levelNum))
+                    {
+                        if (levelNum > highestLevel)
+                            highestLevel = levelNum;
+                    }
+
+                    totalStrokes += score.score;
+
+                    if (score.score < bestStrokes)
+                    {
+                        bestStrokes = score.score;
+                        bestCourse = score.courseId;
+                    }
+                }
             }
             else
             {
-                Debug.LogWarning("Could not load user score");
-                SetProgress("N/A", "N/A", 0, "None");
+                Debug.Log("No scores found for user.");
             }
+
+            string bestScoreDisplay = bestStrokes != int.MaxValue ? $"{bestCourse} - {bestStrokes} strokes" : "N/A";
+
+            // Load achievements
+            string achievements = "None";
+            var rewardsResponse = await Handlers.GetRewardsHandler(username);
+            if (rewardsResponse != null && rewardsResponse.success && rewardsResponse.rewards.Length > 0)
+            {
+                achievements = string.Join(", ", rewardsResponse.rewards);
+            }
+
+            SetProgress(highestLevel, bestScoreDisplay, totalStrokes, achievements);
         }
-
-        // void ToggleMusic(bool isOn)
-        // {
-        //     float volume = isOn ? 1f : 0f;
-        //     global::SettingsManager.Instance.SetVolume(volume);
-        // }
-
-        // void ToggleSound(bool isOn)
-        // {
-        //     float volume = isOn ? 1f : 0f;
-        //     global::SettingsManager.Instance.SetVolume(volume);
-        // }
 
         void OnLogout()
         {
-            Debug.Log("Logging out...");
-            // TODO: Clear session, go back to login view
+            //bool confirm = EditorUtility.DisplayDialog("Confirm Logout", "Are you sure you want to log out?", "Yes", "No");
+            //if (!confirm) return;
+
+            //LoginRegister.ClearSession();
             Broadcast(new ExitAccountSettingsEvent());
+            Broadcast(new EnterAccountEvent());
         }
 
         void OnBack()
