@@ -6504,7 +6504,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinedCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5446638671164208568, guid: 683f7edb807a547a6917819920759de3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -6611,7 +6612,7 @@ PrefabInstance:
     - target: {fileID: 8349594243780024518, guid: 7f4156f55edfaa64db9dcb7e05d16f9d, type: 3}
       propertyPath: postCoinTotalText
       value: 
-      objectReference: {fileID: 1145771722}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
