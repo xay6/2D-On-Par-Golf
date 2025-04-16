@@ -39,6 +39,15 @@ namespace OnPar.Routers
     }
 
     [System.Serializable]
+    public class AllScoresResponse
+    {
+        public string message;
+        public string username;
+        public Score[] userScores;
+        public bool success;
+    }
+
+    [System.Serializable]
     public class TopUser
     {
         public string username;
@@ -159,6 +168,16 @@ namespace OnPar.Routers
             return await RequestHelper.SendRequest<ScoresResponse>(url, "GET", userData);
         }
 
+        // Get request
+        public static async Task<AllScoresResponse> GetScores(string username)
+        {
+            string url = "https://on-par-server.onrender.com/api/scores/get-scores";
+            // string url = "localhost:3000/api/users/scores/get-score"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<AllScoresResponse>(url, "GET", userData);
+        }
+
         // Put request
         public static async Task<Message> AddOrUpdateScore(string courseId, string username, int score)
         {
@@ -257,6 +276,11 @@ namespace OnPar.RouterHandlers
         public static Task<ScoresResponse> GetScoresHandler(string courseId, string username)
         {
             return Scores.GetScore(courseId, username);
+        }
+
+        public static Task<AllScoresResponse> GetAllScoresHandler(string username)
+        {
+            return Scores.GetScores(username);
         }
 
         public static Task<Message> AddOrUpdateScore(string courseId, string username, int score)
