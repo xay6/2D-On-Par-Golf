@@ -57,9 +57,9 @@ namespace OnPar.Routers
     [System.Serializable]
     public class UserItems
     {
-        public string message
+        public string message;
         public int coinAmount;
-        public String[] rewards;
+        public string[] rewards;
         public bool success;
     }
 
@@ -214,7 +214,7 @@ namespace OnPar.Routers
             return await RequestHelper.SendRequest<UserItems>(url, "PUT", userData);
         }
 
-        public static async Task<Message> GetCoins(string username)
+        public static async Task<UserItems> GetCoins(string username)
         {
             string url = "https://on-par-server.onrender.com/api/items/get-coins";
             // string url = "localhost:3000/api/items/get-coins"; // Local development string.
