@@ -42,6 +42,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             View.Hide();
         }
 
+        public LoginRegisterResponse Response;
+
         async void OnLoginAttempt(LoginAttemptEvent evt)
         {
             Debug.Log("OnLoginAttempt called.");
@@ -50,7 +52,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
             Debug.Log($"Login attempt result: {success}");
 
-            if (success)
+            if (LoginAttemptEvent.Login.success)
             {
                 App.SetCurrentUsername(evt.Username);
                 View.Hide();
@@ -59,7 +61,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             else
             {
                 Debug.LogWarning("Login failed. Showing error message.");
-                View.ShowError("Invalid login. Try again.");
+                View.ShowError(LoginAttemptEvent.Login.message);
             }
         }
 
@@ -69,17 +71,16 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
             if (success)
             {
-                View.Hide();
 
                 // Auto-login after successful signup
-                bool loginSuccess = await LoginAttemptEvent.LoginHelper(evt.Username, evt.Password);
-                if (loginSuccess)
+                if (SignupAttemptEvent.Signup.success)
                 {
                     App.View.AccountMenu.Show();
+                    View.Hide();
                 }
                 else
                 {
-                    View.ShowError("Signup succeeded, but login failed.");
+                    View.ShowError(SignupAttemptEvent.Signup.message);
                 }
             }
         }
