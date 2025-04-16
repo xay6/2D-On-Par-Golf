@@ -54,6 +54,15 @@ namespace OnPar.Routers
         public bool success;
     }
 
+    [System.Serializable]
+    public class UserItems
+    {
+        public string message
+        public int coinAmount;
+        public String[] rewards;
+        public bool success;
+    }
+
     public static class RequestHelper
     {
         public static async Task<T> SendRequest<T>(string url, string method, string json)
@@ -173,6 +182,55 @@ namespace OnPar.Routers
 
             return await RequestHelper.SendRequest<TopUsersResponse>(url + urlParams, "GET", userData);
         }
+
+        // Get request
+        public static async Task<TopUser> GetUserRank(string courseId, string username)
+        {
+            string url = "https://on-par-server.onrender.com/api/leaderboard/get-rank";
+            // string url = "localhost:3000/api/leaderboard/get-rank"; // Local development string.
+            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<TopUser>(url, "GET", userData);
+        }
+    }
+
+    public static class UserItem
+    {
+        public static async Task<UserItems> UpdateCoins(string username, int coinAmount)
+        {
+            string url = "https://on-par-server.onrender.com/api/items/update-coins";
+            // string url = "localhost:3000/api/items/update-coins"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\",\"coinAmout\":\"{coinAmount}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "PUT", userData);
+        }
+
+        public static async Task<UserItems> UpdateRewards(string username, string reward)
+        {
+            string url = "https://on-par-server.onrender.com/api/items/update-rewards";
+            // string url = "localhost:3000/api/items/update-rewards"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\",\"reward\":\"{reward}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "PUT", userData);
+        }
+
+        public static async Task<Message> GetCoins(string username)
+        {
+            string url = "https://on-par-server.onrender.com/api/items/get-coins";
+            // string url = "localhost:3000/api/items/get-coins"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "GET", userData);
+        }
+
+        public static async Task<UserItems> GetRewards(string username)
+        {
+            string url = "https://on-par-server.onrender.com/api/items/get-rewards";
+            // string url = "localhost:3000/api/items/update-rewards"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "GET", userData);
+        }
     }
 }
 
@@ -185,7 +243,8 @@ namespace OnPar.RouterHandlers
         */
         public static Task<LoginRegisterResponse> LoginHandler(string username, string password)
         {
-            return LoginRegister.LoginRoute(username, password);        }
+            return LoginRegister.LoginRoute(username, password);
+        }
 
         public static Task<LoginRegisterResponse> RegisterHandler(string username, string password)
         {
@@ -211,6 +270,34 @@ namespace OnPar.RouterHandlers
         public static Task<TopUsersResponse> GetTopUsersHandler(string courseId, int lowerLimit, int upperLimit)
         {
             return Leaderboard.GetTopUsers(courseId, lowerLimit, upperLimit);
+        }
+
+        public static Task<TopUser> GetUserRankHandler(string courseId, string username)
+        {
+            return Leaderboard.GetUserRank(courseId, username);
+        }
+
+        /*
+            Item Handlers
+        */
+        public static Task<UserItems> UpdateCoinsHandler(string username, int coinAmount)
+        {
+            return UserItem.UpdateCoins(username, coinAmount);
+        }
+
+        public static Task<UserItems> UpdateRewardsHandler(string username, string reward)
+        {
+            return UserItem.UpdateRewards(username, reward);
+        }
+
+        public static Task<UserItems> GetCoinsHandler(string username)
+        {
+            return UserItem.GetCoins(username);
+        }
+
+        public static Task<UserItems> GetRewardsHandler(string username)
+        {
+            return UserItem.GetRewards(username);
         }
     }
 }
