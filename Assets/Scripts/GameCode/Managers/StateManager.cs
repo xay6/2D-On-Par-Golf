@@ -5,6 +5,7 @@ public class StateManager : MonoBehaviour
 {
     public void LoadLevel(string LevelName){
         SceneManager.LoadSceneAsync(LevelName, LoadSceneMode.Single);
+        ScoreManager.Instance.ResetStrokes();
     }
 
     public void ReloadLevel(){

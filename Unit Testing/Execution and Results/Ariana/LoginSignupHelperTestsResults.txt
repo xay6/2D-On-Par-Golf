@@ -1,0 +1,3 @@
+Tests ran in Unity Test Runner. The screenshot in this folder is a test runner window 
+and it shows that the test project is recognized (Unity.Template.Multiplayer NGO. Tests.dll)
+and all test cases inside LoginSignupHelperTests.cs ran successfully
