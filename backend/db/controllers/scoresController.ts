@@ -208,6 +208,40 @@ export const deleteScore = [authenticateJwt,
     }
 }]
 
+export const getAllUserScores = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const username = req.query.username as string;
+
+        if (!username) {
+            res.status(400).json({ success: false, message: 'Username is required.' });
+            return;
+        }
+
+        const user = await User.findOne({ username }).exec();
+
+        if (!user) {
+            res.status(404).json({ success: false, message: 'User not found.' });
+            return;
+        }
+
+        const allCourses = await CourseScores.find({ "userData.user": user._id }).populate("userData.user").exec();
+
+        const scores = allCourses.map(course => {
+            const userScore = course.userData.find(u => u.user._id.equals(user._id as Types.ObjectId));
+            return {
+                courseId: course.courseId,
+                username: user.username,
+                score: userScore?.score ?? 0
+            };
+        });
+
+        res.status(200).json({ success: true, message: 'User scores retrieved.', scores });
+    } catch (err: any) {
+        console.error("Error in getAllUserScores:", err.message);
+        res.status(500).json({ success: false, message: 'Server error while retrieving scores.' });
+    }
+};
+
 // export const createScore = async (req: Request, res: Response): Promise<void> => {
 //     try {
 //         const { courseId, username, score } = req.body;
