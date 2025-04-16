@@ -15,6 +15,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         Label m_TotalStrokesLabel;
         Label m_AchievementsLabel;
         Button m_LogoutButton;
+        Button m_BackButton;
         VisualElement m_Root;
 
         void Awake()
@@ -30,12 +31,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_TotalStrokesLabel = m_Root.Q<Label>("totalStrokesLabel");
             m_AchievementsLabel = m_Root.Q<Label>("achievementsLabel");
             m_LogoutButton = m_Root.Q<Button>("logoutButton");
+            m_BackButton = m_Root.Q<Button>("backButton");
 
             // Register toggle events
             // m_MusicToggle.RegisterValueChangedCallback(evt => ToggleMusic(evt.newValue));
             // m_SoundToggle.RegisterValueChangedCallback(evt => ToggleSound(evt.newValue));
 
             m_LogoutButton.clicked += OnLogout;
+            m_BackButton.clicked += OnBack;
 
             // Sync toggle state with saved volume
             float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
@@ -96,6 +99,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             Debug.Log("Logging out...");
             // TODO: Clear session, go back to login view
+            Broadcast(new ExitAccountSettingsEvent());
+        }
+
+        void OnBack()
+        {
+            Debug.Log("Going back to AccountView...");
             Broadcast(new ExitAccountSettingsEvent());
         }
     }
