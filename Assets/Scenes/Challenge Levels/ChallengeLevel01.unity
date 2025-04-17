@@ -2545,7 +2545,7 @@ RectTransform:
   - {fileID: 200744948}
   - {fileID: 232756798}
   - {fileID: 820431101}
-  - {fileID: 151590312929345684}
+  - {fileID: 9063246683614942246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3005,11 +3005,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
---- !u!224 &151590312929345684 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1089335289686265686, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
-  m_PrefabInstance: {fileID: 9063246683614942245}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &341132943597818388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3115,13 +3110,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1121951485}
     m_Modifications:
+    - target: {fileID: 838991231570523169, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
+      propertyPath: m_text
+      value: "\\u2022 Test your precision and skill in the Hole-in-One Challenge!\n\n\\u2022
+        These special levels are designed to push your accuracy to the limit.\n\n\\u2022
+        You\u2019ll face 6 unique challenge levels, each requiring a perfect shot
+        to complete.\n\n\\u2022 Limited attempts: If you run out of tries, you\u2019ll
+        be sent back to Level 1 to start over.\n\n\\u2022 Can you conquer them all
+        in one run and claim your reward? "
+      objectReference: {fileID: 0}
     - target: {fileID: 3060890652127615970, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
       propertyPath: m_Name
       value: Panel
       objectReference: {fileID: 0}
     - target: {fileID: 3060890652127615970, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5791434504928548687, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
       propertyPath: m_Pivot.x
@@ -3202,6 +3206,10 @@ PrefabInstance:
     - target: {fileID: 5791434504928548687, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025398544970431075, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 313
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3418,6 +3426,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+--- !u!224 &9063246683614942246 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6525702217433349455, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+  m_PrefabInstance: {fileID: 9063246683614942245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
