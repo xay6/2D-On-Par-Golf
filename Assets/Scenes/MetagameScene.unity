@@ -637,6 +637,10 @@ PrefabInstance:
       propertyPath: m_LeaderboardView
       value: 
       objectReference: {fileID: 1175935009}
+    - target: {fileID: 9031745749505631770, guid: a792aead6be06b44eaa0f1e2ff26af60, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4175558726825995447, guid: a792aead6be06b44eaa0f1e2ff26af60, type: 3}
