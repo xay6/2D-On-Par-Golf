@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreTextInitializer : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class ScoreTextInitializer : MonoBehaviour
             else
             {
                 ScoreManager.Instance.RegisterScoreText(text);
+                ScoreManager.Instance.RegisterChallengeScoreTextPostUI(text);
             }
         }
         else
