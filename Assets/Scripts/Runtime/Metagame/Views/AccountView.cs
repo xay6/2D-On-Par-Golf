@@ -1,3 +1,4 @@
+using Codice.Client.BaseCommands;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,6 +10,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         Button m_AllLevelsButton;
         Button m_SettingsButton;
         Button m_RewardsButton;
+        Button m_ChallengesButton;
         Button m_MainMenuButton;
         VisualElement m_Root;
 
@@ -28,12 +30,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_SettingsButton = m_Root.Q<Button>("settings");
             m_RewardsButton = m_Root.Q<Button>("rewards");
             m_MainMenuButton = m_Root.Q<Button>("main-menu");
+            m_ChallengesButton = m_Root.Q<Button>("challenges");
 
             m_NewGameButton?.RegisterCallback<ClickEvent>(OnNewGameClicked);
             m_AllLevelsButton?.RegisterCallback<ClickEvent>(OnAllLevelsClicked);
             m_SettingsButton?.RegisterCallback<ClickEvent>(OnSettingsClicked);
             m_RewardsButton?.RegisterCallback<ClickEvent>(OnRewardsClicked);
             m_MainMenuButton?.RegisterCallback<ClickEvent>(OnMainMenuClicked);
+            m_ChallengesButton?.RegisterCallback<ClickEvent>(OnChallengesClicked);
         }
 
         void OnDisable()
@@ -49,6 +53,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnAllLevelsClicked(ClickEvent evt) => Broadcast(new EnterLeaderboardEvent()); // swap if needed
         void OnSettingsClicked(ClickEvent evt) => Broadcast (new EnterAccountSettingsEvent());
         void OnRewardsClicked(ClickEvent evt) => Debug.Log("Rewards clicked"); // replace with actual event
+        void OnChallengesClicked(ClickEvent evt) => Debug.Log("Rewards clicked");
         void OnMainMenuClicked(ClickEvent evt) => Broadcast(new ExitAccountEvent());
     }
 }
