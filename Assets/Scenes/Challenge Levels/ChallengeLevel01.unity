@@ -3482,6 +3482,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 507255426}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StateManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ChallengeLevel01
+      objectReference: {fileID: 0}
     - target: {fileID: 3589613689481371289, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
       propertyPath: m_Name
       value: 'GameOverUI '

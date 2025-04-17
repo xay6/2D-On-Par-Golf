@@ -2132,6 +2132,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
+      propertyPath: GameOverUI
+      value: 
+      objectReference: {fileID: 1812508665279451979}
+    - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
       propertyPath: levelCompleteUI
       value: 
       objectReference: {fileID: 1918188993}
@@ -2873,6 +2877,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+--- !u!1 &1812508665279451979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1295277914204612809, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+  m_PrefabInstance: {fileID: 1812508665279451978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7860232781451568942 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6525702217433349455, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
