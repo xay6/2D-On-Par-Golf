@@ -3286,6 +3286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strokes: 0
   overallScore: 0
+  shouldTriggerGameOver: 0
 --- !u!4 &1298963132
 Transform:
   m_ObjectHideFlags: 0
@@ -3873,6 +3874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 1
 --- !u!1001 &2137950029
 PrefabInstance:
   m_ObjectHideFlags: 0

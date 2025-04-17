@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
     public int strokes = 0;
     private int maxStrokes = 3;
     public int overallScore = 0;
+    public bool shouldTriggerGameOver = false;
     public static Message UpdateScoreResponse;
 
     private TextMeshProUGUI scoreText;
@@ -67,6 +68,10 @@ public class ScoreManager : MonoBehaviour
     {
         strokes++;
         UpdateScoreText();
+
+        if (strokes >= maxStrokes){
+            shouldTriggerGameOver = true;
+        }
     }
 
     public void AddToOverallScore(int score)

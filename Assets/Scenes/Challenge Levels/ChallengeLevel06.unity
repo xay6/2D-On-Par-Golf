@@ -1835,6 +1835,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &490547372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1295277914204612809, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+  m_PrefabInstance: {fileID: 1606978779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &584671267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 1
 --- !u!4 &1048800918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4732733952249331575, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
@@ -2715,6 +2721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strokes: 0
   overallScore: 0
+  shouldTriggerGameOver: 0
 --- !u!4 &1400318907
 Transform:
   m_ObjectHideFlags: 0
@@ -3022,6 +3029,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
+      propertyPath: GameOverUI
+      value: 
+      objectReference: {fileID: 490547372}
     - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
       propertyPath: levelCompleteUI
       value: 

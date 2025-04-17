@@ -2799,6 +2799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 1
 --- !u!4 &1048800918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4732733952249331575, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
@@ -3154,6 +3155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strokes: 0
   overallScore: 0
+  shouldTriggerGameOver: 0
 --- !u!4 &1618031607
 Transform:
   m_ObjectHideFlags: 0

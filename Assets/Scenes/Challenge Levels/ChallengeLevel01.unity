@@ -1956,6 +1956,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
+      propertyPath: GameOverUI
+      value: 
+      objectReference: {fileID: 9063246683614942247}
+    - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
       propertyPath: levelCompleteUI
       value: 
       objectReference: {fileID: 820431100}
@@ -2461,6 +2465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 1
 --- !u!4 &1048800918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4732733952249331575, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
@@ -3054,6 +3059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strokes: 0
   overallScore: 0
+  shouldTriggerGameOver: 0
 --- !u!4 &1786662426
 Transform:
   m_ObjectHideFlags: 0
@@ -3500,6 +3506,11 @@ PrefabInstance:
 --- !u!224 &9063246683614942246 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6525702217433349455, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+  m_PrefabInstance: {fileID: 9063246683614942245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9063246683614942247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1295277914204612809, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
   m_PrefabInstance: {fileID: 9063246683614942245}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

@@ -137,6 +137,15 @@ void Update()
             clickAndDrag.endPos = worldPosition;
         }
     }
+    
+    if (ScoreManager.Instance != null && ScoreManager.Instance.shouldTriggerGameOver && !isMoving())
+    {
+        if (LevelManager.main != null)
+        {
+        LevelManager.main.GameOver();
+        ScoreManager.Instance.shouldTriggerGameOver = false; // Reset the flag so it doesn't trigger again
+        }
+    }
 }
 
     public Vector3 inBoundsVector()

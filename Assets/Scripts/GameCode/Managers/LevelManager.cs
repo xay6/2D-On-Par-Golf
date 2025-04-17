@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager main;
 
     [SerializeField] private GameObject levelCompleteUI;
+    [SerializeField] private GameObject GameOverUI;
     [HideInInspector] public bool levelCompleted;
 
      void Awake()
@@ -23,5 +25,9 @@ public class LevelManager : MonoBehaviour
 
     levelCompleteUI.SetActive(true);
 }
+
+    public void GameOver(){
+        GameOverUI.SetActive(true);
+    }
 
 }
