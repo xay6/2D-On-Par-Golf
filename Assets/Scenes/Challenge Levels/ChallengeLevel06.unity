@@ -2245,16 +2245,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrokeUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+      propertyPath: m_TagString
+      value: ChallengeScoreText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 770866276}
   m_SourcePrefab: {fileID: 100100000, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
 --- !u!224 &770866274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3146497348249336249, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
   m_PrefabInstance: {fileID: 770866273}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &770866275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+  m_PrefabInstance: {fileID: 770866273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &770866276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770866275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976b5b9f1070b040baf71693593b1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPostUI: 0
 --- !u!4 &1048800918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4732733952249331575, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
@@ -2659,6 +2684,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 514592951032982645, guid: b4c14f3ab8985bf4eac94dd297388a39, type: 3}
   m_PrefabInstance: {fileID: 1213816989}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1400318905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1400318907}
+  - component: {fileID: 1400318906}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1400318906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400318905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf756f7aa08953340a21df2c8e1573b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strokes: 0
+  overallScore: 0
+--- !u!4 &1400318907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400318905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478670034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3335,3 +3406,4 @@ SceneRoots:
   - {fileID: 1123852996}
   - {fileID: 1492026730}
   - {fileID: 1597250990}
+  - {fileID: 1400318907}

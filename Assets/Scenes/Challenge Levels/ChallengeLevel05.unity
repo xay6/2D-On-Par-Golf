@@ -2471,6 +2471,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6525702217433349455, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
   m_PrefabInstance: {fileID: 1677361285}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1728642290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728642292}
+  - component: {fileID: 1728642291}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1728642291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728642290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf756f7aa08953340a21df2c8e1573b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strokes: 0
+  overallScore: 0
+--- !u!4 &1728642292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728642290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749412294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,16 +2777,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrokeUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+      propertyPath: m_TagString
+      value: ChallengeScoreText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983736276}
   m_SourcePrefab: {fileID: 100100000, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
 --- !u!224 &1983736274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3146497348249336249, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
   m_PrefabInstance: {fileID: 1983736273}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1983736275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+  m_PrefabInstance: {fileID: 1983736273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1983736276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983736275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976b5b9f1070b040baf71693593b1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPostUI: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2753,3 +2824,4 @@ SceneRoots:
   - {fileID: 1123852996}
   - {fileID: 1323027124}
   - {fileID: 721249448}
+  - {fileID: 1728642292}
