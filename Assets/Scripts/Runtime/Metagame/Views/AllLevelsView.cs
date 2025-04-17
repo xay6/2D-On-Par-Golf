@@ -31,15 +31,14 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_NextButton = m_Root.Q<Button>("nextButton");
             m_PrevButton = m_Root.Q<Button>("prevButton");
 
-            m_BackButton.clicked += () => Broadcast(new ExitAllLevelsViewEvent());
+            m_BackButton.clicked += () => Broadcast(new ExitAllLevelsEvent());
             m_NextButton.clicked += ShowNextPage;
             m_PrevButton.clicked += ShowPreviousPage;
         }
 
-        public void Initialize(List<LevelData> allLevels, int unlockedUpTo)
+        public void Initialize(List<LevelData> allLevels)
         {
             m_AllLevels = allLevels;
-            m_UnlockedUpTo = unlockedUpTo;
             m_CurrentPage = 0;
             RenderPage();
         }
@@ -55,13 +54,13 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 var level = m_AllLevels[i];
                 var button = new Button();
-                button.text = $"Level {level.id}";
+                button.text = $"Level {level.courseId}";
 
-                if (level.id <= m_UnlockedUpTo)
+                if (level.isUnlocked)
                 {
                     button.SetEnabled(true);
-                    int capturedId = i; // avoid closure issue
-                    button.clicked += () => LoadLevel(m_AllLevels[capturedId].sceneName);
+                    int capturedId = i; // fix closure issue
+                    button.clicked += () => LoadLevel(m_AllLevels[capturedId].courseId);
                 }
                 else
                 {
@@ -75,6 +74,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_PrevButton.SetEnabled(m_CurrentPage > 0);
             m_NextButton.SetEnabled((m_CurrentPage + 1) * m_LevelsPerPage < m_AllLevels.Count);
         }
+
 
         void ShowNextPage() { m_CurrentPage++; RenderPage(); }
         void ShowPreviousPage() { m_CurrentPage--; RenderPage(); }
