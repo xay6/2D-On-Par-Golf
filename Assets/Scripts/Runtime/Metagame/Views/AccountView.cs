@@ -51,7 +51,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         }
 
         void OnNewGameClicked(ClickEvent evt) => Broadcast(new StartGameEvent());
-        void OnAllLevelsClicked(ClickEvent evt) => Broadcast(new EnterAllLevelsViewEvent());
+        void OnAllLevelsClicked(ClickEvent evt) => Broadcast(new EnterAllLevelsEvent());
         void OnSettingsClicked(ClickEvent evt) => Broadcast (new EnterAccountSettingsEvent());
         void OnRewardsClicked(ClickEvent evt) => Debug.Log("Rewards clicked"); // replace with actual event
         void OnChallengesClicked(ClickEvent evt) => SceneManager.LoadScene("ChallengeLevel01"); // replace with actual event
