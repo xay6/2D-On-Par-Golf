@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     if (ScoreManager.Instance != null)
     {
         ScoreManager.Instance.AddToOverallScore(ScoreManager.Instance.strokes);
+        ScoreManager.Instance.shouldTriggerGameOver = false;
     }
 
     levelCompleteUI.SetActive(true);
