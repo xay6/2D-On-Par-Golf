@@ -62,6 +62,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Levels/Level18.unity
     guid: b2769767d27ff4be1985e35619c3d72f
+  - enabled: 1
+    path: Assets/Scenes/Challenge Levels/ChallengeLevel01.unity
+    guid: c012d980704dd974d8f23683c22fc300
+  - enabled: 1
+    path: Assets/Scenes/Challenge Levels/ChallengeLevel02.unity
+    guid: 5a5c9943fdb891549917ec37c43f337e
+  - enabled: 1
+    path: Assets/Scenes/Challenge Levels/ChallengeLevel03.unity
+    guid: 607b5942bc02e4c4ab1dd59f58c1b18d
+  - enabled: 1
+    path: Assets/Scenes/Challenge Levels/ChallengeLevel04.unity
+    guid: 6a346dd0151c21e4687a035989343bc3
+  - enabled: 1
+    path: Assets/Scenes/Challenge Levels/ChallengeLevel05.unity
+    guid: 4841d50d90fc61045bd375326a26a104
+  - enabled: 1
+    path: Assets/Scenes/Challenge Levels/ChallengeLevel06.unity
+    guid: 90f6ed070bcb461428572addced3712e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 59f3e3ca93c9f6041bfe9a85a85d4ae2, type: 3}
   m_UseUCBPForAssetBundles: 0
