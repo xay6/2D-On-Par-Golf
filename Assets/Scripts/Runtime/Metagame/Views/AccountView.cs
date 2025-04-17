@@ -53,7 +53,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnAllLevelsClicked(ClickEvent evt) => Broadcast(new EnterLeaderboardEvent()); // swap if needed
         void OnSettingsClicked(ClickEvent evt) => Broadcast (new EnterAccountSettingsEvent());
         void OnRewardsClicked(ClickEvent evt) => Debug.Log("Rewards clicked"); // replace with actual event
-        void OnChallengesClicked(ClickEvent evt) => Debug.Log("Rewards clicked");
+        void OnChallengesClicked(ClickEvent evt) => Debug.Log("Challenges clicked"); // replace with actual event
         void OnMainMenuClicked(ClickEvent evt) => Broadcast(new ExitAccountEvent());
     }
 }
