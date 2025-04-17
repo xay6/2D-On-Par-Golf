@@ -2,12 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using OnPar.RouterHandlers;
+using OnPar.Routers;
 
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance; 
     private int coins = 0;
     public bool hasReward = false; 
+    UserItems serverCoins;
 
     public TextMeshProUGUI coinTotalText;
     public TextMeshProUGUI postCoinTotalText; 
@@ -26,7 +29,9 @@ public class CoinManager : MonoBehaviour
             }
             else
             {
+                SaveCoins();
                 LoadCoins();
+                Debug.Log(serverCoins.coinAmount);
             }
         }
         else
@@ -78,15 +83,20 @@ public class CoinManager : MonoBehaviour
         UpdateCoinUI();
     }
 
-    private void SaveCoins()
+    private async void SaveCoins()
     {
+        coins += serverCoins.coinAmount;
         PlayerPrefs.SetInt("Coins", coins);
         PlayerPrefs.Save();
+        Debug.Log(coins);
+        await Handlers.UpdateCoinsHandler(LoginRegister.getUsername(), coins);
     }
 
-    private void LoadCoins()
+    private async void LoadCoins()
     {
-        coins = PlayerPrefs.GetInt("Coins", 0);
+        serverCoins = await Handlers.GetCoinsHandler(LoginRegister.getUsername());
+        coins = PlayerPrefs.GetInt("Coins", serverCoins.coinAmount);
+        Debug.Log(serverCoins);
     }
 
     private void UpdateCoinUI()
@@ -118,7 +128,7 @@ public class CoinManager : MonoBehaviour
 
     public bool CheckReward(){
         if (hasReward){
-            Debug.Log("Hole-in-One already rewarded.");
+            // Debug.Log("Hole-in-One already rewarded.");
             return false;
         }else{
             hasReward = true;

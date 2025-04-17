@@ -19,7 +19,7 @@ public ChallengeUIManger uiManager;
 
         if (s == 1) {
             uiManager.ShowSuccessPanel();
-            Debug.Log("Success Panel Shown");
+            // Debug.Log("Success Panel Shown");
 
             if (CoinManager.Instance != null) {
                 CoinManager.Instance.AddCoins(100);

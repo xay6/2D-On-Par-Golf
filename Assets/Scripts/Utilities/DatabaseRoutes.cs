@@ -200,8 +200,8 @@ namespace OnPar.Routers
         {
             string url = "https://on-par-server.onrender.com/api/items/update-coins";
             // string url = "localhost:3000/api/items/update-coins"; // Local development string.
-            string userData = $"{{\"username\":\"{username}\",\"coinAmout\":\"{coinAmount}\"}}";
-
+            string userData = $"{{\"username\":\"{username}\",\"coinAmount\":{coinAmount}}}";
+            Debug.Log("userData " + userData);
             return await RequestHelper.SendRequest<UserItems>(url, "PUT", userData);
         }
 
