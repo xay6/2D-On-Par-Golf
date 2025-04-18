@@ -143,7 +143,7 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
         You are not authorized to delete this user.
         User not found.
 */
-export const deleteUser = [authenticateJwt, 
+export const deleteUser = [authenticateJwt, checkTokenBlacklist, checkTokenBlacklist,
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });
@@ -202,7 +202,7 @@ const addToDenylist = async (token: string, expireTime: number) => {
     );
     await redisClient?.setEx(`bl_${token}`, expiresIn, '1');
 };
-export const logout = [authenticateJwt,
+export const logout = [authenticateJwt, checkTokenBlacklist,
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized
         if (err.name === 'UnauthorizedError') {
             res.status(401).json({ message: 'Invalid token', success: false });
@@ -228,3 +228,18 @@ async (req: AuthenticatedRequest, res: Response): Promise<void> => {
         res.status(500).json({ message: `Internal server error: ${err.message}`, success: false });
     }
 }]
+
+export const validate = [authenticateJwt, checkTokenBlacklist, checkTokenBlacklist,checkTokenBlacklist,
+    (err: any, req: AuthenticatedRequest, res: Response) => {
+        try {
+            if (err.name === 'UnauthorizedError') {
+                console.log('User not logged in.');
+                res.status(401).json({ message: 'User not logged in.', success: false });
+            }
+            res.status(200).json({ message: "Valid access token.", success: true });
+        } catch (err: any) {
+            console.log(`Internal server error: ${err.message}`);
+            res.status(500).json({ message: `Internal server error: ${err.message}`, success: false });
+        }
+    }
+]
