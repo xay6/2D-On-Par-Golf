@@ -1956,6 +1956,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
+      propertyPath: GameOverUI
+      value: 
+      objectReference: {fileID: 9063246683614942247}
+    - target: {fileID: 6167118039809483760, guid: b9831bef6b59cca40a4133bbcde15588, type: 3}
       propertyPath: levelCompleteUI
       value: 
       objectReference: {fileID: 820431100}
@@ -1988,6 +1992,7 @@ GameObject:
   - component: {fileID: 584671268}
   - component: {fileID: 584671271}
   - component: {fileID: 584671272}
+  - component: {fileID: 584671273}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2128,6 +2133,23 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   damping: 0.5
   target: {fileID: 1048800918}
+--- !u!114 &584671273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584671267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a287890497511094ebfb08ca48710d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 5
+  minFov: 20
+  maxFov: 60
+  minOrthographicSize: 2
+  maxOrthographicSize: 10
 --- !u!1 &759412865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,6 +2465,25 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2532879374562258833, guid: b4c14f3ab8985bf4eac94dd297388a39, type: 3}
   m_PrefabInstance: {fileID: 5552259818617548653}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1017807796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+  m_PrefabInstance: {fileID: 341132943597818388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017807800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017807796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976b5b9f1070b040baf71693593b1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPostUI: 0
+  isChallengeUI: 1
 --- !u!4 &1048800918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4732733952249331575, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
@@ -3005,6 +3046,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
+--- !u!1 &1786662424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786662426}
+  - component: {fileID: 1786662425}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786662425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786662424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf756f7aa08953340a21df2c8e1573b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strokes: 0
+  overallScore: 0
+  shouldTriggerGameOver: 0
+--- !u!4 &1786662426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786662424}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &341132943597818388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3097,10 +3185,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrokeUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+      propertyPath: m_TagString
+      value: ChallengeScoreText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3462811725802396957, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1017807800}
   m_SourcePrefab: {fileID: 100100000, guid: fe9b9768a7ba397478added6cc17f88d, type: 3}
 --- !u!1001 &4734476506812311285
 PrefabInstance:
@@ -3110,6 +3205,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1121951485}
     m_Modifications:
+    - target: {fileID: 677971849961985313, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
+      propertyPath: m_text
+      value: Welcome To The Challenge Levels!
+      objectReference: {fileID: 0}
     - target: {fileID: 838991231570523169, guid: 2e2dcc217202c6d408b972553cfd1282, type: 3}
       propertyPath: m_text
       value: "\\u2022 Test your precision and skill in the Hole-in-One Challenge!\n\n\\u2022
@@ -3405,6 +3504,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 507255426}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StateManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317632279613684637, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ChallengeLevel01
+      objectReference: {fileID: 0}
     - target: {fileID: 3589613689481371289, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
       propertyPath: m_Name
       value: 'GameOverUI '
@@ -3431,6 +3550,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6525702217433349455, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
   m_PrefabInstance: {fileID: 9063246683614942245}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9063246683614942247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1295277914204612809, guid: bb1fa194502e76043ba4f6de009cdc60, type: 3}
+  m_PrefabInstance: {fileID: 9063246683614942245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3443,3 +3567,4 @@ SceneRoots:
   - {fileID: 1123852996}
   - {fileID: 1121951485}
   - {fileID: 507255425}
+  - {fileID: 1786662426}

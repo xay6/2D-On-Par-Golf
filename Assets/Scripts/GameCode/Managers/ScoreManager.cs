@@ -9,11 +9,14 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     public int strokes = 0;
+    private int maxStrokes = 3;
     public int overallScore = 0;
+    public bool shouldTriggerGameOver = false;
     public static Message UpdateScoreResponse;
 
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI scoreTextPostUI;
+    private TextMeshProUGUI challengeStrokes;
 
     private void Awake()
     {
@@ -55,11 +58,20 @@ public class ScoreManager : MonoBehaviour
         scoreTextPostUI = text;
         UpdateScoreText();
     }
+    public void RegisterChallengeScoreTextPostUI(TextMeshProUGUI text)
+    {
+        challengeStrokes = text;
+        UpdateScoreText();
+    }
 
     public void AddStroke()
     {
         strokes++;
         UpdateScoreText();
+
+        if (strokes >= maxStrokes){
+            shouldTriggerGameOver = true;
+        }
     }
 
     public void AddToOverallScore(int score)
@@ -81,6 +93,7 @@ public class ScoreManager : MonoBehaviour
         //scoreText.GetScoresHandler(string courseId, string username);
 
         string scoreString = $"Strokes: {strokes} \nTotal Score: {overallScore}";
+        string challengeScoreString = strokes + "/" + maxStrokes;
 
         if (scoreText != null)
         {
@@ -90,6 +103,11 @@ public class ScoreManager : MonoBehaviour
         if (scoreTextPostUI != null)
         {
             scoreTextPostUI.text = scoreString;
+        }
+
+        if (challengeStrokes != null)
+        {
+            challengeStrokes.text = challengeScoreString;
         }
     }
 
