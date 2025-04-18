@@ -3,8 +3,11 @@ import User, { IUser } from "../models/User";
 import { AuthenticatedRequest } from "../types";
 import { authenticateJwt } from "../../middleware/authenticateJwt";
 import CourseScores from "../models/CourseScores";
+import getRedisClient from "../redis";
+import { checkTokenBlacklist } from "../../middleware/checkTokenBlacklist";
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require('jsonwebtoken');
+import * as crypto from 'crypto';
 
 const hashPw = async (password: string) => {
     return await bcrypt.hash(password, 12);
@@ -108,7 +111,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        const token = jsonwebtoken.sign({ username, id: user._id }, process.env.JWT_SECRET);
+        const token = jsonwebtoken.sign({ username, id: user._id, exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 10) }, process.env.JWT_SECRET);
         res.status(201).json({ message: "Logging in.", token, success: true });
     } catch (err: any) {
         console.error("Error in login", err);
@@ -182,5 +185,46 @@ async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     } catch (err: any) {
         console.log("Error in deleteUser: ", err);
         res.status(500).json({ message: `An error occurred when deleting the user.${err.message}`, success: false });
+    }
+}]
+
+/*
+    Stores tokens in Redis which serves as a "blacklist" for users tokens to invalidate them after they log out of their accounts.
+
+    POSSIBLE ROOM FOR IMPROVEMENT:
+        Implement refresh and access tokens.
+*/
+const addToDenylist = async (token: string, expireTime: number) => {
+    const redisClient = await getRedisClient();
+    const expiresIn = Math.min(
+        Math.floor(expireTime - Date.now() / 1000), // Seconds till JWT expiration
+        10 * 24 * 60 * 60 // 10 days in seconds(Set expiration time for all JWTs)
+    );
+    await redisClient?.setEx(`bl_${token}`, expiresIn, '1');
+};
+export const logout = [authenticateJwt,
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized
+        if (err.name === 'UnauthorizedError') {
+            res.status(401).json({ message: 'Invalid token', success: false });
+        } else {
+            next();
+        }
+    },
+async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+        const authHeader = req.headers['authorization'];
+
+        if(!authHeader || !authHeader.startsWith("Bearer ")) {
+            console.log('Missing or invalid authorization header');
+            res.status(401).json({ message: 'Missing or invalid authorization header' });
+        }
+
+        const hashedToken = crypto.createHash('sha256').update(authHeader?.split(' ')[1] as string).digest('hex'); // Hashed to reduce size
+        const decodedToken = jsonwebtoken.decode(authHeader?.split(' ')[1] as string);
+        await addToDenylist(hashedToken, decodedToken.exp);
+        res.status(200).json({ message: "Successfully logged out.", success: true });
+    } catch (err: any) {
+        console.log(`Internal server error: ${err.message}`);
+        res.status(500).json({ message: `Internal server error: ${err.message}`, success: false });
     }
 }]
