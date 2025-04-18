@@ -4,6 +4,7 @@ import User from "../models/User";
 import mongoose, { ObjectId, Types } from "mongoose";
 import { AuthenticatedRequest } from "../types";
 import { authenticateJwt } from "../../middleware/authenticateJwt";
+import { checkTokenBlacklist } from "../../middleware/checkTokenBlacklist";
 
 export const getScore = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -36,7 +37,7 @@ export const getScore = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const addUpdateScores = [authenticateJwt, 
+export const addUpdateScores = [authenticateJwt, checkTokenBlacklist, 
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });
@@ -154,7 +155,7 @@ export const addUpdateScores = [authenticateJwt,
     }
 }]
 
-export const deleteScore = [authenticateJwt, 
+export const deleteScore = [authenticateJwt, checkTokenBlacklist, 
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });

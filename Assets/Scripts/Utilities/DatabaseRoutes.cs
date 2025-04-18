@@ -105,7 +105,7 @@ namespace OnPar.Routers
 
     public static class LoginRegister
     {
-        private static string token = "";
+        // private static string token = "";
         private static string username = "";
         private static bool hasToken = false;
         // Post request
@@ -119,7 +119,8 @@ namespace OnPar.Routers
 
             LoginRegister.username = username;
             hasToken = true;
-            token = res.token;
+            // token = res.token;
+            PlayerPrefs.SetString("AccessToken", res.token);
             return res;
         }
 
@@ -133,9 +134,21 @@ namespace OnPar.Routers
             return await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
         }
 
+        // Post request
+        public static async Task<Message> LogoutRoute() {
+            string url = "https://on-par.onrender.com/api/users/logout";
+
+            LoginRegister.username = "";
+            hasToken = false;
+            // token = "";
+            PlayerPrefs.DeleteKey("AccessToken");
+
+            return await RequestHelper.SendRequest<Message>(url, "POST", "");
+        }
+
         public static string getToken()
         {
-            return token;
+            return PlayerPrefs.GetString("AccessKey");
         }
 
         public static bool isLoggedIn()
@@ -263,6 +276,11 @@ namespace OnPar.RouterHandlers
         public static Task<LoginRegisterResponse> RegisterHandler(string username, string password)
         {
             return LoginRegister.RegisterRoute(username, password);
+        }
+
+        public static Task<Message> LogoutHandler() 
+        {
+            return LoginRegister.LogoutRoute();
         }
 
         /*

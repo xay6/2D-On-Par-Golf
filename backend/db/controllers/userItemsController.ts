@@ -3,8 +3,9 @@ import User from "../models/User";
 import { AuthenticatedRequest } from "../types";
 import UserItems from "../models/UserItems";
 import { authenticateJwt } from "../../middleware/authenticateJwt";
+import { checkTokenBlacklist } from "../../middleware/checkTokenBlacklist";
 
-export const updateCoins = [authenticateJwt, 
+export const updateCoins = [authenticateJwt, checkTokenBlacklist, 
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });
@@ -60,7 +61,7 @@ export const updateCoins = [authenticateJwt,
     }
 }]
 
-export const updateRewards = [authenticateJwt, 
+export const updateRewards = [authenticateJwt, checkTokenBlacklist, 
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });
@@ -117,7 +118,7 @@ export const updateRewards = [authenticateJwt,
     }
 }]
 
-export const getCoins = [authenticateJwt, 
+export const getCoins = [authenticateJwt, checkTokenBlacklist, 
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });
@@ -166,7 +167,7 @@ export const getCoins = [authenticateJwt,
     }
 }]
 
-export const getRewards = [authenticateJwt, 
+export const getRewards = [authenticateJwt, checkTokenBlacklist, 
     (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });
