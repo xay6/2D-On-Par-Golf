@@ -38,8 +38,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         const userExists = await User.findOne({ username })
             .catch((err: any) => {
                 res.status(500);
-                res.json({ message: "Internal server error.", success: false });
                 console.error(err.message);
+                res.json({ message: "Internal server error.", success: false });
             });
 
         if (userExists) {
@@ -63,9 +63,11 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         })
         await newUser.save();
 
+        console.log("User account created.");
         res.status(201).json({ message: "User account created.", success: true });
     } catch (err: any) {
         console.error("Error in register", err);
+        res.status(500).json(`Error in register: ${err}`);
     }
 }
 
@@ -110,6 +112,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         res.status(201).json({ message: "Logging in.", token, success: true });
     } catch (err: any) {
         console.error("Error in login", err);
+        res.status(500).json({ message: `Internal server error: ${err.message}`, success: false });
     }
 }
 
@@ -122,11 +125,12 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
             res.status(200).json({ message: "User found.", user, success: true });
             console.log("User found: ", user);
         } else {
+            console.log("User not found: ");
             res.status(404).json({ message: "User not found", success: false });
         }
     } catch (err: any) {
-        res.status(400).json({ message: "An error occurred when fetching the user.", error: err.message, success: false });
         console.log("getUser", err);
+        res.status(400).json({ message: "An error occurred when fetching the user.", error: err.message, success: false });
     }
 }
 
@@ -137,7 +141,7 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
         User not found.
 */
 export const deleteUser = [authenticateJwt, 
-    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized to change scores
+    (err: any, req: AuthenticatedRequest, res: Response, next: NextFunction) => { // Handle when a user is not authorized
         if (err.name === 'UnauthorizedError') {
           res.status(401).json({ message: 'Invalid token', success: false });
         } else {
@@ -173,10 +177,10 @@ async (req: AuthenticatedRequest, res: Response): Promise<void> => {
         
         await user.deleteOne().exec();
 
-        res.status(200).json({ message: "User deleted.", user, success: true });
         console.log("User found: ", user);
+        res.status(200).json({ message: "User deleted.", user, success: true });
     } catch (err: any) {
-        res.status(500).json({ message: "An error occurred when deleting the user.", error: err.message, success: false });
         console.log("Error in deleteUser: ", err);
+        res.status(500).json({ message: `An error occurred when deleting the user.${err.message}`, success: false });
     }
 }]

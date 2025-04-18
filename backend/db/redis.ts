@@ -25,10 +25,14 @@ const connectRedis = async () => {
 }
 
 export const getRedisClient = async () => {
-    if (!redisClient) {
-        await connectRedis();
+    try {
+        if (!redisClient) {
+            await connectRedis();
+        }
+        return redisClient;
+    } catch {
+        throw new Error("Error connecting to Redis.")
     }
-    return redisClient;
 };
 
 export default getRedisClient;
