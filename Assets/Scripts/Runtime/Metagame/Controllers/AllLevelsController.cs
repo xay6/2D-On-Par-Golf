@@ -20,9 +20,10 @@ internal class AllLevelsController : Controller<MetagameApplication>
         string username = LoginRegister.getUsername();
         var response = await Handlers.GetAllUserScoresHandler(username);
 
-        if (response != null && response.success)
+        if (response != null && response.success && response.scores != null)
         {
             var levels = new List<LevelData>();
+
             foreach (var scoreEntry in response.scores)
             {
                 levels.Add(new LevelData
@@ -37,9 +38,12 @@ internal class AllLevelsController : Controller<MetagameApplication>
         }
         else
         {
-            Debug.LogError("Failed to load level data from server.");
+            Debug.LogError("Failed to load level data from server or scores were null.");
+            View.Initialize(new List<LevelData>()); // fallback: prevent null arg crash
+            View.Show();
         }
     }
+
 
     void OnExit(ExitAllLevelsEvent evt)
     {

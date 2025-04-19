@@ -14,24 +14,30 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         UIDocument m_UIDocument;
 
         List<LevelData> m_AllLevels;
-        int m_UnlockedUpTo;
         int m_LevelsPerPage = 6;
         int m_CurrentPage = 0;
 
         void Awake()
         {
             m_UIDocument = GetComponent<UIDocument>();
-            if (m_UIDocument == null)
+            if (m_UIDocument != null)
             {
-                Debug.LogError("UIDocument is missing.");
-                return;
+                m_Root = m_UIDocument.rootVisualElement;
+            }
+        }
+
+        public void Initialize(List<LevelData> allLevels)
+        {
+            m_UIDocument = GetComponent<UIDocument>();
+            if (m_UIDocument != null)
+            {
+                m_Root = m_UIDocument.rootVisualElement;
             }
 
-            m_Root = m_UIDocument.rootVisualElement;
-            if (m_Root == null)
+            if (allLevels == null)
             {
-                Debug.LogError("Root visual element is null.");
-                return;
+                Debug.LogError("Initialize failed: allLevels is null!");
+                allLevels = new List<LevelData>(); // fallback
             }
 
             m_LevelList = m_Root.Q<ScrollView>("levelList");
@@ -39,19 +45,15 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_NextButton = m_Root.Q<Button>("nextButton");
             m_PrevButton = m_Root.Q<Button>("prevButton");
 
-            if (m_LevelList == null) Debug.LogError("m_LevelList (levelList) is null.");
-            if (m_BackButton == null) Debug.LogError("m_BackButton is null.");
-            if (m_NextButton == null) Debug.LogError("m_NextButton is null.");
-            if (m_PrevButton == null) Debug.LogError("m_PrevButton is null.");
+            if (m_LevelList == null) Debug.LogError("m_LevelList is null in Initialize!");
+            if (m_BackButton == null) Debug.LogError("m_BackButton is null in Initialize!");
+            if (m_NextButton == null) Debug.LogError("m_NextButton is null in Initialize!");
+            if (m_PrevButton == null) Debug.LogError("m_PrevButton is null in Initialize!");
 
             m_BackButton.clicked += () => Broadcast(new ExitAllLevelsEvent());
             m_NextButton.clicked += ShowNextPage;
             m_PrevButton.clicked += ShowPreviousPage;
-        }
 
-
-        public void Initialize(List<LevelData> allLevels)
-        {
             m_AllLevels = allLevels;
             m_CurrentPage = 0;
             RenderPage();
@@ -59,7 +61,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void RenderPage()
         {
-            //m_LevelList.Clear();
+            m_LevelList.Clear();
 
             int start = m_CurrentPage * m_LevelsPerPage;
             int end = Mathf.Min(start + m_LevelsPerPage, m_AllLevels.Count);
@@ -73,7 +75,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
                 if (level.isUnlocked)
                 {
                     button.SetEnabled(true);
-                    int capturedId = i; // fix closure issue
+                    int capturedId = i; // Fix closure issue
                     button.clicked += () => LoadLevel(m_AllLevels[capturedId].courseId);
                 }
                 else
@@ -89,9 +91,17 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_NextButton.SetEnabled((m_CurrentPage + 1) * m_LevelsPerPage < m_AllLevels.Count);
         }
 
+        void ShowNextPage()
+        {
+            m_CurrentPage++;
+            RenderPage();
+        }
 
-        void ShowNextPage() { m_CurrentPage++; RenderPage(); }
-        void ShowPreviousPage() { m_CurrentPage--; RenderPage(); }
+        void ShowPreviousPage()
+        {
+            m_CurrentPage--;
+            RenderPage();
+        }
 
         void LoadLevel(string sceneName)
         {
