@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour
     {
         int strokesThisLevel = ScoreManager.Instance.strokes;
         ScoreManager.Instance.AddToOverallScore(ScoreManager.Instance.strokes);
+        ScoreManager.Instance.shouldTriggerGameOver = false;
         if (LoginRegister.isLoggedIn()){
             
             Debug.Log(" Logged in, sending score...");
