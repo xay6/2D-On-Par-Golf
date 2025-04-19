@@ -4,8 +4,8 @@ public class BallSkinManager : MonoBehaviour
 {
     public static BallSkinManager Instance;
 
-    public Material[] ballSkins;
-    public int unlockedSkinCount = 1; // default unlocked
+    public Material[] ballSkins; // Drag BallSkin_Red and others here
+    public bool[] unlockedSkins; // Mark unlocked status per skin
     public int currentSkinIndex = 0;
 
     private void Awake()
@@ -14,6 +14,8 @@ public class BallSkinManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            LoadSkinSelection();
         }
         else
         {
@@ -23,24 +25,11 @@ public class BallSkinManager : MonoBehaviour
 
     public void ApplySkin(GameObject ball)
     {
-        Renderer rend = ball.GetComponent<Renderer>();
-        if (rend != null && currentSkinIndex < ballSkins.Length)
+        Renderer renderer = ball.GetComponent<Renderer>();
+        if (renderer != null && currentSkinIndex < ballSkins.Length)
         {
-            rend.material = ballSkins[currentSkinIndex];
+            renderer.material = ballSkins[currentSkinIndex];
         }
-    }
-
-    public void UnlockSkin(int index)
-    {
-        if (index > unlockedSkinCount)
-        {
-            unlockedSkinCount = index;
-        }
-    }
-
-    public bool IsSkinUnlocked(int index)
-    {
-        return index < unlockedSkinCount;
     }
 
     public void SetSkin(int index)
@@ -48,6 +37,31 @@ public class BallSkinManager : MonoBehaviour
         if (IsSkinUnlocked(index))
         {
             currentSkinIndex = index;
+            PlayerPrefs.SetInt("SelectedSkin", index);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void UnlockSkin(int index)
+    {
+        if (index < unlockedSkins.Length)
+        {
+            unlockedSkins[index] = true;
+            PlayerPrefs.SetInt("SkinUnlocked_" + index, 1);
+        }
+    }
+
+    public bool IsSkinUnlocked(int index)
+    {
+        return index >= 0 && index < unlockedSkins.Length && unlockedSkins[index];
+    }
+
+    private void LoadSkinSelection()
+    {
+        currentSkinIndex = PlayerPrefs.GetInt("SelectedSkin", 0);
+        for (int i = 0; i < unlockedSkins.Length; i++)
+        {
+            unlockedSkins[i] = PlayerPrefs.GetInt("SkinUnlocked_" + i, i == 0 ? 1 : 0) == 1;
         }
     }
 }
