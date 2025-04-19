@@ -20,21 +20,35 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void Awake()
         {
-             m_UIDocument = GetComponent<UIDocument>();
-            if (m_UIDocument != null)
+            m_UIDocument = GetComponent<UIDocument>();
+            if (m_UIDocument == null)
             {
-                m_Root = m_UIDocument.rootVisualElement;
+                Debug.LogError("UIDocument is missing.");
+                return;
+            }
+
+            m_Root = m_UIDocument.rootVisualElement;
+            if (m_Root == null)
+            {
+                Debug.LogError("Root visual element is null.");
+                return;
             }
 
             m_LevelList = m_Root.Q<ScrollView>("levelList");
-            m_BackButton = m_Root.Q<Button>("backButton");
+            m_BackButton = m_Root.Q<Button>("back-button");
             m_NextButton = m_Root.Q<Button>("nextButton");
             m_PrevButton = m_Root.Q<Button>("prevButton");
+
+            if (m_LevelList == null) Debug.LogError("m_LevelList (levelList) is null.");
+            if (m_BackButton == null) Debug.LogError("m_BackButton is null.");
+            if (m_NextButton == null) Debug.LogError("m_NextButton is null.");
+            if (m_PrevButton == null) Debug.LogError("m_PrevButton is null.");
 
             m_BackButton.clicked += () => Broadcast(new ExitAllLevelsEvent());
             m_NextButton.clicked += ShowNextPage;
             m_PrevButton.clicked += ShowPreviousPage;
         }
+
 
         public void Initialize(List<LevelData> allLevels)
         {
@@ -45,7 +59,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void RenderPage()
         {
-            m_LevelList.Clear();
+            //m_LevelList.Clear();
 
             int start = m_CurrentPage * m_LevelsPerPage;
             int end = Mathf.Min(start + m_LevelsPerPage, m_AllLevels.Count);
