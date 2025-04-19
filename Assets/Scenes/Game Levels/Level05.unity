@@ -2512,7 +2512,7 @@ PrefabInstance:
     - target: {fileID: 4079643169087265246, guid: 8bf43ca0de2515144b810f0935c5e498, type: 3}
       propertyPath: windDisplayText
       value: 
-      objectReference: {fileID: 1599297579}
+      objectReference: {fileID: 799801222}
     - target: {fileID: 5249234570692524631, guid: 8bf43ca0de2515144b810f0935c5e498, type: 3}
       propertyPath: m_Name
       value: WindManager
@@ -2976,7 +2976,8 @@ PrefabInstance:
       value: CombinedCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7997343063242717556, guid: 683f7edb807a547a6917819920759de3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1525572983047661343, guid: 683f7edb807a547a6917819920759de3, type: 3}
@@ -3002,6 +3003,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPostUI: 0
   isChallengeUI: 0
+--- !u!114 &799801222 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 248432839721697349, guid: 683f7edb807a547a6917819920759de3, type: 3}
+  m_PrefabInstance: {fileID: 799801219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &891877040 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5387086086556784499, guid: 683f7edb807a547a6917819920759de3, type: 3}
@@ -3508,17 +3520,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
---- !u!114 &1599297579 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4198602282401564449, guid: 683f7edb807a547a6917819920759de3, type: 3}
-  m_PrefabInstance: {fileID: 799801219}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1749412294
 GameObject:
   m_ObjectHideFlags: 0
