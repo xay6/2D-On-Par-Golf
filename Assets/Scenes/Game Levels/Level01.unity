@@ -1896,7 +1896,7 @@ Tilemap:
 --- !u!114 &445130421
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4172704942773984978, guid: bcfe03e73c0232a4497c3db919499c47, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -2735,7 +2735,7 @@ PrefabInstance:
     - target: {fileID: 4079643169087265246, guid: 8bf43ca0de2515144b810f0935c5e498, type: 3}
       propertyPath: windDisplayText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1875295199}
     - target: {fileID: 5249234570692524631, guid: 8bf43ca0de2515144b810f0935c5e498, type: 3}
       propertyPath: m_Name
       value: WindManager
@@ -2812,7 +2812,8 @@ PrefabInstance:
       value: WindText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7997343063242717556, guid: 683f7edb807a547a6917819920759de3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1525572983047661343, guid: 683f7edb807a547a6917819920759de3, type: 3}
@@ -3070,6 +3071,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1075502511}
+--- !u!114 &1875295199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 248432839721697349, guid: 683f7edb807a547a6917819920759de3, type: 3}
+  m_PrefabInstance: {fileID: 1533292719}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &122627250845889595
 PrefabInstance:
   m_ObjectHideFlags: 0
