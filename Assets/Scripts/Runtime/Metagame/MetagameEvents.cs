@@ -72,6 +72,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             try
             {
                 var response = await OnPar.RouterHandlers.Handlers.LoginHandler(username, password);
+                Login = response;
                 return response != null && response.success; // Return true if login is successful
             }
             catch (Exception ex)
@@ -98,6 +99,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
              try
             {
                 var response = await OnPar.RouterHandlers.Handlers.RegisterHandler(username, password);
+                Signup = response;
                 return response != null; // Return true if login is successful
             }
             catch (Exception ex)
@@ -114,4 +116,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
     internal class EnterAccountEvent : AppEvent { }
     internal class ExitAccountEvent : AppEvent { }
     internal class StartGameEvent : AppEvent { }
+    internal class EnterAccountSettingsEvent : AppEvent { }
+    internal class ExitAccountSettingsEvent : AppEvent { }
 }

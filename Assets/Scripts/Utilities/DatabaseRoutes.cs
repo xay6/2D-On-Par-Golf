@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System.Text;
 using System.Threading.Tasks;
 using OnPar.Routers;
+using System.Collections.Generic;
 
 namespace OnPar.Routers
 {
@@ -35,6 +36,31 @@ namespace OnPar.Routers
     {
         public string message;
         public Score userScore;
+        public bool success;
+    }
+
+    [System.Serializable]
+    public class TopUser
+    {
+        public string username;
+        public int score;
+        public bool success;
+    }
+
+    [System.Serializable]
+    public class TopUsersResponse
+    {
+        public string message;
+        public TopUser[] topUsers;
+        public bool success;
+    }
+
+    [System.Serializable]
+    public class UserItems
+    {
+        public string message;
+        public int coinAmount;
+        public string[] rewards;
         public bool success;
     }
 
@@ -79,18 +105,19 @@ namespace OnPar.Routers
 
     public static class LoginRegister
     {
-        private static string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJyYW5kb24iLCJpZCI6IjY3YzlhYjRlZDRkOGZjMjllY2MwYWM2NSIsImlhdCI6MTc0MzAyMzIxNn0.54TW9LRbQcItLDj7v9PEvy-pXCEU0h4cCm1B-BDMdIY";
-        private static string username = "brandon";
-        private static bool hasToken = true;
+        private static string token = "";
+        private static string username = "";
+        private static bool hasToken = false;
         // Post request
         public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
         {
-            string url = "https://on-par-server.onrender.com/api/users/login";
+            string url = "https://on-par.onrender.com/api/users/login";
             // string url = "localhost:3000/api/users/login"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
             LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
 
+            LoginRegister.username = username;
             hasToken = true;
             token = res.token;
             return res;
@@ -99,7 +126,7 @@ namespace OnPar.Routers
         // Post request
         public static async Task<LoginRegisterResponse> RegisterRoute(string username, string password)
         {
-            string url = "https://on-par-server.onrender.com/api/users/register";
+            string url = "https://on-par.onrender.com/api/users/register";
             // string url = "localhost:3000/api/users/register"; // Local development string.
             string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
@@ -126,7 +153,7 @@ namespace OnPar.Routers
         // Get request
         public static async Task<ScoresResponse> GetScore(string courseId, string username)
         {
-            string url = "https://on-par-server.onrender.com/api/scores/get-score";
+            string url = "https://on-par.onrender.com/api/scores/get-score";
             // string url = "localhost:3000/api/users/scores/get-score"; // Local development string.
             string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
 
@@ -136,15 +163,89 @@ namespace OnPar.Routers
         // Put request
         public static async Task<Message> AddOrUpdateScore(string courseId, string username, int score)
         {
-            string url = "https://on-par-server.onrender.com/api/scores/add-update";
+            string url = "https://on-par.onrender.com/api/scores/add-update";
             // string url = "localhost:3000/api/scores/add-update"; // Local development string.
             string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":{score}}}";
-            Debug.Log(userData);
 
             return await RequestHelper.SendRequest<Message>(url, "PUT", userData);
         }
+
+        public class AllUserScoresResponse
+        {
+            public bool success;
+            public string message;
+            public List<Score> scores;
+        }
+        public static async Task<AllUserScoresResponse> GetAllUserScores(string username)
+        {
+            string url = $"https://on-par.onrender.com/api/scores/user-all?username={username}";
+            return await RequestHelper.SendRequest<AllUserScoresResponse>(url, "GET", "");
+        }
+
     }
 
+    public static class Leaderboard
+    {
+        // Get request
+        public static async Task<TopUsersResponse> GetTopUsers(string courseId, int lowerLimit = 0, int upperLimit = 10)
+        {
+            string url = "https://on-par.onrender.com/api/leaderboard/top-users";
+            string urlParams = $"?lowerlimit={lowerLimit}&upperlimit={upperLimit}";
+            // string url = "localhost:3000/api/leaderboard/top-users?lowerlimit={lowerLimit}&upperlimit={upperLimit}"; // Local development string.
+            string userData = $"{{\"courseId\":\"{courseId}\"}}";
+
+            return await RequestHelper.SendRequest<TopUsersResponse>(url + urlParams, "GET", userData);
+        }
+
+        // Get request
+        public static async Task<TopUser> GetUserRank(string courseId, string username)
+        {
+            string url = "https://on-par.onrender.com/api/leaderboard/get-rank";
+            // string url = "localhost:3000/api/leaderboard/get-rank"; // Local development string.
+            string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<TopUser>(url, "GET", userData);
+        }
+    }
+
+    public static class UserItem
+    {
+        public static async Task<UserItems> UpdateCoins(string username, int coinAmount)
+        {
+            string url = "https://on-par.onrender.com/api/items/update-coins";
+            // string url = "localhost:3000/api/items/update-coins"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\",\"coinAmout\":\"{coinAmount}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "PUT", userData);
+        }
+
+        public static async Task<UserItems> UpdateRewards(string username, string reward)
+        {
+            string url = "https://on-par.onrender.com/api/items/update-rewards";
+            // string url = "localhost:3000/api/items/update-rewards"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\",\"reward\":\"{reward}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "PUT", userData);
+        }
+
+        public static async Task<UserItems> GetCoins(string username)
+        {
+            string url = "https://on-par.onrender.com/api/items/get-coins";
+            // string url = "localhost:3000/api/items/get-coins"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "GET", userData);
+        }
+
+        public static async Task<UserItems> GetRewards(string username)
+        {
+            string url = "https://on-par.onrender.com/api/items/get-rewards";
+            // string url = "localhost:3000/api/items/update-rewards"; // Local development string.
+            string userData = $"{{\"username\":\"{username}\"}}";
+
+            return await RequestHelper.SendRequest<UserItems>(url, "GET", userData);
+        }
+    }
 }
 
 namespace OnPar.RouterHandlers
@@ -156,7 +257,8 @@ namespace OnPar.RouterHandlers
         */
         public static Task<LoginRegisterResponse> LoginHandler(string username, string password)
         {
-            return LoginRegister.LoginRoute(username, password);        }
+            return LoginRegister.LoginRoute(username, password);
+        }
 
         public static Task<LoginRegisterResponse> RegisterHandler(string username, string password)
         {
@@ -175,6 +277,47 @@ namespace OnPar.RouterHandlers
         {
             return Scores.AddOrUpdateScore(courseId, username, score);
         }
+
+        public static Task<Scores.AllUserScoresResponse> GetAllUserScoresHandler(string username)
+        {
+            return Scores.GetAllUserScores(username);
+        }
+
+        /*
+            Leaderboard Handlers
+        */
+        public static Task<TopUsersResponse> GetTopUsersHandler(string courseId, int lowerLimit, int upperLimit)
+        {
+            return Leaderboard.GetTopUsers(courseId, lowerLimit, upperLimit);
+        }
+
+        public static Task<TopUser> GetUserRankHandler(string courseId, string username)
+        {
+            return Leaderboard.GetUserRank(courseId, username);
+        }
+
+        /*
+            Item Handlers
+        */
+        public static Task<UserItems> UpdateCoinsHandler(string username, int coinAmount)
+        {
+            return UserItem.UpdateCoins(username, coinAmount);
+        }
+
+        public static Task<UserItems> UpdateRewardsHandler(string username, string reward)
+        {
+            return UserItem.UpdateRewards(username, reward);
+        }
+
+        public static Task<UserItems> GetCoinsHandler(string username)
+        {
+            return UserItem.GetCoins(username);
+        }
+
+        public static Task<UserItems> GetRewardsHandler(string username)
+        {
+            return UserItem.GetRewards(username);
+        }
     }
 }
 
@@ -187,7 +330,7 @@ namespace OnPar.RouterHandlers
 //     // Post request
 //     public static async Task<LoginRegisterResponse> LoginRoute(string username, string password)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/users/login";
+//         // string url = "https://on-par.onrender.com/api/users/login";
 //         string url = "localhost:3000/api/users/login"; // Local development string.
 //         string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
@@ -227,7 +370,7 @@ namespace OnPar.RouterHandlers
 //     // Post request
 //     public static async Task<LoginRegisterResponse> RegisterRoute(string username, string password)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/users/register";
+//         // string url = "https://on-par.onrender.com/api/users/register";
 //         string url = "localhost:3000/api/users/register"; // Local development string.
 //         string userData = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
 
@@ -269,7 +412,7 @@ namespace OnPar.RouterHandlers
 //     // Get request
 //     public static async Task<ScoresResponse> GetScore(string courseId, string username)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/scores/get-score";
+//         // string url = "https://on-par.onrender.com/api/scores/get-score";
 //         string url = "localhost:3000/api/users/scores/get-score"; // Local development string.
 //         string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\"}}";
 
@@ -309,7 +452,7 @@ namespace OnPar.RouterHandlers
 //     // Put request
 //     public static async Task<Message> AddOrUpdateScore(string courseId, string username, int score)
 //     {
-//         // string url = "https://on-par-server.onrender.com/api/scores/add-update";
+//         // string url = "https://on-par.onrender.com/api/scores/add-update";
 //         string url = "localhost:3000/api/scores/add-update"; // Local development string.
 //         string userData = $"{{\"courseId\":\"{courseId}\",\"username\":\"{username}\",\"score\":\"{score}\"}}";
 

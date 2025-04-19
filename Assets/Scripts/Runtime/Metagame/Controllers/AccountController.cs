@@ -31,7 +31,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnExitAccount(ExitAccountEvent evt)
         {
             View.Hide();
-            App.View.Login.Show(); // Optional: Go back to login on logout
+            App.View.MainMenu.Show(); //Goes back to main menu
         }
     }
 }

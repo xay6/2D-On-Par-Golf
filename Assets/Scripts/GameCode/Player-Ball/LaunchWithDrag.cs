@@ -18,43 +18,69 @@ public class LaunchWithDrag : MonoBehaviour
 
     private AudioSource audioSource;
     [SerializeField] private AudioClip golfHit;
-
     private PowerMeterUI powerMeter;
+    private Vector3 startingPosition;
+    private bool waitingForReset = false;
+    private bool isChallengeLevel;
 
-    void Start()
+
+
+void Awake()
 {
+    startingPosition = transform.position;
+    string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+    isChallengeLevel = sceneName.StartsWith("Challenge");
+
     rb = gameObject.GetComponent<Rigidbody2D>();
     clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
-    mass = rb.mass;
-    linearDamping = rb.linearDamping;
-    angularDamping = rb.angularDamping;
-    lastPosition = transform.position;
+    audioSource = GetComponent<AudioSource>();
+
+    if (audioSource == null)
+    {
+        Debug.LogError("No AudioSource found! Add one to the object.");
+    }
 
     powerMeter = FindFirstObjectByType<PowerMeterUI>();
-
     if (powerMeter == null)
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
-        audioSource = GetComponent<AudioSource>();
-
-        if (audioSource == null)
-        {
-            Debug.LogError("No AudioSource found! Add one to the object.");
-        }
-
-        mass = rb.mass;
-        linearDamping = rb.linearDamping;
-        angularDamping = rb.angularDamping;
-        lastPosition = transform.position;
-
-        powerMeter = FindFirstObjectByType<PowerMeterUI>();
-        if (powerMeter == null)
-        {
-            Debug.LogError("PowerMeterUI not found in the scene!");
-        }
+        Debug.LogError("PowerMeterUI not found in the scene!");
     }
 }
+// Not needed
+// void Start()
+// {
+//     rb = gameObject.GetComponent<Rigidbody2D>();
+//     clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+//     mass = rb.mass;
+//     linearDamping = rb.linearDamping;
+//     angularDamping = rb.angularDamping;
+//     lastPosition = transform.position;
+
+//     powerMeter = FindFirstObjectByType<PowerMeterUI>();
+
+//     if (powerMeter == null)
+//     {
+//         rb = gameObject.GetComponent<Rigidbody2D>();
+//         clickAndDrag = gameObject.GetComponent<ClickAndDrag>();
+//         audioSource = GetComponent<AudioSource>();
+
+//         if (audioSource == null)
+//         {
+//             Debug.LogError("No AudioSource found! Add one to the object.");
+//         }
+
+//         mass = rb.mass;
+//         linearDamping = rb.linearDamping;
+//         angularDamping = rb.angularDamping;
+//         lastPosition = transform.position;
+
+//         powerMeter = FindFirstObjectByType<PowerMeterUI>();
+//         if (powerMeter == null)
+//         {
+//             Debug.LogError("PowerMeterUI not found in the scene!");
+//         }
+//     }
+// }
 
 void Update()
 {
@@ -110,12 +136,29 @@ void Update()
             clickAndDrag.endPos = clickAndDrag.startPos;
             clickAndDrag.isDragging = false;
             CheckForMovement();
+            PlayGolfBallSound();
         }
 
         if (Mouse.current.leftButton.IsPressed() && !clickAndDrag.isHovering() && clickAndDrag.isDragging)
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(inBoundsVector());
             clickAndDrag.endPos = worldPosition;
+        }
+
+        if (isChallengeLevel && waitingForReset && !isMoving())
+        {
+            ResetBall();
+            waitingForReset = false;
+        }
+
+    }
+
+    if (ScoreManager.Instance != null && ScoreManager.Instance.shouldTriggerGameOver && !isMoving())
+    {
+        if (LevelManager.main != null)
+        {
+        LevelManager.main.GameOver();
+        ScoreManager.Instance.shouldTriggerGameOver = false; // Reset the flag so it doesn't trigger again
         }
     }
 }
@@ -170,10 +213,24 @@ void Update()
             }
 
             hasCountedStroke = true;
+            
+            if (isChallengeLevel)
+            {
+                waitingForReset = true;
+            }
         }
 
         lastPosition = transform.position;
     }
+    private void ResetBall()
+    {
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.position = startingPosition;
+        transform.position = startingPosition;
+        rb.Sleep(); // Optional: helps prevent jitter
+    }
+
 
     private void PlayGolfBallSound()
     {
@@ -190,7 +247,8 @@ void Update()
 
         if (!hasPlayedSound)
         {
-            SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
+            //SoundFXManager.instance.PlaySoundEffect(golfHit, transform, 1f);
+            AudioSource.PlayClipAtPoint(golfHit, Vector3.zero, 1f);
             hasPlayedSound = true;
         }
     }

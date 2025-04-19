@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Security.Cryptography.X509Certificates;
+using UnityEngine.SceneManagement;
 
 public class CoinManager : MonoBehaviour
 {
@@ -9,7 +9,8 @@ public class CoinManager : MonoBehaviour
     private int coins = 0;
     public bool hasReward = false; 
 
-    public TextMeshProUGUI coinTotalText; 
+    public TextMeshProUGUI coinTotalText;
+    public TextMeshProUGUI postCoinTotalText; 
     private void Awake()
     {
         if (Instance == null)
@@ -18,7 +19,7 @@ public class CoinManager : MonoBehaviour
             DontDestroyOnLoad(gameObject); 
 
             // PlayerPrefs.DeleteKey("GameStartedBefore"); Only if want to reset coin everytime
-
+            SceneManager.sceneLoaded += OnSceneLoaded;
             if (IsFirstGameLaunch())
             {
                 ResetCoins();
@@ -35,6 +36,20 @@ public class CoinManager : MonoBehaviour
         }
 
         LoadCoins();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // No need to find UI here anymore — UI elements will register themselves!
+        UpdateCoinUI();
     }
 
     private void Start()
@@ -76,14 +91,29 @@ public class CoinManager : MonoBehaviour
 
     private void UpdateCoinUI()
     {
+        string coinsString  = "Coins: " + coins;
+
         if (coinTotalText != null)
         {
-            coinTotalText.text = "Coins: " + coins;
+            coinTotalText.text = coinsString;
         }
-        else
+
+        if (postCoinTotalText != null)
         {
-            Debug.LogError("CoinTotal Text UI is not assigned in CoinManager.");
+            postCoinTotalText.text = coinsString;
         }
+    }
+
+    public void RegisterCoinText(TextMeshProUGUI text)
+    {
+        coinTotalText = text;
+        UpdateCoinUI();
+    }
+
+    public void RegisterPostCoinText(TextMeshProUGUI text)
+    {
+        postCoinTotalText = text;
+        UpdateCoinUI();
     }
 
     public bool CheckReward(){

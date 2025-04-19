@@ -28,7 +28,6 @@ public class CollisionDetection : MonoBehaviour
             if(circleCollider2D.OverlapPoint(ball.transform.position)) {
                 onSuperimposed = true;
                 
-                //CoinManager.Instance.AddCoins(10);
                 HoleInOne checkHole = FindAnyObjectByType<HoleInOne>();
                 if (checkHole != null)
                 {
@@ -38,8 +37,12 @@ public class CollisionDetection : MonoBehaviour
                 {
                     Debug.LogWarning("HoleInOne script not found in this scene.");
                 }
-                checkHole.CheckHoleInOne();
+                if (CoinManager.Instance != null) {
                 CoinManager.Instance.AddCoins(10);
+                } 
+                else {
+                    Debug.LogWarning("CoinManager not found in the scene!");
+                }
 
                 return;
             }

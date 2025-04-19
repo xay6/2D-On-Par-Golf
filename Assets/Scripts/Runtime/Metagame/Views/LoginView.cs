@@ -8,6 +8,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         Button m_LoginButton;
         Button m_SignupButton;
         Button m_BackButton;
+        Button m_TogglePasswordVisibilityButton;
+        bool m_IsPasswordVisible = false;
         TextField m_UsernameField;
         TextField m_PasswordField;
         Label m_ErrorLabel;
@@ -25,18 +27,31 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnable()
         {
-            Debug.Log("LoginController Awake()");
+            Debug.Log("LoginView OnEnable()");
+
+            // Always refresh the rootVisualElement in case it's been recreated
+            m_UIDocument = GetComponent<UIDocument>();
+            if (m_UIDocument != null)
+            {
+                m_Root = m_UIDocument.rootVisualElement;
+            }
 
             m_UsernameField = m_Root.Q<TextField>("usernameField");
             m_PasswordField = m_Root.Q<TextField>("passwordField");
             m_LoginButton = m_Root.Q<Button>("loginButton");
             m_SignupButton = m_Root.Q<Button>("signUpButton");
-            m_BackButton =  m_Root.Q<Button>("backButton");
+            m_BackButton = m_Root.Q<Button>("backButton");
             m_ErrorLabel = m_Root.Q<Label>("errorLabel");
-            
+
+            m_TogglePasswordVisibilityButton = m_Root.Q<Button>("togglePasswordVisibilityButton");
+
             m_LoginButton.RegisterCallback<ClickEvent>(OnClickLogin);
             m_SignupButton.RegisterCallback<ClickEvent>(OnClickSignUp);
             m_BackButton.RegisterCallback<ClickEvent>(OnClickBack);
+            m_TogglePasswordVisibilityButton.RegisterCallback<ClickEvent>(OnTogglePasswordVisibility);
+
+            m_PasswordField.isPasswordField = !m_IsPasswordVisible;
+
         }
 
         void OnDisable()
@@ -44,6 +59,9 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_LoginButton.UnregisterCallback<ClickEvent>(OnClickLogin);
             m_SignupButton.UnregisterCallback<ClickEvent>(OnClickSignUp);
             m_BackButton.UnregisterCallback<ClickEvent>(OnClickBack);
+            m_TogglePasswordVisibilityButton.UnregisterCallback<ClickEvent>(OnTogglePasswordVisibility);
+
+            m_IsPasswordVisible = false; // reset for next load
         }
 
         void OnClickLogin(ClickEvent evt)
@@ -93,6 +111,12 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
                 m_ErrorLabel.text = message;
                 m_ErrorLabel.style.display = DisplayStyle.Flex;
             }
+        }
+
+        void OnTogglePasswordVisibility(ClickEvent evt)
+        {
+            m_IsPasswordVisible = !m_IsPasswordVisible;
+            m_PasswordField.isPasswordField = !m_IsPasswordVisible;
         }
     }
 }

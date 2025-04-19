@@ -13,6 +13,6 @@ public class BackToMenuButton : MonoBehaviour
 
     void BackToMainMenu()
     {
-        SceneManager.LoadScene("MetagameScene"); // make sure this matches your main menu scene name
+        SceneManager.LoadScene("MetagameScene"); 
     }
 }
