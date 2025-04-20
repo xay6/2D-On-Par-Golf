@@ -24,13 +24,18 @@ public class BallSkinManager : MonoBehaviour
     }
 
     public void ApplySkin(GameObject ball)
+{
+    SpriteRenderer sr = ball.GetComponent<SpriteRenderer>();
+    if (sr != null && currentSkinIndex < ballSkins.Length)
     {
-        Renderer renderer = ball.GetComponent<Renderer>();
-        if (renderer != null && currentSkinIndex < ballSkins.Length)
-        {
-            renderer.material = ballSkins[currentSkinIndex];
-        }
+        sr.material = ballSkins[currentSkinIndex];
+        sr.color = Color.white; // ✅ ensures full material color is visible
     }
+    else
+    {
+        Debug.LogWarning(" Could not apply skin: SpriteRenderer missing or index out of range.");
+    }
+}
 
     public void SetSkin(int index)
     {
@@ -64,4 +69,22 @@ public class BallSkinManager : MonoBehaviour
             unlockedSkins[i] = PlayerPrefs.GetInt("SkinUnlocked_" + i, i == 0 ? 1 : 0) == 1;
         }
     }
+
+    public bool TryUnlockSkin(int index, int cost)
+{
+    if (!IsSkinUnlocked(index))
+    {
+        if (CoinManager.Instance.SpendCoins(cost))
+        {
+            UnlockSkin(index);
+            Debug.Log("Skin " + index + " unlocked with coins!");
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("Not enough coins to unlock skin " + index);
+        }
+    }
+    return false;
+}
 }
