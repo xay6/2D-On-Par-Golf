@@ -1,3 +1,4 @@
+using OnPar.Routers;
 using UnityEngine;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
@@ -58,11 +59,23 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 OnDedicatedServerDestroyViews();
             }
+            if(LoginRegister.isLoggedIn())
+            {
+                InitializeAccountView();
+            }
         }
 
         void OnDedicatedServerDestroyViews()
         {
             Destroy(gameObject);
+        }
+
+        void InitializeAccountView() {
+            m_MainMenuView.Hide();
+            m_AccountView.Show();
+            m_AccountView.enabled = false;
+            m_AccountView.InitializeClass();
+            m_AccountView.enabled = true;
         }
     }
 }
