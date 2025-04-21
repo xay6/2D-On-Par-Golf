@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using OnPar.RouterHandlers;
 using OnPar.Routers;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -37,7 +38,13 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-        levelCompleteUI.SetActive(true);
+    if (IsFinalChallengeLevel())
+    {
+        RewardPlayer();
+    }
+
+    levelCompleteUI.SetActive(true);
+    
     }
     public async void  AddScoreAsync( string courseId, string username, int score)
     {
@@ -47,5 +54,21 @@ public class LevelManager : MonoBehaviour
     public void GameOver(){
         GameOverUI.SetActive(true);
     }
+
+    private bool IsFinalChallengeLevel()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        return sceneName == "ChallengeLevel6"; // Change this to your last level name
+    }
+
+    private void RewardPlayer()
+    {
+        if (CoinManager.Instance != null)
+        {
+            CoinManager.Instance.AddCoins(1000); // or however many you want
+            Debug.Log("🎉 Player rewarded with coins for completing all challenge levels!");
+        }
+    }
+
 
 }
