@@ -2768,9 +2768,13 @@ PrefabInstance:
       value: CoinManager
       objectReference: {fileID: 0}
     - target: {fileID: 8349594243780024518, guid: 7f4156f55edfaa64db9dcb7e05d16f9d, type: 3}
-      propertyPath: postCoinTotalText
+      propertyPath: challengeCoinText
       value: 
       objectReference: {fileID: 1226470980}
+    - target: {fileID: 8349594243780024518, guid: 7f4156f55edfaa64db9dcb7e05d16f9d, type: 3}
+      propertyPath: postCoinTotalText
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2999,6 +3003,7 @@ GameObject:
   - component: {fileID: 1226470982}
   - component: {fileID: 1226470981}
   - component: {fileID: 1226470980}
+  - component: {fileID: 1226470983}
   m_Layer: 5
   m_Name: CoinTotal
   m_TagString: Untagged
@@ -3124,6 +3129,20 @@ RectTransform:
   m_AnchoredPosition: {x: 183.50018, y: 0.00018310547}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1226470983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226470979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fded3067d2e170429144196f136bf2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPostUI: 0
+  isChallengeUI: 1
 --- !u!1 &1236386763
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class CollisionDetection : MonoBehaviour
                 {
                     Debug.LogWarning("HoleInOne script not found in this scene.");
                 }
-                
+
                 if (IsFinalChallengeLevel())
                 {
                     if (CoinManager.Instance != null)

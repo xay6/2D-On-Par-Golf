@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance; 
-    private int coins = 0;
-    public bool hasReward = false; 
+    private static int coins = 0;
+    public bool hasReward;
 
     public TextMeshProUGUI coinTotalText;
     public TextMeshProUGUI postCoinTotalText; 
+    public TextMeshProUGUI challengeCoinText;
     private void Awake()
     {
         if (Instance == null)
@@ -22,6 +23,7 @@ public class CoinManager : MonoBehaviour
             SceneManager.sceneLoaded += OnSceneLoaded;
             if (IsFirstGameLaunch())
             {
+                hasReward = false;
                 ResetCoins();
             }
             else
@@ -59,7 +61,7 @@ public class CoinManager : MonoBehaviour
 
     public void AddCoins(int amount)
     {
-        if(CheckReward()){
+        if(TryClaimReward()){
         coins += amount;
         SaveCoins();
         UpdateCoinUI();
@@ -116,6 +118,14 @@ public class CoinManager : MonoBehaviour
         UpdateCoinUI();
     }
 
+    public void ChallengeCoinText(TextMeshProUGUI text)
+    {
+        challengeCoinText = text;
+        UpdateCoinUI();
+    }
+
+    
+
     public bool CheckReward(){
         if (hasReward){
             Debug.Log("Hole-in-One already rewarded.");
@@ -125,6 +135,24 @@ public class CoinManager : MonoBehaviour
             return true;
         }
     }
+
+    public bool CanClaimReward()
+    {
+        return !hasReward;
+    }
+
+    public bool TryClaimReward()
+    {
+        if (!CanClaimReward())
+        {
+            Debug.Log("Hole-in-One already rewarded.");
+            return false;
+        }
+
+        hasReward = true;
+        return true;
+    }
+
 
     private bool IsFirstGameLaunch()
     {
