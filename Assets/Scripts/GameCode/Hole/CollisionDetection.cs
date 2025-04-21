@@ -37,11 +37,18 @@ public class CollisionDetection : MonoBehaviour
                 {
                     Debug.LogWarning("HoleInOne script not found in this scene.");
                 }
-                if (CoinManager.Instance != null) {
-                CoinManager.Instance.AddCoins(10);
-                } 
-                else {
-                    Debug.LogWarning("CoinManager not found in the scene!");
+
+                if (IsFinalChallengeLevel())
+                {
+                    if (CoinManager.Instance != null)
+                    {
+                        CoinManager.Instance.AddCoins(1000); // Set your final reward amount here
+                        Debug.Log("🎉 Final challenge complete! Coins awarded.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("CoinManager not found in the scene!");
+                    }
                 }
 
                 return;
@@ -50,6 +57,12 @@ public class CollisionDetection : MonoBehaviour
                 onCollision = true;
             }
         }
+    }
+
+    private bool IsFinalChallengeLevel()
+    {
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        return sceneName == "ChallengeLevel06"; 
     }
 
     public bool OnSuperimposed

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using OnPar.RouterHandlers;
 using OnPar.Routers;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -37,7 +38,8 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-        levelCompleteUI.SetActive(true);
+    levelCompleteUI.SetActive(true);
+
     }
     public async void  AddScoreAsync( string courseId, string username, int score)
     {
@@ -47,5 +49,6 @@ public class LevelManager : MonoBehaviour
     public void GameOver(){
         GameOverUI.SetActive(true);
     }
+
 
 }
