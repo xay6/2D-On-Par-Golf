@@ -397,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SandLight_0: -8972863510669417906
+      SandLight_1: 1489106539038561231
+      SandLight_10: -4036238733607833485
+      SandLight_2: -6916199791870267322
+      SandLight_3: 4644809674692934983
+      SandLight_4: 8001929141324404101
+      SandLight_5: 7931735756325131051
+      SandLight_6: -7683687844455077323
+      SandLight_7: 5811986581842971294
+      SandLight_8: -4664463690466082226
+      SandLight_9: -8732615161515729583
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
