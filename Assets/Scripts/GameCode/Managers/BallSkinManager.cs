@@ -22,6 +22,7 @@ public class BallSkinManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 
     public void ApplySkin(GameObject ball)
 {
