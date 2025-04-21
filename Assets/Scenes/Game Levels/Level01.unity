@@ -2981,18 +2981,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6887146927214920913, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
   m_PrefabInstance: {fileID: 1620383410}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1600207296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600207286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5943e349045a1c544bd7212420f35f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1620383410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3052,10 +3040,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6887146927214920913, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1600207296}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7e7e3efc094445cbcf349a969b7a22, type: 3}
 --- !u!1 &1749412294
 GameObject:
@@ -3255,7 +3240,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballSkins:
+  - {fileID: 2100000, guid: 53b5f779bbefbd543bdd3c302ec58dba, type: 2}
   - {fileID: 2100000, guid: 7b2dce6c714986f42a9e9947bec2e6e8, type: 2}
+  - {fileID: 2100000, guid: b733b352ac68b9a42adbdd35af78d86a, type: 2}
+  - {fileID: 2100000, guid: 173bd60616db1d84fa5c73d642a38fd8, type: 2}
+  - {fileID: 2100000, guid: b1f7c83b5e73f404bba893f97e813f36, type: 2}
+  - {fileID: 2100000, guid: 67776c9436c3d2942bdfb7931bbda282, type: 2}
+  - {fileID: 2100000, guid: 3960b2c51f539944da661a266986f1e3, type: 2}
+  - {fileID: 2100000, guid: c0434345670d8784ba757e253240d1c2, type: 2}
+  - {fileID: 2100000, guid: 77405b8be79ad1845b05b2e6587e4c89, type: 2}
+  - {fileID: 2100000, guid: fa95f62d595e31b4790aaec600584006, type: 2}
+  - {fileID: 2100000, guid: 5519e35bfa017f548ab6a205c95b4f91, type: 2}
+  - {fileID: 2100000, guid: 97c8edaa7dee5084d8cfe6c50b1ec061, type: 2}
+  - {fileID: 2100000, guid: 4f50779f58760ee47972e2d2dd74d6b6, type: 2}
   unlockedSkins: 
   currentSkinIndex: 0
 --- !u!4 &1934913846

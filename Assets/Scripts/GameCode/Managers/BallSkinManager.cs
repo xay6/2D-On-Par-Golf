@@ -29,7 +29,7 @@ public class BallSkinManager : MonoBehaviour
     if (sr != null && currentSkinIndex < ballSkins.Length)
     {
         sr.material = ballSkins[currentSkinIndex];
-        sr.color = Color.white; // ✅ ensures full material color is visible
+        sr.color = Color.white; 
     }
     else
     {
