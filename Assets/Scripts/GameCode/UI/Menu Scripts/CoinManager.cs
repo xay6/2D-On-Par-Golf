@@ -104,6 +104,11 @@ public class CoinManager : MonoBehaviour
         {
             postCoinTotalText.text = coinsString;
         }
+
+        if (challengeCoinText != null)
+        {
+            challengeCoinText.text = coinsString;
+        }
     }
 
     public void RegisterCoinText(TextMeshProUGUI text)
