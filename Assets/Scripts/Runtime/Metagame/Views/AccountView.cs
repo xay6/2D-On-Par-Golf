@@ -56,5 +56,22 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnRewardsClicked(ClickEvent evt) => Debug.Log("Rewards clicked"); // replace with actual event
         void OnChallengesClicked(ClickEvent evt) => SceneManager.LoadScene("ChallengeLevel01"); // replace with actual event
         void OnMainMenuClicked(ClickEvent evt) => Broadcast(new ExitAccountEvent());
+
+        public void InitializeClass() 
+        {
+            m_NewGameButton = m_Root.Q<Button>("new-game");
+            m_AllLevelsButton = m_Root.Q<Button>("all-levels");
+            m_SettingsButton = m_Root.Q<Button>("settings");
+            m_RewardsButton = m_Root.Q<Button>("rewards");
+            m_MainMenuButton = m_Root.Q<Button>("main-menu");
+            m_ChallengesButton = m_Root.Q<Button>("challenges");
+
+            m_NewGameButton?.RegisterCallback<ClickEvent>(OnNewGameClicked);
+            m_AllLevelsButton?.RegisterCallback<ClickEvent>(OnAllLevelsClicked);
+            m_SettingsButton?.RegisterCallback<ClickEvent>(OnSettingsClicked);
+            m_RewardsButton?.RegisterCallback<ClickEvent>(OnRewardsClicked);
+            m_MainMenuButton?.RegisterCallback<ClickEvent>(OnMainMenuClicked);
+            m_ChallengesButton?.RegisterCallback<ClickEvent>(OnChallengesClicked);
+        }
     }
 }
