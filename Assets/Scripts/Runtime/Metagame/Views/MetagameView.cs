@@ -74,8 +74,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_MainMenuView.Hide();
             m_AccountView.Show();
             m_AccountView.enabled = false;
-            m_AccountView.InitializeClass();
             m_AccountView.enabled = true;
+            m_AccountView.InitializeClass();
+            Debug.Log(PlayerPrefs.GetString("Username"));
+            Debug.Log(PlayerPrefs.GetString("AccessToken"));
+            Debug.Log(PlayerPrefs.GetInt("IsLoggedIn"));
         }
     }
 }
