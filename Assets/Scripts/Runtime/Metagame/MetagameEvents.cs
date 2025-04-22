@@ -118,4 +118,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
     internal class StartGameEvent : AppEvent { }
     internal class EnterAccountSettingsEvent : AppEvent { }
     internal class ExitAccountSettingsEvent : AppEvent { }
+    internal class EnterAllLevelsEvent : AppEvent { }
+    internal class ExitAllLevelsEvent : AppEvent { }
 }

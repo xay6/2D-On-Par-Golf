@@ -47,6 +47,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         [SerializeField]
         AccountSettingsView m_AccountSettings;
 
+        internal AllLevelsView AllLevels => m_AllLevels;
+
+        [SerializeField]
+        AllLevelsView m_AllLevels;
+
         void Start()
         {
             if (App.IsDedicatedServer)
