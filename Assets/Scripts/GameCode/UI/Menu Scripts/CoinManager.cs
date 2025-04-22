@@ -137,18 +137,6 @@ public class CoinManager : MonoBehaviour
         UpdateCoinUI();
     }
 
-    
-
-    public bool CheckReward(){
-        if (hasReward){
-            Debug.Log("Hole-in-One already rewarded.");
-            return false;
-        }else{
-            hasReward = true;
-            return true;
-        }
-    }
-
     public bool CanClaimReward()
     {
         return !hasReward;
