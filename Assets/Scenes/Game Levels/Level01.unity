@@ -3322,6 +3322,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &184955309482293698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039685104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fded3067d2e170429144196f136bf2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &1140300715389331476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3626,6 +3640,10 @@ PrefabInstance:
     - target: {fileID: 798225190132472665, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
       propertyPath: m_Name
       value: MenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4250185230325536566, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6904545990156514432, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
       propertyPath: m_Pivot.x
