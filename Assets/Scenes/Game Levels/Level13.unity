@@ -5733,6 +5733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &893834522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6038,6 +6039,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1337746216
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1439.8423
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 409.4599
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.9026904
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666744763942941883, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341255682502688138, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: m_Name
+      value: HoleIncrementer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991429600588591177, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
+      propertyPath: holeText
+      value: 
+      objectReference: {fileID: 1884206722}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc3c660730ceb964eab86db2657178b6, type: 3}
 --- !u!1001 &1499027635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6248,6 +6310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &1598163251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6590,6 +6653,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPostUI: 0
   isChallengeUI: 0
+--- !u!114 &1884206722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8899839084055108312, guid: 683f7edb807a547a6917819920759de3, type: 3}
+  m_PrefabInstance: {fileID: 1884206717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1956481435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6731,3 +6805,6 @@ SceneRoots:
   - {fileID: 1499027635}
   - {fileID: 938837390}
   - {fileID: 1980458105}
+  - {fileID: 1134474611}
+  - {fileID: 361173921}
+  - {fileID: 1337746216}
