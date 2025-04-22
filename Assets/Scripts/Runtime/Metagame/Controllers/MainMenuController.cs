@@ -1,3 +1,4 @@
+using OnPar.Routers;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -104,8 +105,18 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnEnterLogin(EnterLoginEvent evt)
         {
             View.Hide();
-            App.View.Login.Show();
+
+            if (!string.IsNullOrEmpty(LoginRegister.getUsername()))
+            {
+                Debug.Log("User already logged in. Redirecting to AccountSettingsView.");
+                App.View.AccountMenu.Show();
+            }
+            else
+            {
+                App.View.Login.Show();
+            }
         }
+
         void OnExitLogin(ExitLoginEvent evt)
         {
             App.View.Login.Hide();

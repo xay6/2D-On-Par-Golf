@@ -72,6 +72,14 @@ public class CoinManager : MonoBehaviour
         }
     }
 
+    public void AddCoinsDaily(int amount)
+    {
+        coins += amount;
+        SaveCoins();
+        UpdateCoinUI();
+    }
+
+
     public int GetCoins()
     {
         return coins;
