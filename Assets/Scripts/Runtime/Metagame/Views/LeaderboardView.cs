@@ -85,7 +85,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
                 // Top 3 highlight
                 if (rank == 1)
-                    row.style.backgroundColor = new Color(1f, 0.95f, 0.6f); // gold
+                    row.style.backgroundColor = new Color(0.85f, 0.7f, 0.2f); // darker gold
                 else if (rank == 2)
                     row.style.backgroundColor = new Color(0.9f, 0.95f, 1f);  // silver
                 else if (rank == 3)
