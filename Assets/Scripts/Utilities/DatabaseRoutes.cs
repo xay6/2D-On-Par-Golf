@@ -149,6 +149,7 @@ namespace OnPar.Routers
             PlayerPrefs.DeleteKey("Username");
             PlayerPrefs.DeleteKey("HasToken");
 
+
             return await RequestHelper.SendRequest<Message>(url, "POST", "");
         }
 
