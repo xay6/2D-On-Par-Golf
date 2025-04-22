@@ -8,18 +8,19 @@ public class TestScript : MonoBehaviour
     public int skinCost = 50;
     public int currentIndex = 0;
 
-    private int totalSkins => BallSkinManager.Instance.ballSkins.Length + BallSkinManager.Instance.ballSkinImages.Length;
-
     void Start()
     {
         CoinManager.Instance.AddCoins(9999);
 
-        // Unlocks everything
-        for (int i = 0; i < BallSkinManager.Instance.ballSkins.Length; i++)
-            BallSkinManager.Instance.unlockedSkins[i] = true;
+        // Unlock all sprite skins
+        var manager = BallSkinManager.Instance;
+        int spriteCount = manager.ballSkinImages.Length;
 
-        for (int i = 0; i < BallSkinManager.Instance.ballSkinImages.Length; i++)
-            BallSkinManager.Instance.unlockedSkinImages[i] = true;
+        if (manager.unlockedSkinImages == null || manager.unlockedSkinImages.Length != spriteCount)
+            manager.unlockedSkinImages = new bool[spriteCount];
+
+        for (int i = 0; i < spriteCount; i++)
+            manager.unlockedSkinImages[i] = true;
 
         ApplyCurrentSkin();
     }
@@ -39,60 +40,34 @@ public class TestScript : MonoBehaviour
 
     void CycleSkin(int direction)
     {
-        int max = totalSkins;
+        var manager = BallSkinManager.Instance;
+        int max = manager.ballSkinImages.Length;
 
         do
         {
             currentIndex = (currentIndex + direction + max) % max;
         }
-        while (!IsSkinUnlocked(currentIndex));
+        while (!manager.unlockedSkinImages[currentIndex]);
 
         ApplyCurrentSkin();
-    }
-
-    bool IsSkinUnlocked(int index)
-    {
-        if (index < BallSkinManager.Instance.ballSkins.Length)
-            return BallSkinManager.Instance.unlockedSkins[index];
-        else
-        {
-            int spriteIndex = index - BallSkinManager.Instance.ballSkins.Length;
-            return BallSkinManager.Instance.unlockedSkinImages[spriteIndex];
-        }
     }
 
     void ApplyCurrentSkin()
     {
         var manager = BallSkinManager.Instance;
 
-        if (currentIndex < manager.ballSkins.Length)
-        {
-            // It's a material skin
-            manager.currentSkinIndex = currentIndex;
-            manager.currentSkinMode = BallSkinManager.SkinMode.Material;
-        }
-        else
-        {
-            // It's a sprite skin
-            manager.currentSkinImageIndex = currentIndex - manager.ballSkins.Length;
-            manager.currentSkinMode = BallSkinManager.SkinMode.Sprite;
-        }
+        manager.currentSkinImageIndex = currentIndex;
+        PlayerPrefs.SetInt("SelectedSpriteSkin", currentIndex);
+        PlayerPrefs.Save();
 
         manager.ApplySkin(ball);
 
-        // Show preview if sprite
+        // Preview the sprite skin
         if (previewRenderer != null)
         {
-            if (manager.currentSkinMode == BallSkinManager.SkinMode.Sprite)
-            {
-                previewRenderer.sprite = manager.ballSkinImages[manager.currentSkinImageIndex];
-            }
-            else
-            {
-                previewRenderer.sprite = null; // clear preview for materials
-            }
+            previewRenderer.sprite = manager.ballSkinImages[currentIndex];
         }
 
-        Debug.Log($"Applied {(manager.currentSkinMode == BallSkinManager.SkinMode.Sprite ? "Sprite" : "Material")} Skin at index {currentIndex}");
+        Debug.Log($"Applied Sprite Skin: {currentIndex}");
     }
 }
