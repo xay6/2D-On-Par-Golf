@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using OnPar.RouterHandlers;
 using OnPar.Routers;
 using System.Linq;
+// using System;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
@@ -17,7 +18,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         Button m_BackButton;
         VisualElement m_Root;
 
-        void Awake()
+        void OnEnable()
         {
             var uiDoc = GetComponent<UIDocument>();
             m_Root = uiDoc.rootVisualElement;
@@ -34,6 +35,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             m_BackButton.clicked += OnBack;
 
             // Load data
+            SetUsername(LoginRegister.getUsername());
             LoadUserStats();
         }
 
@@ -44,7 +46,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         internal void SetProgress(int Maxlevel, string scores, int strokes, string achievements)
         {
-            m_UnlockedLevelsLabel.text = $"Unlocked Levels: 1 - {Maxlevel}";
+            m_UnlockedLevelsLabel.text = (Maxlevel < 1) ? $"Unlocked Levels: 1" : $"Unlocked Levels: 1 - {Maxlevel}";
             m_BestScoresLabel.text = $"Best Scores: {scores}";
             m_TotalStrokesLabel.text = $"Total Strokes: {strokes}";
             m_AchievementsLabel.text = $"Achievements: {achievements}";
@@ -66,18 +68,22 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 foreach (var score in allScores.scores)
                 {
-                    if (int.TryParse(new string(score.courseId.Where(char.IsDigit).ToArray()), out int levelNum))
+                    Debug.Log(score.courseId.Substring(0, 5));
+                    if (score.courseId.Substring(0, 5).Equals("Level"))
                     {
+                        Debug.Log(score.courseId);
+                        int levelNum = int.Parse(score.courseId.Substring(6));
                         if (levelNum > highestLevel)
                             highestLevel = levelNum;
-                    }
+                    
 
-                    totalStrokes += score.score;
+                        totalStrokes += score.score;
 
-                    if (score.score < bestStrokes)
-                    {
-                        bestStrokes = score.score;
-                        bestCourse = score.courseId;
+                        if (score.score < bestStrokes)
+                        {
+                            bestStrokes = score.score;
+                            bestCourse = score.courseId;
+                        }
                     }
                 }
             }
@@ -105,8 +111,9 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             //if (!confirm) return;
 
             //LoginRegister.ClearSession();
+            Handlers.LogoutHandler();
             Broadcast(new ExitAccountSettingsEvent());
-            Broadcast(new EnterAccountEvent());
+            Broadcast(new ExitAccountEvent());
         }
 
         void OnBack()

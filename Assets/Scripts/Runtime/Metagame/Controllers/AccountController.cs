@@ -1,3 +1,4 @@
+using OnPar.RouterHandlers;
 using UnityEngine;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
@@ -32,6 +33,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         {
             View.Hide();
             App.View.MainMenu.Show(); //Goes back to main menu
+            Handlers.LogoutHandler();
         }
     }
 }
