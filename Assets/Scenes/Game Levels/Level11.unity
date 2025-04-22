@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &134737106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,9 +470,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8874582510550079828, guid: fcd9dacbb568a4949b61cacc7bf6aef1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 134737109}
-    - targetCorrespondingSourceObject: {fileID: 2494018772262445174, guid: fcd9dacbb568a4949b61cacc7bf6aef1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 134737112}
   m_SourcePrefab: {fileID: 100100000, guid: fcd9dacbb568a4949b61cacc7bf6aef1, type: 3}
 --- !u!1 &134737107 stripped
 GameObject:
@@ -496,6 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &140250065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4284,6 +4283,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &407440886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8899839084055108312, guid: 683f7edb807a547a6917819920759de3, type: 3}
+  m_PrefabInstance: {fileID: 407440881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &563009281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4343,7 +4353,7 @@ PrefabInstance:
     - target: {fileID: 8349594243780024518, guid: 7f4156f55edfaa64db9dcb7e05d16f9d, type: 3}
       propertyPath: postCoinTotalText
       value: 
-      objectReference: {fileID: 134737110}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6080,6 +6090,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGoal: 1
+--- !u!1 &1892415006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892415008}
+  - component: {fileID: 1892415007}
+  m_Layer: 0
+  m_Name: HoleIncrementer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1892415007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892415006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1c47bdf08ea414fb73498996fba964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holeText: {fileID: 407440886}
+  prefix: 'Hole '
+--- !u!4 &1892415008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892415006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1439.8423, y: 409.4599, z: -4.9026904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1897912726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6158,3 +6214,6 @@ SceneRoots:
   - {fileID: 66521463}
   - {fileID: 563009281}
   - {fileID: 140250065}
+  - {fileID: 723491525}
+  - {fileID: 610240294}
+  - {fileID: 1892415008}
