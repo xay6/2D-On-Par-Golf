@@ -4,9 +4,15 @@ public class BallSkinManager : MonoBehaviour
 {
     public static BallSkinManager Instance;
 
-    public Material[] ballSkins; // Drag BallSkin_Red and others here
-    public bool[] unlockedSkins; // Mark unlocked status per skin
+    public Material[] ballSkins; 
+    public Sprite[] ballSkinImages; 
+    public bool[] unlockedSkins;
+    public bool[] unlockedSkinImages;
+    
     public int currentSkinIndex = 0;
+    public int currentSkinImageIndex = 0;
+    public enum SkinMode { Material, Sprite }
+    public SkinMode currentSkinMode;
 
     private void Awake()
     {
@@ -23,20 +29,37 @@ public class BallSkinManager : MonoBehaviour
         }
     }
     
-
     public void ApplySkin(GameObject ball)
-{
-    SpriteRenderer sr = ball.GetComponent<SpriteRenderer>();
-    if (sr != null && currentSkinIndex < ballSkins.Length)
     {
-        sr.material = ballSkins[currentSkinIndex];
-        sr.color = Color.white; 
+        var sr = ball?.GetComponent<SpriteRenderer>();
+        if (sr == null)
+        {
+            Debug.LogWarning("No SpriteRenderer found.");
+            return;
+        }
+
+        if (currentSkinMode == SkinMode.Material)
+        {
+            if (currentSkinIndex < ballSkins.Length && ballSkins[currentSkinIndex] != null)
+            {
+                sr.material = ballSkins[currentSkinIndex];
+                sr.color = Color.white;
+                Debug.Log("Applied MATERIAL skin.");
+            }
+        }
+        else if (currentSkinMode == SkinMode.Sprite)
+        {
+            if (currentSkinImageIndex < ballSkinImages.Length && ballSkinImages[currentSkinImageIndex] != null)
+            {
+                sr.sprite = ballSkinImages[currentSkinImageIndex];
+                //sr.material = sharedMaterial;
+                
+                sr.color = Color.white;
+                Debug.Log("Applied SPRITE skin.");
+            }
+        }
     }
-    else
-    {
-        Debug.LogWarning(" Could not apply skin: SpriteRenderer missing or index out of range.");
-    }
-}
+
 
     public void SetSkin(int index)
     {
@@ -65,6 +88,21 @@ public class BallSkinManager : MonoBehaviour
     private void LoadSkinSelection()
     {
         currentSkinIndex = PlayerPrefs.GetInt("SelectedSkin", 0);
+        int materialCount = ballSkins?.Length ?? 0;
+        int spriteCount = ballSkinImages?.Length ?? 0;
+
+        if (unlockedSkins == null || unlockedSkins.Length != materialCount)
+            unlockedSkins = new bool[materialCount];
+
+        if (unlockedSkinImages == null || unlockedSkinImages.Length != spriteCount)
+            unlockedSkinImages = new bool[spriteCount];
+
+        for (int i = 0; i < materialCount; i++)
+            unlockedSkins[i] = PlayerPrefs.GetInt("SkinUnlocked_" + i, i == 0 ? 1 : 0) == 1;
+
+        for (int i = 0; i < spriteCount; i++)
+            unlockedSkinImages[i] = PlayerPrefs.GetInt("SkinUnlockedSprite_" + i, i == 0 ? 1 : 0) == 1;
+
         for (int i = 0; i < unlockedSkins.Length; i++)
         {
             unlockedSkins[i] = PlayerPrefs.GetInt("SkinUnlocked_" + i, i == 0 ? 1 : 0) == 1;

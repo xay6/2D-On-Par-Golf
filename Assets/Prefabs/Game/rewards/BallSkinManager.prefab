@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4731426193750638761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6333345772652143351}
+  - component: {fileID: 3511879424195740684}
+  m_Layer: 0
+  m_Name: BallSkinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6333345772652143351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731426193750638761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1439.8423, y: 409.4599, z: -4.9026904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3511879424195740684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731426193750638761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee57228421ed5c4bae199ad3de98a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballSkins:
+  - {fileID: 2100000, guid: 53b5f779bbefbd543bdd3c302ec58dba, type: 2}
+  - {fileID: 2100000, guid: 7b2dce6c714986f42a9e9947bec2e6e8, type: 2}
+  - {fileID: 2100000, guid: b1f7c83b5e73f404bba893f97e813f36, type: 2}
+  - {fileID: 2100000, guid: b5b743c59bbefd240a1ee5b7acab1b38, type: 2}
+  - {fileID: 2100000, guid: cfbcf89c3cd61af48932b09883e27f12, type: 2}
+  - {fileID: 2100000, guid: 173bd60616db1d84fa5c73d642a38fd8, type: 2}
+  - {fileID: 2100000, guid: b733b352ac68b9a42adbdd35af78d86a, type: 2}
+  - {fileID: 2100000, guid: 67776c9436c3d2942bdfb7931bbda282, type: 2}
+  ballSkinImages:
+  - {fileID: 21300000, guid: fe5449ea5129479449fd1fdd7233f53b, type: 3}
+  - {fileID: 21300000, guid: a981b1197f6b9a146b416f4315015064, type: 3}
+  - {fileID: 21300000, guid: 03b77f79a3b753949901b6c55f711d6c, type: 3}
+  - {fileID: 21300000, guid: 2f2eeab685ab7814e8d50b3d39d3140c, type: 3}
+  - {fileID: 21300000, guid: 8fd8b4cb68bb4664f81bc7ab3dca09ce, type: 3}
+  - {fileID: 21300000, guid: 3cc8c0780258f4e49b93ed47ad1ea5da, type: 3}
+  - {fileID: 21300000, guid: 163dfe9e44a25c947858070290e42e5e, type: 3}
+  - {fileID: 21300000, guid: cc010c415971a364b8b7286d127a3735, type: 3}
+  unlockedSkins: 
+  unlockedSkinImages: 
+  currentSkinIndex: 0
+  currentSkinImageIndex: 0
+  currentSkinMode: 0
