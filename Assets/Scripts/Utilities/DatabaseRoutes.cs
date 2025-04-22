@@ -43,7 +43,7 @@ namespace OnPar.Routers
     [System.Serializable]
     public class TopUser
     {
-        public string username;
+        public string value;
         public int score;
         public bool success;
     }

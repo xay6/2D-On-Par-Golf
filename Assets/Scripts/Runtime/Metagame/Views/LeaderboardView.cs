@@ -68,6 +68,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             int rank = 1;
             foreach (var (username, score) in leaderboardData)
             {
+                Debug.Log($"Leaderboard entry: {username} - {score}");
+
                 var row = new VisualElement();
                 row.style.flexDirection = FlexDirection.Row;
                 row.style.justifyContent = Justify.SpaceBetween;
@@ -75,6 +77,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
                 row.style.paddingBottom = 4;
                 row.style.paddingLeft = 10;
                 row.style.paddingRight = 10;
+                row.style.flexGrow = 1;
 
                 // Alternate row color
                 if (rank % 2 == 0)
@@ -91,6 +94,18 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
                 var nameLabel = new Label($"#{rank}  {username}");
                 var scoreLabel = new Label($"{score} pts");
 
+                // Label styling
+                nameLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
+                nameLabel.style.flexBasis = new StyleLength(new Length(70, LengthUnit.Percent));
+                nameLabel.style.flexGrow = 1;
+                nameLabel.style.overflow = Overflow.Visible;
+                nameLabel.style.whiteSpace = WhiteSpace.Normal;
+                nameLabel.style.fontSize = 18;
+
+                scoreLabel.style.unityTextAlign = TextAnchor.MiddleRight;
+                scoreLabel.style.flexBasis = new StyleLength(new Length(30, LengthUnit.Percent));
+                scoreLabel.style.fontSize = 18;
+
                 // Highlight current player
                 if (username == currentUsername)
                 {
@@ -104,5 +119,6 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
                 rank++;
             }
         }
+
     }
 }
