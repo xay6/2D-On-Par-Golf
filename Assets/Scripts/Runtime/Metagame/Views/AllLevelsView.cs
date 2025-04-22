@@ -1,111 +1,145 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Unity.Template.Multiplayer.NGO.Runtime
 {
     internal class AllLevelsView : View<MetagameApplication>
     {
-        ScrollView m_LevelList;
+        Button m_Page1Button;
+        Button m_Page2Button;
+        Button m_Page3Button;
         Button m_BackButton;
-        Button m_NextButton;
-        Button m_PrevButton;
+        VisualElement m_LevelContainer;
         VisualElement m_Root;
-        UIDocument m_UIDocument;
 
         List<LevelData> m_AllLevels;
-        int m_LevelsPerPage = 6;
-        int m_CurrentPage = 0;
+        List<LevelData> m_PendingLevels;
+        int m_SelectedPage = 0;
 
         void Awake()
         {
-            m_UIDocument = GetComponent<UIDocument>();
-            if (m_UIDocument != null)
+            var doc = GetComponent<UIDocument>();
+            if (doc != null)
             {
-                m_Root = m_UIDocument.rootVisualElement;
+                m_Root = doc.rootVisualElement;
+            }
+        }
+
+        void OnEnable()
+        {
+            var doc = GetComponent<UIDocument>();
+            m_Root = doc?.rootVisualElement;
+
+            if (m_Root == null)
+            {
+                Debug.LogWarning("OnEnable: RootVisualElement not ready yet.");
+                return;
+            }
+
+            QueryElements();
+
+            if (m_PendingLevels != null)
+            {
+                ApplyLevels(m_PendingLevels);
+                m_PendingLevels = null;
             }
         }
 
         public void Initialize(List<LevelData> allLevels)
         {
-            m_UIDocument = GetComponent<UIDocument>();
-            if (m_UIDocument != null)
+            var doc = GetComponent<UIDocument>();
+            m_Root = doc?.rootVisualElement;
+
+            if (m_Root == null)
             {
-                m_Root = m_UIDocument.rootVisualElement;
+                Debug.LogWarning("Initialize: UXML not ready — caching levels.");
+                m_PendingLevels = allLevels;
+                return;
             }
 
-            if (allLevels == null)
-            {
-                Debug.LogError("Initialize failed: allLevels is null!");
-                allLevels = new List<LevelData>(); // fallback
-            }
+            QueryElements();
+            ApplyLevels(allLevels);
+        }
 
-            m_LevelList = m_Root.Q<ScrollView>("levelList");
+        void QueryElements()
+        {
+            m_LevelContainer = m_Root.Q<VisualElement>("levelContainer");
+            m_Page1Button = m_Root.Q<Button>("page1Button");
+            m_Page2Button = m_Root.Q<Button>("page2Button");
+            m_Page3Button = m_Root.Q<Button>("page3Button");
             m_BackButton = m_Root.Q<Button>("back-button");
-            m_NextButton = m_Root.Q<Button>("nextButton");
-            m_PrevButton = m_Root.Q<Button>("prevButton");
 
-            if (m_LevelList == null) Debug.LogError("m_LevelList is null in Initialize!");
-            if (m_BackButton == null) Debug.LogError("m_BackButton is null in Initialize!");
-            if (m_NextButton == null) Debug.LogError("m_NextButton is null in Initialize!");
-            if (m_PrevButton == null) Debug.LogError("m_PrevButton is null in Initialize!");
+            if (m_LevelContainer == null || m_Page1Button == null || m_Page2Button == null || m_Page3Button == null || m_BackButton == null)
+            {
+                Debug.LogError("AllLevelsView: One or more UI elements could not be found in the UXML.");
+                return;
+            }
 
-            m_BackButton.clicked += () => Broadcast(new ExitAllLevelsEvent());
-            m_NextButton.clicked += ShowNextPage;
-            m_PrevButton.clicked += ShowPreviousPage;
+            m_Page1Button.RegisterCallback<ClickEvent>(evt => SwitchPage(0));
+            m_Page2Button.RegisterCallback<ClickEvent>(evt => SwitchPage(1));
+            m_Page3Button.RegisterCallback<ClickEvent>(evt => SwitchPage(2));
+            m_BackButton.RegisterCallback<ClickEvent>(evt => Broadcast(new ExitAllLevelsEvent()));
+        }
 
-            m_AllLevels = allLevels;
-            m_CurrentPage = 0;
+        void ApplyLevels(List<LevelData> allLevels)
+        {
+            m_AllLevels = allLevels ?? new List<LevelData>();
+            m_SelectedPage = 0;
+            RenderPage();
+        }
+
+        void SwitchPage(int pageIndex)
+        {
+            m_SelectedPage = pageIndex;
             RenderPage();
         }
 
         void RenderPage()
         {
-            m_LevelList.Clear();
+            m_LevelContainer.Clear();
 
-            int start = m_CurrentPage * m_LevelsPerPage;
-            int end = Mathf.Min(start + m_LevelsPerPage, m_AllLevels.Count);
+            int start = m_SelectedPage * 6;
+            int end = Mathf.Min(start + 6, m_AllLevels.Count);
 
             for (int i = start; i < end; i++)
             {
                 var level = m_AllLevels[i];
-                var button = new Button();
-                button.text = $"Level {level.courseId}";
+                var button = new Button { text = $"{level.courseId}" };
+
+                // 🔘 Visual styling to match your UXML
+                button.style.width = 150;
+                button.style.height = 40;
+                button.style.fontSize = 8;
+                button.style.color = new StyleColor(Color.white);
+                button.style.backgroundColor = new StyleColor(new Color32(140, 140, 140, 255));
+                button.style.borderTopLeftRadius = 15;
+                button.style.borderTopRightRadius = 15;
+                button.style.borderBottomLeftRadius = 15;
+                button.style.borderBottomRightRadius = 15;
+                button.style.marginBottom = 8;
+
 
                 if (level.isUnlocked)
                 {
-                    button.SetEnabled(true);
-                    int capturedId = i; // Fix closure issue
+                    int capturedId = i;
                     button.clicked += () => LoadLevel(m_AllLevels[capturedId].courseId);
                 }
                 else
                 {
-                    button.SetEnabled(false);
                     button.text += " (Locked)";
+                    button.SetEnabled(false);
                 }
 
-                m_LevelList.Add(button);
+                m_LevelContainer.Add(button);
             }
-
-            m_PrevButton.SetEnabled(m_CurrentPage > 0);
-            m_NextButton.SetEnabled((m_CurrentPage + 1) * m_LevelsPerPage < m_AllLevels.Count);
         }
 
-        void ShowNextPage()
-        {
-            m_CurrentPage++;
-            RenderPage();
-        }
-
-        void ShowPreviousPage()
-        {
-            m_CurrentPage--;
-            RenderPage();
-        }
 
         void LoadLevel(string sceneName)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(sceneName);
         }
     }
 }

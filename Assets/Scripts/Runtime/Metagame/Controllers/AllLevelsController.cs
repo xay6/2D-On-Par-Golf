@@ -33,6 +33,12 @@ internal class AllLevelsController : Controller<MetagameApplication>
                 });
             }
 
+            Debug.Log($"Levels count: {levels.Count}");
+            foreach (var level in levels)
+            {
+                Debug.Log($"Level: {level.courseId}, Score: {level.score}");
+            }
+            
             View.Initialize(levels);
             View.Show();
         }
