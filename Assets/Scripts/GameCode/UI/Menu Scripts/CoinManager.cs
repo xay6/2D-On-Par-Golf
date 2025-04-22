@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using OnPar.Routers;
+using System.Threading.Tasks;
 
 public class CoinManager : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class CoinManager : MonoBehaviour
     public TextMeshProUGUI coinTotalText;
     public TextMeshProUGUI postCoinTotalText; 
     public TextMeshProUGUI challengeCoinText;
+
+    UserItems CoinsResponse;
     private void Awake()
     {
         if (Instance == null)
@@ -80,15 +84,17 @@ public class CoinManager : MonoBehaviour
         UpdateCoinUI();
     }
 
-    private void SaveCoins()
+    private async void SaveCoins()
     {
         PlayerPrefs.SetInt("Coins", coins);
         PlayerPrefs.Save();
+        CoinsResponse = await OnPar.RouterHandlers.Handlers.UpdateCoinsHandler(LoginRegister.getUsername(), coins);
     }
 
-    private void LoadCoins()
+    private async void LoadCoins()
     {
-        coins = PlayerPrefs.GetInt("Coins", 0);
+        CoinsResponse = await OnPar.RouterHandlers.Handlers.GetCoinsHandler(LoginRegister.getUsername());
+        coins = CoinsResponse.coinAmount;
     }
 
     private void UpdateCoinUI()

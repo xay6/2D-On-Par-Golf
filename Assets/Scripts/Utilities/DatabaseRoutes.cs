@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OnPar.Routers;
 using System.Collections.Generic;
+using System;
 
 namespace OnPar.Routers
 {
@@ -119,7 +120,9 @@ namespace OnPar.Routers
             LoginRegisterResponse res = await RequestHelper.SendRequest<LoginRegisterResponse>(url, "POST", userData);
 
             LoginRegister.username = username;
+            PlayerPrefs.SetString("Username", username);
             hasToken = true;
+            PlayerPrefs.SetInt("HasToken", 1);
             // token = res.token;
             PlayerPrefs.SetString("AccessToken", res.token);
             return res;
@@ -139,27 +142,30 @@ namespace OnPar.Routers
         public static async Task<Message> LogoutRoute() {
             string url = "https://on-par.onrender.com/api/users/logout";
 
-            LoginRegister.username = "";
+            // LoginRegister.username = "";
             hasToken = false;
             // token = "";
             PlayerPrefs.DeleteKey("AccessToken");
+            PlayerPrefs.DeleteKey("Username");
+            PlayerPrefs.DeleteKey("HasToken");
+
 
             return await RequestHelper.SendRequest<Message>(url, "POST", "");
         }
 
         public static string getToken()
         {
-            return PlayerPrefs.GetString("AccessKey");
+            return PlayerPrefs.GetString("AccessToken");
         }
 
         public static bool isLoggedIn()
         {
-            return hasToken;
+            return Convert.ToBoolean(PlayerPrefs.GetInt("HasToken"));
         }
 
         public static string getUsername()
         {
-            return username;
+            return PlayerPrefs.GetString("Username");
         }
     }
     public static class Scores
@@ -228,7 +234,7 @@ namespace OnPar.Routers
         {
             string url = "https://on-par.onrender.com/api/items/update-coins";
             // string url = "localhost:3000/api/items/update-coins"; // Local development string.
-            string userData = $"{{\"username\":\"{username}\",\"coinAmout\":\"{coinAmount}\"}}";
+            string userData = $"{{\"username\":\"{username}\",\"coinAmount\":\"{coinAmount}\"}}";
 
             return await RequestHelper.SendRequest<UserItems>(url, "PUT", userData);
         }
