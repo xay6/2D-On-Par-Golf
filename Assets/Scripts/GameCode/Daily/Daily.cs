@@ -4,11 +4,15 @@ public class Daily : MonoBehaviour
 {
     public int LastDate;
     public int Day_1;
+    public int Day_2;
+    public int Day_3;
+    public int Day_4;
+
+    public int Day_5;
+    public int Day_6;
     public GameObject OFF_1;
     public GameObject ACTIVE_1;
     public GameObject CHECK_1;
-
-    public int Day_2;
     public GameObject OFF_2;
     public GameObject ACTIVE_2;
     public GameObject CHECK_2;
@@ -83,7 +87,12 @@ public class Daily : MonoBehaviour
         PlayerPrefs.SetInt("LastDate", LastDate);
 
         print("Reward 1");
-
+        if(CoinManager.Instance != null)
+        {
+            CoinManager.Instance.AddCoinsDaily(10);
+        } else {
+            Debug.Log("Did not add");
+        }
         Day_1 = 2;
         PlayerPrefs.SetInt("Day_1", 2);
 
@@ -94,7 +103,6 @@ public class Daily : MonoBehaviour
     {
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
-        CoinManager.Instance.AddCoins(10);
 
         print("Reward 2");
 
