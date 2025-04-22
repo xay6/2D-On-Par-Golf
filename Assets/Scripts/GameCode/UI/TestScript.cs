@@ -10,7 +10,7 @@ public class TestScript : MonoBehaviour
 
     void Start()
     {
-        CoinManager.Instance.AddCoins(9999);
+        //CoinManager.Instance.AddCoins(9999);
 
         // Unlock all sprite skins
         var manager = BallSkinManager.Instance;
