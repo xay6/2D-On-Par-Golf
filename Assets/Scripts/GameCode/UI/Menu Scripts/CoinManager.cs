@@ -177,4 +177,19 @@ public class CoinManager : MonoBehaviour
         }
         return false;
     }
+    public bool SpendCoins(int amount)
+{
+    if (coins >= amount)
+    {
+        coins -= amount;
+        SaveCoins();
+        UpdateCoinUI();
+        return true;
+    }
+    else
+    {
+        Debug.Log(" Not enough coins.");
+        return false;
+    }
+}
 }
