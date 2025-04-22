@@ -94,6 +94,7 @@ public class Daily : MonoBehaviour
     {
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
+        CoinManager.Instance.AddCoins(10);
 
         print("Reward 2");
 
