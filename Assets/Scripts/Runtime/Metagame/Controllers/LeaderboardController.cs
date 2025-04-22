@@ -49,7 +49,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             {
                 foreach (var entry in response.topUsers)
                 {
-                    leaderboardData.Add((entry.username, entry.score));
+                    leaderboardData.Add((entry.value, entry.score));
                 }
             }
             else

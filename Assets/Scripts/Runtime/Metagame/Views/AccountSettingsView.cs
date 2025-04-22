@@ -17,7 +17,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         Button m_BackButton;
         VisualElement m_Root;
 
-        void Awake()
+        void OnEnable()
         {
             var uiDoc = GetComponent<UIDocument>();
             m_Root = uiDoc.rootVisualElement;

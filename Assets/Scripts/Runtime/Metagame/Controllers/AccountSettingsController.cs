@@ -28,6 +28,8 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
         void OnEnterAccountSettings(EnterAccountSettingsEvent evt)
         {
             View.Show();
+            View.enabled = false;
+            View.enabled = true;
         }
 
         void OnExitAccountSettings(ExitAccountSettingsEvent evt)
