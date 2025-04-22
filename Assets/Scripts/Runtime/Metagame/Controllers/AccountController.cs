@@ -33,5 +33,11 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
             View.Hide();
             App.View.MainMenu.Show(); //Goes back to main menu
         }
+
+        private async void ExitAccountHandler() {
+            await Handlers.LogoutHandler();
+            View.enabled = false;
+            Debug.Log("Disableav");
+        }
     }
 }

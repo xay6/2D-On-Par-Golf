@@ -26,6 +26,7 @@ namespace Unity.Template.Multiplayer.NGO.Runtime
 
         void OnEnable()
         {
+            Debug.LogWarning("Enable av");
             m_NewGameButton = m_Root.Q<Button>("new-game");
             m_AllLevelsButton = m_Root.Q<Button>("all-levels");
             m_SettingsButton = m_Root.Q<Button>("settings");
