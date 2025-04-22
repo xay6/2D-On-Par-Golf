@@ -2811,6 +2811,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: WindText
       objectReference: {fileID: 0}
+    - target: {fileID: 8899839084055108312, guid: 683f7edb807a547a6917819920759de3, type: 3}
+      propertyPath: m_text
+      value: ' Hole 1'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7997343063242717556, guid: 683f7edb807a547a6917819920759de3, type: 3}

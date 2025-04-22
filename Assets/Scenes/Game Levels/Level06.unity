@@ -1314,6 +1314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &223719755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3988,6 +3989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &1559270237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4372,6 +4374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinedCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8899839084055108312, guid: 683f7edb807a547a6917819920759de3, type: 3}
+      propertyPath: m_text
+      value: ' Hole 6'
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5446638671164208568, guid: 683f7edb807a547a6917819920759de3, type: 3}
     m_RemovedGameObjects:
@@ -4618,3 +4624,5 @@ SceneRoots:
   - {fileID: 1501452815}
   - {fileID: 591926657}
   - {fileID: 2031988121}
+  - {fileID: 1704858107}
+  - {fileID: 32237696}

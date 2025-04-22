@@ -2573,7 +2573,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7851416885284598259, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
   m_PrefabInstance: {fileID: 1382376027}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1382376029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -2844,17 +2844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPostUI: 0
   isChallengeUI: 0
---- !u!114 &1297370828 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3796178727398808834, guid: fcd9dacbb568a4949b61cacc7bf6aef1, type: 3}
-  m_PrefabInstance: {fileID: 1297370824}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297370829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1297370829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2494018772262445174, guid: fcd9dacbb568a4949b61cacc7bf6aef1, type: 3}
@@ -2873,6 +2862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &1318448805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3185,17 +3175,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1382376030}
   m_SourcePrefab: {fileID: 100100000, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
---- !u!114 &1382376028 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7851416885284598259, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
-  m_PrefabInstance: {fileID: 1382376027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382376029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1382376029 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5938370628860640248, guid: 6e29839a4274cdc46a943a2cc0732f5f, type: 3}
@@ -3214,6 +3193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1 &1621087322
 GameObject:
   m_ObjectHideFlags: 0
@@ -3663,6 +3643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinedCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8899839084055108312, guid: 683f7edb807a547a6917819920759de3, type: 3}
+      propertyPath: m_text
+      value: ' Hole 2'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7997343063242717556, guid: 683f7edb807a547a6917819920759de3, type: 3}
@@ -3718,5 +3702,6 @@ SceneRoots:
   - {fileID: 1297370824}
   - {fileID: 1318448805}
   - {fileID: 1382376027}
-  - {fileID: 1330944856}
   - {fileID: 1621291940}
+  - {fileID: 1931336723}
+  - {fileID: 373310162}

@@ -5239,7 +5239,6 @@ GameObject:
   - component: {fileID: 584671268}
   - component: {fileID: 584671271}
   - component: {fileID: 584671272}
-  - component: {fileID: 584671273}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6263,6 +6262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &909138263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6444,6 +6444,10 @@ PrefabInstance:
     - target: {fileID: 6052088023868150301, guid: 683f7edb807a547a6917819920759de3, type: 3}
       propertyPath: m_Name
       value: CombinedCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899839084055108312, guid: 683f7edb807a547a6917819920759de3, type: 3}
+      propertyPath: m_text
+      value: ' Hole 9'
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5446638671164208568, guid: 683f7edb807a547a6917819920759de3, type: 3}
@@ -6990,6 +6994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPostUI: 0
+  isChallengeUI: 0
 --- !u!1001 &1644740402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7389,3 +7394,5 @@ SceneRoots:
   - {fileID: 827264870}
   - {fileID: 2006393338}
   - {fileID: 667925905}
+  - {fileID: 428641561}
+  - {fileID: 1914864838}
