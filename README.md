@@ -217,7 +217,7 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
       - Create visual indicator for the shooting mechanic, a power meter
 
 ## Burnup Chart for Sprint 1
-![Burnup Chart](./img/burnupChart1.png)
+![Burnup Chart](./img/burnupChart.png)
 
 ## Sprint 2 Contributions
 Brandon Mason: 
