@@ -217,7 +217,7 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
       - Create visual indicator for the shooting mechanic, a power meter
 
 ## Burnup Chart for Sprint 1
-![Burnup Chart](./img/burnupChart.png)
+![Burnup Chart](./img/burnup_chart_1.png)
 
 ## Sprint 2 Contributions
 Brandon Mason: 
@@ -394,7 +394,7 @@ Jalen Stewart: Created a power meter bar that synced the shot to correlate with 
 
 
 ## Burnup Chart for Sprint 2
-![Burnup Chart 2](./img/burnupChart2.png)
+![Burnup Chart](./img/burnup_chart_2.png)
 
 ## Sprint 3 Contributions
 Brandon Mason: Continued with server development which included implementing a leaderboard, a rewards system, and any other functions that fetched data relevant to the frontend.  Also helped resolve any bugs that may have been present in the UI.
@@ -686,6 +686,9 @@ Jalen Stewart:
     - Finish creating Shop UI
     - Add Functionality into the Shop to buy items
     - Polish and create more unique hazards 
+
+## Burnup Chart for Sprint 3
+![Burnup Chart](./img/burnup_chart_3.png)
 
 ## Features
 - Mouse controls - Will launch the ball into the air.
