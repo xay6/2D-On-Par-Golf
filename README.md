@@ -8,12 +8,20 @@
 
 > On Par is a two dimensional golf game for casual gamers who want a fun and relaxing game that they can play anytime, anywhere. Through simple controls and clear cut goals, our game will provide players with an experience that will challenge their precision and strategy skills. Through unlockable cosmetic items, the game will give the player a sense of achievement under little to no stress.
 
+> We have not yet merged everthing into main so everything is in our merge-dev-and-UI branch
+
 ## Table of Contents
   - [General Information](#general-information)
   - [Technologies Used](#technologies-used)
   - [Sprint 1 Contributions](#sprint-1-contributions)
   - [Next Steps](#next-steps)
   - [Burnup Chart](#burnup chart for sprint 1)
+  - [Sprint 2 Contributions](#sprint-2-contributions)
+  - [Next Steps](#next-steps)
+  - [Burnup Chart](#burnup chart for sprint 2)
+  - [Sprint 3 Contributions](#sprint-3-contributions)
+  - [Next Steps](#next-steps)
+  - [Burnup Chart](#burnup chart for sprint 3)
   - [Features](#features)
   
 
@@ -209,7 +217,7 @@ Developed obstacle and wind mechanics, including collision detection, wind traje
       - Create visual indicator for the shooting mechanic, a power meter
 
 ## Burnup Chart for Sprint 1
-![Burnup Chart](./img/burnupChart.png)
+![Burnup Chart](./img/burnupChart1.png)
 
 ## Sprint 2 Contributions
 Brandon Mason: 
@@ -386,7 +394,301 @@ Jalen Stewart: Created a power meter bar that synced the shot to correlate with 
 
 
 ## Burnup Chart for Sprint 2
-![Burnup Chart 2](./img/burnupChart2.png)
+![Burnup Chart](./img/burnupChart2.png)
+
+## Sprint 3 Contributions
+Brandon Mason: Continued with server development which included implementing a leaderboard, a rewards system, and any other functions that fetched data relevant to the frontend.  Also helped resolve any bugs that may have been present in the UI.
+
+- SCRUM-137: 
+	- Description: Add a text area to the login and register forms and show the response message from the server..
+	- [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-137-add-a-text-area-to-the-login-a)
+	- [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/59)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-137?atlOrigin=eyJpIjoiYjlhZDk5YzNiMDdkNDdkMGJlYTkxNTUwMDEwMGY1YTciLCJwIjoiaiJ9)
+- SCRUM-148
+	- Description: Set up schema for storing coins and rewards.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-148-set-up-schema-for-storing-coin)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-148)
+- SCRUM-160
+	- Description: Create a connection to the leaderboard within server.
+    - [Main Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-160-create-a-connection-to-the-leah)
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-160-resolve-merge-conflicts)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-160)
+- SCRUM-170
+	- Description: Write functions to add scores, get the top users, and get information for an individual user.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-170-write-functions-to-add-scores-)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/44)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-170)
+- SCRUM-175
+	- Description: Create routes to add and subtract coins.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-175-create-routes-to-add-and-subtr)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-175)
+- SCRUM-178
+	- Description: Create route to fetch rewards.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-178-create-route-to-fetch-rewards)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-178)
+- SCRUM-182
+	- Description: Create route to purchase rewards.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-119-initialize-mongodb-and-redis-i)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-119)
+- SCRUM-187
+	- Description: Write Unity functions to get leaderboard and rewards data from the server API.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-187-write-unity-functions-to-get-l)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/53)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-187)
+- SCRUM-196
+	- Description: Consolidate rewards tasks.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-196-consolidate-rewards-tasks)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/50)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-196)
+- SCRUM-201
+	- Description: Rework score update authorization.
+    - [Bitbucket Branch and Commit(s)](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-201)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/49)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-201)
+- SCRUM-202
+	- Description: Add function to scoresController to fetch all scores per course for one user.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-202-add-function-to-scorescontroll)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-202)
+- SCRUM-203
+	- Description: Create Unity function for fetching all of a single user's scores.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-119-initialize-mongodb-and-redis-i)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-119)
+- SCRUM-204
+	- Description: Test Unity router functions with CoinManager.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/Connect-coins-to-server)
+    - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/65)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-204)
+- SCRUM-206
+	- Description: Add log out feature to the backend.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-206-add-log-out-feature-to-the-bac)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/61)
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-206)
+- SCRUM-207
+	- Description: Add logout feature to the frontend.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/%7B%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-207-add-logout-feature-to-the-fron)
+    - Pull Request Not Necessary
+	- [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-207)
+
+Ariana Zapata:Enhanced backend integration and expanded UI functionality, including level access tracking, leaderboard database syncing, and customizable user settings.
+
+- SCRUM-149 Implement "All Levels" View
+    - Description: Created a UI panel that displays all unlocked levels, locks inaccessible ones, and handles page switching. Integrated user progress logic for dynamic level status.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-149-implement-all-levels-view-crea)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-149?atlOrigin=eyJpIjoiZWVhM2I0NTg4ZTYwNDU5ZTg5ZjRlNmEzY2VhMDIxZjUiLCJwIjoiaiJ9)
+    - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/67)
+
+- SCRUM-186 Implement Customizations
+    - Description: Built AccountSettingsView with toggles for sound/music. Connected view to controller and prepared for dynamic stat population.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-186-implement-customizations)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-186?atlOrigin=eyJpIjoiMTI1MjFjZTBmMTFjNGE3YmE5YjExNTc0OWY3NGQyYzkiLCJwIjoiaiJ9)
+    - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/55)
+
+- SCRUM-138 Connect Leaderboard to Database
+    - Description: Replaced mock leaderboard with dynamic data pulled from backend (Redis + MongoDB). Adjusted UI to highlight current user and top players.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-138-connect-leaderboard-to-databas)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-138?atlOrigin=eyJpIjoiZWU4MzE4MzI1ZTUzNDVhZGE3OWVkNjk5NTRjY2U5ZmQiLCJwIjoiaiJ9)
+    - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/41)
+    
+-  SCRUM-151 Add Password Visibility Toggle
+    - Description: Enhanced login UX with show/hide toggle for password input using an eye icon in LoginView.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-151-add-password-visibility-toggle)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-151?atlOrigin=eyJpIjoiN2U5ZGFmMTVhMTM0NDI2MjhiYWI4MGIxMjhkZmFjYmEiLCJwIjoiaiJ9)
+    - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/36)
+
+- SCRUM-184 Create Settings Panel UI (Declined)
+    - Description: Initial development of settings panel; replaced by consolidated task SCRUM-186.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-184-create-settings-panel-ui)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-184?atlOrigin=eyJpIjoiYTI0NjE5YjQ0NWQ1NGMwNDkxNjA4MDY5OTNjMDc1ZGQiLCJwIjoiaiJ9)
+    - [Pull Request](https://bitbucket.org/cs3398-romulans-s25/on-par/pull-requests/48)
+
+Natalie Morales: 
+This sprint I created and linked audio for our game, created custom skins to use as rewards, and refactored old code and bugs to better improve the quality of our game. 
+
+- SCRUM 156 Connect all sound effects and music AudioSources to a central AudioMixer.
+    - Description: Created an audio mixer system through unity and linked it to our soundEffects and our new background music. 
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-156-connect-all-sound-effects-and-)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-156)
+    
+- SCRUM 158 Link the volume slider UI to the AudioMixer to control master volume.
+    - Description: Linked the sound system from scrum-156 to UI on all levels. Linked audio mixer to sliders inside settings panel and created a Volume Settings Manager to control this through user input. 
+    - [Bitbucket Branch and Commmit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-158-link-the-volume-slider-ui-to-t)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-158)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/46)
+
+- SCRUM-165 Refactor ScoreManager to support per-level score tracking.
+    - Description: Updated ScoreManager to support starting from any level, not just level one. Added a ScoreManager instance to each level for consistent score tracking.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-172-refactoringScoreManager)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-172)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/47)
+    
+- SCRUM-177  Design and create several custom ball prefabs (textures, models, or materials).
+    - Description: Created a BallSkinManager that allows a player to choose between different sprites once unlocked/purchased with coins.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-177-design-and-create-several-cust)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-177)
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/66)
+    
+- SCRUM-179 Fix Hole text so it updates for each scene
+    - Description: Created a HoleIncreamenter script and object and attached the hole text to it so that each scene is labeled properly.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-179-fix-hole-text-so-it-updates-fo)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-179) 
+    - [Pull Request](https://bitbucket.org/%7B819012b1-8676-40ce-9231-5a0e59ffe448%7D/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/pull-requests/70)
+    
+Xavier Ortiz:
+I created six challenge levels designed to test your hole-in-one skills, implemented the post-level screen pop-up and transition functions, and developed the daily reward tracker system.
+
+- SCRUM-163 Set Up Rewards & Progression
+    - Description: Implement a system that grants rewards for successful completions and unlocks new challenges in sequence.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-163-set-up-rewards-progression)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-163)
+    
+- SCRUM-173 Test & Polish UI Interactions
+    - Description: Ensure smooth animations, responsive buttons, and a seamless transition between game states.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-173-test-polish-ui-interactions)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-173)
+
+- SCRUM-194 Test Execution and Results
+    - Description: Will include the results for Button Functionality Result, Coin Amount Result, and Hole-in-One Banner Result.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/commits/927592b535c878ab9edc46c06e5811467a2dbfe0)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-194)
+    
+- SCRUM-193 3 Unity unit tests - Testing Plan
+    - Description: Button Functionality Test: TestStartButtonInvokesGameStart() checks that pressing the in-game menu button successfully triggers when the game is running.
+        Coin Amount Test: TestCoinRewardOnLevelComplete() verifies that the player receives the correct number of coins when being called.
+        Hole-in-One Banner Test: TestHoleInOneBannerAppears() ensures the 'Hole-in-One Challenge' banner displays when being called.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-193-3-unity-unit-tests---testing-p)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-193)
+    
+- SCRUM-171 Ensure Proper Level Flow Handling
+    - Description: Modify the level transition system to wait for player input before advancing.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-171-ensure-proper-level-flow-handl)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-171)
+    
+- SCRUM-167 Implement Navigation Logic
+    - Descriptions: Write the code to handle button interactions for Restart, Continue, and Exit.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-167-implement-navigation-logic)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-167)
+    
+- SCRUM-166 Create Post-Level UI Panel
+    - Descriptions: Design a UI screen that appears after a level is completed, giving players options for their next action.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-166-create-post-level-ui-panel)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-166)
+    
+- SCRUM-161 Design & Create 6-10 Challenge Levels
+    - Descriptions: Develop and place obstacles in unique level layouts that require a hole-in-one to complete.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-161-design-create-6-10-challenge-l)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-161)
+    
+- SCRUM-162 Implement Limited Attempt System
+    - Descriptions: Add logic to track player attempts and prevent further attempts once the limit is reached. 
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-162-implement-limited-attempt-syst)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-162)
+    
+- SCRUM-155 Create UI for Reward Display
+    - Descriptions: Design a UI panel that displays the current reward, streak progress, and upcoming rewards.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-155-create-ui-for-reward-display)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-155)
+    
+- SCRUM-154 Design & Implement Reward Distribution
+    - Descriptions:Define and implement logic to grant coins or cosmetics based on the number of consecutive logins.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-154-design-implement-reward-distri)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-154)
+    
+- SCRUM-164 Add UI Feedback & Restart Logic
+    - Descriptions: Display the number of remaining attempts on-screen and trigger an automatic restart when all attempts are used.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/%7B97904684-973f-4a89-aeae-8ca5feb4a5d4%7D/branch/SCRUM-164-add-ui-feedback-restart-logic)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/jira/software/projects/SCRUM/boards/1?selectedIssue=SCRUM-164)
+    
+    
+
+Jalen Stewart:
+ I worked on integrating real-time wind using the OpenWeatherMap API and improved how wind affects ball movement in the game. I also refined the sand trap mechanics to feel more balanced and less abrupt. I began designing the shop UI, connecting it to the settings menu and laying out the foundation for item slots and navigation.
+
+ - SCRUM-132 Research and select an appropriate wind API
+    - Descriptions: Implemented the foundational wind system that generates direction and strength, displays them on screen, and integrates early wind logic into gameplay.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-135-modify-the-ui-element-that-dis)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-132)
+
+- SCRUM-133 Add wind display UI to game HUD
+    - Descriptions:  Created the user interface for displaying wind direction and strength in a player-friendly format during gameplay.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org
+    cs3398-romulans-s25/on-par/branch/SCRUM-133-set-up-the-api-integration-to-)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-133)
+
+- SCRUM-134 Adjust wind impact on ball movement
+    - Descriptions:  Adjusted wind mechanics to create more noticeable but balanced effects on ball movement, including gust variability.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-134-modify-the-wind-logic-in-the-g)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-134)
+    
+- SCRUM-135 Fix wind display alignment and visual clarity
+    - Descriptions: Improved the position and visuals of the wind display, including arrow icons for clearer directional feedback.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-135-modify-the-ui-element-that-dis)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-135)
+    
+- SCRUM-168 Redesign sand trap visuals
+    - Descriptions: Replaced outdated sand sprites with more visually appealing assets to enhance level design aesthetics.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-168-refactor-the-sand-logic-to-mak)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-168)
+    
+- SCRUM-174 Refactor sand trap physics
+    - Descriptions: Balanced sand physics by adjusting velocity dampening and force multipliers to avoid abrupt halts while preserving challenge.
+    [Bitbucket Branch and Commit(s)] Not needed, was just to test the code
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-174)
+    
+- SCRUM-140 Design shop popup panel
+    - Descriptions: Created an intuitive, grid-based popup shop UI accessible from the settings menu, with item slots and support for future store features.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-140-design-the-shop-ui-including-e)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-140)
+    
+- SCRUM-142 Hook up shop button to open shop UI
+    - Descriptions: Implemented logic to open and close the shop UI from the settings menu with smooth transitions and isolated control.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-177-design-and-create-several-cust)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-142)
+    
+- SCRUM-197 Write unit test plan for Power Meter & Wind API
+    - Descriptions: Wrote a unit test plan targeting power meter visibility and API wind data parsing, structured for reproducibility.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-197-testing-plan-3-unit-tests)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-197)
+    
+- SCRUM-198 Run unit tests and record results
+    - Descriptions: Executed and documented test results for power meter activation and wind behavior, including manual test confirmations and logs.
+    - [Bitbucket Branch and Commit(s)](https://bitbucket.org/cs3398-romulans-s25/on-par/branch/SCRUM-198-results-execution-3-unit-tests)
+    - [Jira Link](https://cs3398-romulans-spring.atlassian.net/browse/SCRUM-198)
+
+## Next Steps for Future Development
+- Brandon Mason:
+    - Make sure the current frontend backend connections work as intended.
+    - Connect the rewards system to the Unity HTTP methods connecting to the user rewards database.
+    - Search for bugs and fix them.
+
+- Xavier Ortiz: 
+    - Polishing the daily reward featur by adding more rewards to unlock and adding notifications
+    - Fixing bugs that impact the coin function - like making sure you are being rewarded the correct amount
+    - Adding more unique challenge levels and expanding opportunities for players to take on special challenges
+
+- Ariana Zapata:
+    - Polish animation transitions between views (main menu, settings, leaderboard).
+    - Complete backend endpoint for storing achievement progress.
+    - Refactor AccountSettingsView to fully reflect user stats dynamically from server.
+
+- Natalie Morales:
+    - Create a user-friendly music selection menu that allows players to choose from a curated list of background tracks.
+    - Add a Mystery Box feature: Get a random cosmetic reward after completing and x amount of levels. 
+    - Add more reward options such as visual ball Trails(fire, rainbow, sparkles, glitch), or new UI Themes.
+
+- Jalen Stewart:
+    - Finish creating Shop UI
+    - Add Functionality into the Shop to buy items
+    - Polish and create more unique hazards 
+
+## Burnup Chart for Sprint 3
+![Burnup Chart](./img/burnupChart3.png)
 
 ## Features
 - Mouse controls - Will launch the ball into the air.
